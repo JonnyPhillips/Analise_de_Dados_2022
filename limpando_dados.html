@@ -1,0 +1,2916 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Analise de Dados para as Ciencias Sociais: Organizando e Limpando Dados</title>
+
+  <meta property="description" itemprop="description" content="Construindo o seu Banco de Dados para Análise"/>
+
+
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Analise de Dados para as Ciencias Sociais: Organizando e Limpando Dados"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Construindo o seu Banco de Dados para Análise"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="Analise de Dados para as Ciencias Sociais"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Analise de Dados para as Ciencias Sociais: Organizando e Limpando Dados"/>
+  <meta property="twitter:description" content="Construindo o seu Banco de Dados para Análise"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Organizando e Limpando Dados"]},{"type":"character","attributes":{},"value":["Construindo o seu Banco de Dados para Análise\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+  <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Organizando e Limpando Dados","description":"Construindo o seu Banco de Dados para Análise","authors":[]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">Analise de Dados para as Ciencias Sociais</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Introducao</a>
+<a href="syllabus.html">Syllabus</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Tutoriais
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="introducao.html">1. Introducao</a>
+<a href="abrindo_manipulando.html">2. Abrindo e Manipulando Dados</a>
+<a href="limpando_dados.html">3. Organizando e Limpando Dados</a>
+<a href="Estatisticas_Resumidas.html">4. Calculando Estatisticas Resumidas</a>
+<a href="Tabelas.html">5. Construindo Tabelas</a>
+<a href="Graficos.html">6. Visualizacao de Dados</a>
+<a href="Juntando_Bancos.html">7. Juntando Bancos de Dados</a>
+<a href="Mapas.html">8. Mapas e Analises Espaciais</a>
+<a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
+<a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
+<a href="Repeticao.html">11. Funcoes e Repeticao</a>
+<a href="Analise_Texto.html">12. Analise de Texto</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Desafios
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Desafios/Desafio_1.html">Desafio 1</a>
+<a href="Desafios/Desafio_2.html">Desafio 2</a>
+<a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
+<a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
+<a href="Desafios/Desafio_5_v3.html">Desafio 5</a>
+</div>
+</div>
+<a href="recursos.html">Recursos</a>
+<a href="projeto.html">Projeto Final</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Organizando e Limpando Dados</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Construindo o seu Banco de Dados para Análise</p></p>
+</div>
+
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#dividindo-e-unificando-variáveis">Dividindo e Unificando Variáveis</a></li>
+<li><a href="#recodificação-de-variáveis">Recodificação de Variáveis</a></li>
+<li><a href="#ordenando-os-nossos-dados">Ordenando os nossos dados</a></li>
+<li><a href="#factors">Factors</a></li>
+<li><a href="#identificando-casosvalores-únicos-distinct">Identificando Casos/Valores Únicos (<code>distinct</code>)</a></li>
+</ul>
+</nav>
+</div>
+<style>
+div.green { background-color:#e5f5e0; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.orange { background-color:#fee6ce; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
+</style>
+<p><a href="https://drive.google.com/file/d/1ifqNas2Ob1IqoMy_BEJOBR_7IpvMmBoa/view">Clique aqui</a> para assistir o vídeo da aula online do dia 16 de abril de 2021. E o <a href="https://drive.google.com/file/d/1KWTBZBIPBAfv4l0Xi8VedVg9pq2JxdoX/view">chat</a>.</p>
+<h1 id="dividindo-e-unificando-variáveis">Dividindo e Unificando Variáveis</h1>
+<h2 id="dividir-variáveis-separate">Dividir Variáveis (<code>separate</code>)</h2>
+<p>Nós recebemos um banco de dados que combina dois pedaços de informação em uma variável único. Por exemplo, juntando mês e ano num formato combinado, ex. “jan2013” Para filtrar, manipular ou calcular baseado no mês ou ano individualmente, é sempre melhor organizar os dados em variáveis separadas para cada pedaço de informação. Isto é um princípio de análise dados: cada variável merece a sua própria coluna.</p>
+<p>Para dividir uma variável (coluna) em duas, usamos o verbo <code>separate()</code>. Os argumentos da função são: (i) o nome da coluna que queremos dividir, (ii) os nomes das duas colunas novas, e (iii) como/onde queremos separar a coluna em duas. Pode verificar estes argumentos usando o help, <code>?separate</code>. O (i) é fácil. No (ii) temos que especificar dois nomes, um para cada nova coluna, então não esqueça de usar o <code>c()</code>, ex. <code>c("mes","ano")</code> para indicar que você queria um vetor com mais de um elemento.</p>
+<p>O (iii) é o mais poderoso e complicado: Existem dois jeitos de separar uma variável em duas - por <em>posição</em>, ou por <em>caractere</em>. Vamos ver por posição primeiro, que indica que a variável tem um padrão fixo definido pelo número de caracteres entre os dois componentes. Ex. “jan2013” pode sempre ser separado depois do terceiro caractere, então usamos um separador de ‘3’.</p>
+<p>Vamos mostrar com uma tabela pequena como uma variável de mês-ano pode ser dividido por posição:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_separate</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+                      Mes_Ano<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"jan2013"</span>,<span class='st'>"mar2009"</span>,<span class='st'>"out2015"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>ex_separate</span> <span class='op'>%&gt;%</span> <span class='fu'>separate</span><span class='op'>(</span><span class='va'>Mes_Ano</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Mes"</span>,<span class='st'>"Ano"</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes_Ano"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"jan2013"},{"1":"2","2":"mar2009"},{"1":"3","2":"out2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Funciona, sim? Observe que o <code>separate</code> tira a variável original do tibble; se quiser manter, tem que adicionar o argumento <code>remove=FALSE</code> dentro do <code>separate</code>.</p>
+<p>Às vezes o fornecedor de dados não é tão generoso com a padronização das variáveis. Como, por exemplo, dividimos os dados abaixo?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_separate_2</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+                      Mes_Ano<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"janeiro_2013"</span>,<span class='st'>"marco_2009"</span>,<span class='st'>"outobro_2015"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Não podemos usar posição dado que o tamanho do mês varia. Mas podemos pedir para o R buscar dentro do string de texto para o caractere específico que divide o mês e o ano: ’_’. O <code>separate</code> aceita este caractere em vez de número de posição:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_separate_2</span> <span class='op'>%&gt;%</span> <span class='fu'>separate</span><span class='op'>(</span><span class='va'>Mes_Ano</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Mes"</span>,<span class='st'>"Ano"</span><span class='op'>)</span>, <span class='st'>"_"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"janeiro","3":"2013"},{"1":"2","2":"marco","3":"2009"},{"1":"3","2":"outobro","3":"2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Muito poderoso! Veremos em uma aula futura como trabalhar mais com estes strings de texto complicados.</p>
+<h2 id="unificar-variáveis-unite">Unificar Variáveis (<code>unite</code>)</h2>
+<p>Podemos fazer o inverso e unificar duas variáveis para uma? Sim, é fácil, mas temos que justificar o porquê. Normalmente faz mais sentido deixar os pedaços de informação distintos em variáveis separadas. Pode ser que por motivos de apresentação queremos unificar duas variáveis em uma. Por exemplo, para juntar nome e sobrenome em uma coluna para um relatório. Veja abaixo o uso de <code>unite()</code> para devolver as nossas colunas de mês e ano para mes_ano. Os argumentos são basicamente os mesmos que <code>separate()</code>, sem o terceiro elemento do separador:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_separate_3</span> <span class='op'>&lt;-</span> <span class='va'>ex_separate_2</span> <span class='op'>%&gt;%</span> <span class='fu'>separate</span><span class='op'>(</span><span class='va'>Mes_Ano</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Mes"</span>,<span class='st'>"Ano"</span><span class='op'>)</span>, <span class='st'>"_"</span><span class='op'>)</span>
+
+<span class='va'>ex_separate_3</span> <span class='op'>%&gt;%</span> <span class='fu'>unite</span><span class='op'>(</span><span class='st'>"Mes_Ano"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Mes</span>,<span class='va'>Ano</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes_Ano"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"janeiro_2013"},{"1":"2","2":"marco_2009"},{"1":"3","2":"outobro_2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Observe que <code>unite()</code> insere um ’_’ entre os componentes por padrão; podemos especificar o nosso caractere preferido (ou nenhum) com mais um argumento na função, por exemplo <code>sep=", "</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_separate_3</span> <span class='op'>%&gt;%</span> <span class='fu'>unite</span><span class='op'>(</span><span class='st'>"Mes_Ano"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Mes</span>,<span class='va'>Ano</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>", "</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="blue">
+<p><strong>Habilidade Básica de Programação: Aspas ou sem Aspas?</strong></p>
+<p>Você já observou que estamos nos referindo às variáveis em duas formas diferentes? Às vezes com aspas <code>"Variável"</code>, e às vezes sem aspas <code>Variável</code>. Como sabemos qual a usar? É um tópico um pouco chato, mas importante.</p>
+<p>Usamos sem aspas quando referimos a um objeto que <em>já existe</em> em nosso Environment, ou uma coluna já existente num tibble. Usamos com aspas quando referimos a um nome <em>novo</em> que estamos gerando naquele momento.</p>
+<p>Então em <code>separate</code> são as duas novas colunas que exigem de aspas, enquanto no <code>unite</code> é a coluna única e nova que exige aspas.</p>
+<p>Ao trabalhar com caracteres específicos dentro de uma variável/tabela, sempre temos que usar aspas.</p>
+<p>O R é meio tolerante e tenta ajudar em alguns casos se usamos o formato errado. Mas é importante evitar erros e confusões se possível.</p>
+</div>
+<h1 id="recodificação-de-variáveis">Recodificação de Variáveis</h1>
+<p>Recodificação de variáveis é uma habilidade fundamental na preparação de um banco de dados. Vamos ver várias opções para recodificação, mas começamos com o mais flexível. Imagine-se que queremos corrigir alguns dos erros na tabela abaixo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_recodificar</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+                        Mes<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"janeiro"</span>,<span class='st'>"february"</span>,<span class='st'>"outubro"</span><span class='op'>)</span>,
+                        Ano<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2013</span>, <span class='fl'>2009</span>, <span class='fl'>2015</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"janeiro","3":"2013"},{"1":"2","2":"february","3":"2009"},{"1":"3","2":"outubro","3":"2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Queremos renomear ‘february’ ‘fevereiro’ para corrigir o erro de um gringo ignorante. Como? Temos duas tarefas: (i) identificar o caso relevante (e apenas o caso relevante), e (ii) especificar o novo valor. Em geral, quando queremos criar ou modificar uma variável trabalhamos dentro de um <code>mutate()</code>, mas o mutate costuma mudar todos os valores na variável. Aqui, queremos sobreescrever a variável ‘Mes’ com nova informação apenas no caso de ‘february’. Para isso, combinamos <code>mutate()</code> com <code>case_when()</code>, que controla os detalhes de modificação no mutate.</p>
+<p><code>case_when()</code> funciona com um sintáxe específica: Estabelecemos várias condições (do mesmo tipo que usamos no <code>filter()</code>), e depois de cada uma usamos ‘~’ e em seguida o novo valor para substituir quando esta condição se aplica. Por exemplo, em nosso caso queremos a condição <code>Mes=="february"</code> e o novo valor <code>"fevereiro"</code>. Então precisamos de <code>Mes=="february"~"fevereiro"</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_recodificar</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Mes<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>Mes</span><span class='op'>==</span><span class='st'>"february"</span><span class='op'>~</span><span class='st'>"fevereiro"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"NA","3":"2013"},{"1":"2","2":"fevereiro","3":"2009"},{"1":"3","2":"NA","3":"2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Qual o resultado? Mudamos o valor para “fevereiro”, está correto, mas apagamos os valores dos outros dois meses. O <code>mutate()</code> realmente muda a coluna inteira, então as condições no <code>case_when()</code> precisam ser <strong>completas</strong> para todos os valores na nova coluna. Felizmente, existe um atalho para preservar os valores originais caso a condição anterior não seja satisfeita: Usamos uma condição que é sempre satisfeita: a condição literalmente <code>TRUE</code>, e um novo valor que não muda nada; o nome da variável original. Então:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_recodificar</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Mes<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>Mes</span><span class='op'>==</span><span class='st'>"february"</span><span class='op'>~</span><span class='st'>"fevereiro"</span>,
+                                        <span class='cn'>TRUE</span><span class='op'>~</span><span class='va'>Mes</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"janeiro","3":"2013"},{"1":"2","2":"fevereiro","3":"2009"},{"1":"3","2":"outubro","3":"2015"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Agora está correto. A sintáxe é um pouco específica então não se preocupe se receber uma mensagem de erro, volte para verificar se tem um <code>~</code> depois de cada condição, e uma vírgula entre cada recodificação. Também lembre-se que as condições precisam de dois sinais de igual.</p>
+<p>Vamos recodificar a variável ‘Ano’ usando a mesma lógica, mas agora queremos gerar uma variável binária que identifica todas as observações depois de 2010. Também não queremos sobreescrever a variável original, queremos uma nova variável:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_recodificar</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Depois_2010<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>Ano</span><span class='op'>&gt;</span><span class='fl'>2010</span><span class='op'>~</span><span class='fl'>1</span>,
+                                                <span class='va'>Ano</span><span class='op'>&lt;=</span><span class='fl'>2010</span><span class='op'>~</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Depois_2010"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"janeiro","3":"2013","4":"1"},{"1":"2","2":"february","3":"2009","4":"0"},{"1":"3","2":"outubro","3":"2015","4":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>É importante que as duas condições aqui cubram todos os valores de ‘Ano’ possível.</p>
+<p>Note que o <code>case_when()</code> é flexível demais: Podemos usar muitas condições, fazer referência a todas as variáveis na condição, e pegar os dados de todas as variáveis para definir o novo valor. Para ilustrar, veja o exemplo bobagem abaixo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_recodificar</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Nova_Variavel<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>Ano</span><span class='op'>&gt;=</span><span class='fl'>2014</span><span class='op'>~</span><span class='st'>"Sim"</span>,
+                                                  <span class='va'>Ano</span><span class='op'>&lt;</span><span class='fl'>2014</span> <span class='op'>&amp;</span> <span class='va'>Mes</span><span class='op'>==</span><span class='st'>"janeiro"</span><span class='op'>~</span><span class='va'>Mes</span>,
+                                                  <span class='va'>Ano</span><span class='op'>&lt;</span><span class='fl'>2014</span> <span class='op'>&amp;</span> <span class='va'>Mes</span><span class='op'>==</span><span class='st'>"february"</span><span class='op'>~</span><span class='st'>"Não"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Ano"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Nova_Variavel"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"janeiro","3":"2013","4":"janeiro"},{"1":"2","2":"february","3":"2009","4":"Não"},{"1":"3","2":"outubro","3":"2015","4":"Sim"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Tome cuidado na construção das condições: Idealmente elas devem ser <strong>completas</strong> e também <strong>mutualmente excludentes</strong>. Se não, a ordem das condições importa e pode gerar resultados inesperados.</p>
+<p><br></p>
+<div class="green">
+<p><strong>Exercício 1: Limpando Dados</strong></p>
+<p>Usando o banco de dados de <code>flights</code> no pacote <code>nycflights13</code>, responda as seguintes perguntas:</p>
+<ol type="1">
+<li>Crie uma data completa numa variável única, com o formato “day-month-year”.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>unite</span><span class='op'>(</span><span class='st'>"Data"</span>, <span class='va'>day</span>, <span class='va'>month</span>, <span class='va'>year</span>, sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Divida a variável <code>time_hour</code> em duas: uma variável de <code>time</code> e a outra variável de <code>hour</code>.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>separate</span><span class='op'>(</span><span class='va'>time_hour</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"time"</span>, <span class='st'>"hour"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Recodifique a variável <code>dep_delay</code> para uma variável binária, que seja <code>1</code> quando tem atraso, e <code>0</code> quando não tem atraso (valores negativos significam decolagens antes do horário previsto).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>dep_delay <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>dep_delay</span> <span class='op'>&gt;</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='fl'>1</span>, <span class='va'>dep_delay</span> <span class='op'>&lt;=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>A companhia aérea US Airways (código ‘US’) se fundiu com American Airlines (código ‘AA’). Recodifique voos de US Airways como voos de American Airlines.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>carrier <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>carrier</span> <span class='op'>==</span> <span class='st'>"US"</span> <span class='op'>~</span> <span class='st'>"AA"</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='va'>carrier</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<p><br></p>
+<h1 id="ordenando-os-nossos-dados">Ordenando os nossos dados</h1>
+<p>Até agora, ignoramos a ordem das observações em nosso banco de dados. A ordem importa por dois motivos. Primeiro, para apresentação de tabelas mais organizadas no documento final. Segundo, para facilitar funções específicas quando as nossas observações têm uma ordem natural.</p>
+<h2 id="ordenar-arrange">Ordenar: <code>Arrange</code></h2>
+<p>O verbo para ordenar os dados é <code>Arrange()</code>, e podemos especificar uma sequência de variáveis para ser usadas na ordenação. Vamos começar com uns dados desordenados:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+                     Ano<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2009</span>, <span class='fl'>2006</span>, <span class='fl'>2006</span>, <span class='fl'>2007</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span><span class='op'>)</span>,
+                     Mes<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abril"</span>,<span class='st'>"Novembro"</span>,<span class='st'>"Julho"</span>,<span class='st'>"Março"</span>,<span class='st'>"Novembro"</span>,<span class='st'>"Fevereiro"</span>,
+                           <span class='st'>"Junho"</span>,<span class='st'>"Novembro"</span>,<span class='st'>"Janeiro"</span>,<span class='st'>"Outubro"</span><span class='op'>)</span>,
+                     Valor<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>,<span class='fl'>800</span>,<span class='fl'>300</span>,<span class='fl'>500</span>,<span class='fl'>850</span>,<span class='fl'>450</span>,<span class='fl'>600</span>,<span class='fl'>450</span>,<span class='fl'>700</span>,<span class='fl'>350</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"3","2":"2009","3":"Julho","4":"300"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"10","2":"2005","3":"Outubro","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Se quisermos as observações em ordem de ano e valor (ignorando mês por enquanto porque vamos explorar isso em mais detalhe abaixo):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Valor</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"10","2":"2005","3":"Outubro","4":"350"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"3","2":"2009","3":"Julho","4":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>O resultado é que os dados são ordenados por Ano primeiramente, e dentro de cada Ano, por Valor.</p>
+<p>Se quisermos as observações em ordem <em>decrescente</em>, usamos um menos (‘-’) para inverter a ordem, por exemplo, em ordem decrescente de valor:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>Valor</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"10","2":"2005","3":"Outubro","4":"350"},{"1":"3","2":"2009","3":"Julho","4":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<h2 id="filtrar-para-os-maioresmenores-top_n-e-top_frac">Filtrar para os Maiores/Menores: <code>top_n</code> e <code>top_frac</code></h2>
+<p>Um tipo de <code>filter()</code> específico é quando queremos as maiores/menores observações de acordo com uma variável. Se não for um limite absoluto (ex. acima de 140), mas acima de um limite <em>relativo</em> (ex. os cinco maiores), precisamos fazer um ranquemanto e depois filtrar baseado nesse ranqueamento. É possível calcular isso manualmente, mas a maneira mais fácil é usar a função <code>top_n()</code>. Ela exige dois argumentos: o número de observações desejadas, e a variável na qual queremos aplicar o filtro.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>top_n</span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>Valor</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"9","2":"2008","3":"Janeiro","4":"700"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Para os menores valores, usamos um menos (‘-’) na frente do número de observações.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>top_n</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='va'>Valor</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"2009","3":"Julho","4":"300"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"10","2":"2005","3":"Outubro","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Existe uma função bem parecida que devolve a <em>proporção</em> de observações desejada: <code>top_frac()</code>. Para os maiores 30% de observações, usamos o argumento de 0.3.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>top_frac</span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='va'>Valor</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"5","2":"2006","3":"Novembro","4":"850"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<h2 id="dados-de-time-series-lag-e-lead">Dados de Time-Series: <code>lag</code> e <code>lead</code></h2>
+<p>Com os nossos dados ordenados, podemos implementar várias técnicas de análise de Time Series (séries temporais). Por exemplo, podemos calcular, para cada observação, o valor de uma variável no período anterior usando <code>lag()</code>. Note que é <em>essencial</em> que os nossos dados já estão ordenados cronologicamente com <code>arrange()</code> antes de executar o <code>lag</code>. Dado que estamos construindo uma nova variável, também é necessário usar <code>lag</code> dentro de <code>mutate</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>Valor_anterior<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>Valor</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Valor_anterior"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"2005","3":"Novembro","4":"800","5":"NA"},{"1":"8","2":"2005","3":"Novembro","4":"450","5":"800"},{"1":"10","2":"2005","3":"Outubro","4":"350","5":"450"},{"1":"4","2":"2006","3":"Março","4":"500","5":"350"},{"1":"5","2":"2006","3":"Novembro","4":"850","5":"500"},{"1":"6","2":"2007","3":"Fevereiro","4":"450","5":"850"},{"1":"1","2":"2008","3":"Abril","4":"750","5":"450"},{"1":"7","2":"2008","3":"Junho","4":"600","5":"750"},{"1":"9","2":"2008","3":"Janeiro","4":"700","5":"600"},{"1":"3","2":"2009","3":"Julho","4":"300","5":"700"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Uma dificuldade com esta operação é que não existe um valor anterior para a primeira observação - veja que o R insere um <code>NA</code> para o primeiro valor de Valor_anterior. Isso é inevitável, exceto se temos dados mais antigos.</p>
+<p>Outra dificuldade é que ainda estamos ignorando a variável mês, então temos janeiro depois de junho em 2008 - não se preocupe, vamos tratar disso em breve.</p>
+<p>Com <code>lag</code>, é fácil calcular a diferença entre ‘Valor’ e ‘Valor_anterior’ para focar em mudanças ao longo do tempo na variável:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>Valor_anterior<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>Valor</span><span class='op'>)</span>,
+         Valor_diferenca<span class='op'>=</span><span class='va'>Valor</span><span class='op'>-</span><span class='va'>Valor_anterior</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Valor_anterior"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Valor_diferenca"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"2005","3":"Novembro","4":"800","5":"NA","6":"NA"},{"1":"8","2":"2005","3":"Novembro","4":"450","5":"800","6":"-350"},{"1":"10","2":"2005","3":"Outubro","4":"350","5":"450","6":"-100"},{"1":"4","2":"2006","3":"Março","4":"500","5":"350","6":"150"},{"1":"5","2":"2006","3":"Novembro","4":"850","5":"500","6":"350"},{"1":"6","2":"2007","3":"Fevereiro","4":"450","5":"850","6":"-400"},{"1":"1","2":"2008","3":"Abril","4":"750","5":"450","6":"300"},{"1":"7","2":"2008","3":"Junho","4":"600","5":"750","6":"-150"},{"1":"9","2":"2008","3":"Janeiro","4":"700","5":"600","6":"100"},{"1":"3","2":"2009","3":"Julho","4":"300","5":"700","6":"-400"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>A operação de <code>lead()</code> é equivalente, mas traz o valor subsequente.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>Valor_posterior<span class='op'>=</span><span class='fu'>lead</span><span class='op'>(</span><span class='va'>Valor</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Valor_posterior"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"2005","3":"Novembro","4":"800","5":"450"},{"1":"8","2":"2005","3":"Novembro","4":"450","5":"350"},{"1":"10","2":"2005","3":"Outubro","4":"350","5":"500"},{"1":"4","2":"2006","3":"Março","4":"500","5":"850"},{"1":"5","2":"2006","3":"Novembro","4":"850","5":"450"},{"1":"6","2":"2007","3":"Fevereiro","4":"450","5":"750"},{"1":"1","2":"2008","3":"Abril","4":"750","5":"600"},{"1":"7","2":"2008","3":"Junho","4":"600","5":"700"},{"1":"9","2":"2008","3":"Janeiro","4":"700","5":"300"},{"1":"3","2":"2009","3":"Julho","4":"300","5":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p><br></p>
+<div class="green">
+<p><strong>Exercício 2: Ordenação</strong></p>
+<p>Use de novo o banco de dados <code>flights</code>:</p>
+<ol type="1">
+<li>Ordene o banco de dados da menor à maior duração (<code>air_time</code>), incluindo apenas os voos com destino de Anchorage (<code>ANC</code>).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ANC"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>air_time</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Identifique o voo mais atrasado (<code>dep_delay</code>) entre LaGuardia (<code>LGA</code>) e Atlanta (<code>ATL</code>). Quão atrasado foi o voo?</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"LGA"</span> <span class='op'>&amp;</span> <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ATL"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>top_n</span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>dep_delay</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Calcule a velocidade de cada voo, e selecione os três voos mais rápidos. Eles partiram de qual aeroporto para qual destino?</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>velocidade <span class='op'>=</span> <span class='va'>distance</span><span class='op'>/</span><span class='va'>air_time</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>top_n</span><span class='op'>(</span><span class='fl'>3</span>, <span class='va'>velocidade</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>select</span><span class='op'>(</span><span class='va'>velocidade</span>, <span class='va'>origin</span>, <span class='va'>dest</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Para os voos com destino em Anchorage (<code>ANC</code>), verifique que eles são ordenados cronologicamente (por <code>year</code>, <code>month</code>, <code>day</code>, e <code>dep_time</code>) e gera uma nova variável com a duração (<code>air_time</code>) do voo <em>anterior</em>. Agora, compare a duração de cada voo com a duração do voo anterior.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ANC"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>dep_time</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>air_time_anterior <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>air_time</span><span class='op'>)</span>, air_time_anterior_dif <span class='op'>=</span> <span class='va'>air_time</span> <span class='op'>-</span> 
+        <span class='va'>air_time_anterior</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<p><br></p>
+<h1 id="factors">Factors</h1>
+<p>Além de números, caracteres e lógicos (TRUE/FALSE), o tipo de dado mais útil para análise de dados é um ‘factor’. Factors são variáveis que podem assumir um número de valores <em>limitados e pré-definidos</em> (normalmente strings de texto). Pense em variáveis categóricas, nominais, ordinais etc. Factors nos ajudam a evitar erros e refletir a estrutura correta das nossas variáveis, mas elas exigem uma disciplina e um cuidado por nosso lado.</p>
+<p>Por exemplo, lembre-se do problema quando o nosso banco de dados incluiu “february” em vez de “fevereiro”? Este problema é impossível com uma variável do tipo factor, pois definimos do início os valores aceitáveis num formato padrão - os ‘levels’ do factor. Vamos recriar o tibble ‘ex_arrange’ de acima, mas agora especificamos o mês como uma variável factor, com os ‘levels’ permitidos pela natureza da variável:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, Ano <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2009</span>, <span class='fl'>2006</span>, <span class='fl'>2006</span>, <span class='fl'>2007</span>, 
+    <span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span><span class='op'>)</span>, Mes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abril"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Julho"</span>, 
+    <span class='st'>"Março"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"February"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Janeiro"</span>, <span class='st'>"Outubro"</span><span class='op'>)</span>, 
+    levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Janeiro"</span>, <span class='st'>"Fevereiro"</span>, <span class='st'>"Março"</span>, <span class='st'>"Abril"</span>, <span class='st'>"Maio"</span>, <span class='st'>"Junho"</span>, 
+        <span class='st'>"Julho"</span>, <span class='st'>"Agosto"</span>, <span class='st'>"Setembro"</span>, <span class='st'>"Outubro"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Dezembro"</span><span class='op'>)</span><span class='op'>)</span>, 
+    Valor <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>, <span class='fl'>800</span>, <span class='fl'>300</span>, <span class='fl'>500</span>, <span class='fl'>850</span>, <span class='fl'>450</span>, <span class='fl'>600</span>, <span class='fl'>450</span>, <span class='fl'>700</span>, <span class='fl'>350</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["fct"],"align":["left"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"3","2":"2009","3":"Julho","4":"300"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"NA","4":"450"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"10","2":"2005","3":"Outubro","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Bem mais trabalhoso, não?? Mas vale a pena: veja a tabela que isso produziu - em lugar de “February” o R colocou <code>NA</code> porque “February” não está na lista de levels que delimitamos no argumento ‘levels’. Isso impede que a nossa variável tome valores impossíveis, deixando a nossa análise subsequente mais confiável. Lembre-se de incluir todos os valores possíveis nos ‘levels’ para evitar problemas futuros. Por exemplo temos ‘Maio’ na lista de levels mesmo que ele não exista nos dados atuais.</p>
+<p>O código acima mostra como criar variáveis de tipo factor num novo banco de dados. É comum já termos um banco de dados com uma variável de tipo caractere, e querermos transformá-la em factor. Vamos criar o mesmo banco de dados de novo, mas sem especificar o mês como factor, e depois aplicar a transformação dentro de mutate.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, Ano <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2009</span>, <span class='fl'>2006</span>, <span class='fl'>2006</span>, <span class='fl'>2007</span>, 
+    <span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span><span class='op'>)</span>, Mes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abril"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Julho"</span>, <span class='st'>"Março"</span>, 
+    <span class='st'>"Novembro"</span>, <span class='st'>"February"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Janeiro"</span>, <span class='st'>"Outubro"</span><span class='op'>)</span>, 
+    Valor <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>, <span class='fl'>800</span>, <span class='fl'>300</span>, <span class='fl'>500</span>, <span class='fl'>850</span>, <span class='fl'>450</span>, <span class='fl'>600</span>, <span class='fl'>450</span>, <span class='fl'>700</span>, <span class='fl'>350</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Mes<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Mes</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Note que aqui não temos que especificar os ‘levels’ do factor - o R usa os valores atuais para preencher os levels. Podemos fazer assim, mas lembre-se que os levels não incluem todos os meses, o que pode gerar problemas no futuro se quisermos adicionar mais dados.</p>
+<p>Para permitir todos os doze meses desde o início, temos que especificar os levels explicitamente:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, Ano <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2009</span>, <span class='fl'>2006</span>, <span class='fl'>2006</span>, <span class='fl'>2007</span>, 
+    <span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span><span class='op'>)</span>, Mes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abril"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Julho"</span>, <span class='st'>"Março"</span>, 
+    <span class='st'>"Novembro"</span>, <span class='st'>"February"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Janeiro"</span>, <span class='st'>"Outubro"</span><span class='op'>)</span>, 
+    Valor <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>, <span class='fl'>800</span>, <span class='fl'>300</span>, <span class='fl'>500</span>, <span class='fl'>850</span>, <span class='fl'>450</span>, <span class='fl'>600</span>, <span class='fl'>450</span>, <span class='fl'>700</span>, <span class='fl'>350</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>Mes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Mes</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Janeiro"</span>, <span class='st'>"Fevereiro"</span>, <span class='st'>"Março"</span>, 
+        <span class='st'>"Abril"</span>, <span class='st'>"Maio"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Julho"</span>, <span class='st'>"Agosto"</span>, <span class='st'>"Setembro"</span>, <span class='st'>"Outubro"</span>, 
+        <span class='st'>"Novembro"</span>, <span class='st'>"Dezembro"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="factors-ordenados">Factors Ordenados</h2>
+<p>Existem mais duas vantagens em trabalhar com Factors. Primeiro, é que podemos especificar uma ordem para a variável mesmo para variáveis que contém caracteres. Meses, por exemplo, são ordenados, mas não conseguimos usar na seção anterior para ordenação porque o R não entende automaticamente a ordem de “Janeiro”,“Fevereiro”. Na verdade, o R entendo que a ordem de caracteres é <em>alfabética</em>, que não faz sentido para a variável de mês. Dentro de <code>factor</code>, podemos especificar <code>ordered=TRUE</code> para definir a ordem dos valores na sequência que eles aparecem no vetor <code>levels()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>ID <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, Ano <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2009</span>, <span class='fl'>2006</span>, <span class='fl'>2006</span>, <span class='fl'>2007</span>, 
+    <span class='fl'>2008</span>, <span class='fl'>2005</span>, <span class='fl'>2008</span>, <span class='fl'>2005</span><span class='op'>)</span>, Mes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abril"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Julho"</span>, 
+    <span class='st'>"Março"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Fevereiro"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Janeiro"</span>, <span class='st'>"Outubro"</span><span class='op'>)</span>, 
+    levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Janeiro"</span>, <span class='st'>"Fevereiro"</span>, <span class='st'>"Março"</span>, <span class='st'>"Abril"</span>, <span class='st'>"Maio"</span>, <span class='st'>"Junho"</span>, 
+        <span class='st'>"Julho"</span>, <span class='st'>"Agosto"</span>, <span class='st'>"Setembro"</span>, <span class='st'>"Outubro"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Dezembro"</span><span class='op'>)</span>, 
+    ordered <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>, Valor <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>, <span class='fl'>800</span>, <span class='fl'>300</span>, <span class='fl'>500</span>, <span class='fl'>850</span>, <span class='fl'>450</span>, <span class='fl'>600</span>, <span class='fl'>450</span>, <span class='fl'>700</span>, 
+    <span class='fl'>350</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Agora, podemos ordenar os dados por Ano e Mês:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Mes</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["ord"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"10","2":"2005","3":"Outubro","4":"350"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"3","2":"2009","3":"Julho","4":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<h2 id="completando-bancos-de-dados-parciais-complete">Completando Bancos de Dados Parciais: <code>complete</code></h2>
+<p>A segunda vantagem de trabalhar com factors é que um factor deixa fácil preencher os valores ausentes da variável. Por exemplo, os nossos cálculos de <code>lag</code>, <code>lead</code> e diferença acima não fazem muito sentido - comparamos por exemplo o valor de Junho com o valor de Abril, pulando Maio porque ele não aparece no banco de dados originais. Então o nosso cálculo de <code>lag</code> é inconsistente; um lag de um mês em alguns casos, dois meses em outros, 9 meses em outros. Um cálculo consistente e confiável tem que refletir os dados ausentes <em>explicitamente</em>.</p>
+<p>Podemos criar uma sequência completa facilmente se as variáveis originais foram criados corretamente como factors: Usamos o verbo <code>complete()</code> para preencher as variáveis:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>complete</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Mes</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Ano"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["ord"],"align":["right"]},{"label":["ID"],"name":[3],"type":["int"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2005","2":"Janeiro","3":"NA","4":"NA"},{"1":"2005","2":"Fevereiro","3":"NA","4":"NA"},{"1":"2005","2":"Março","3":"NA","4":"NA"},{"1":"2005","2":"Abril","3":"NA","4":"NA"},{"1":"2005","2":"Maio","3":"NA","4":"NA"},{"1":"2005","2":"Junho","3":"NA","4":"NA"},{"1":"2005","2":"Julho","3":"NA","4":"NA"},{"1":"2005","2":"Agosto","3":"NA","4":"NA"},{"1":"2005","2":"Setembro","3":"NA","4":"NA"},{"1":"2005","2":"Outubro","3":"10","4":"350"},{"1":"2005","2":"Novembro","3":"2","4":"800"},{"1":"2005","2":"Novembro","3":"8","4":"450"},{"1":"2005","2":"Dezembro","3":"NA","4":"NA"},{"1":"2006","2":"Janeiro","3":"NA","4":"NA"},{"1":"2006","2":"Fevereiro","3":"NA","4":"NA"},{"1":"2006","2":"Março","3":"4","4":"500"},{"1":"2006","2":"Abril","3":"NA","4":"NA"},{"1":"2006","2":"Maio","3":"NA","4":"NA"},{"1":"2006","2":"Junho","3":"NA","4":"NA"},{"1":"2006","2":"Julho","3":"NA","4":"NA"},{"1":"2006","2":"Agosto","3":"NA","4":"NA"},{"1":"2006","2":"Setembro","3":"NA","4":"NA"},{"1":"2006","2":"Outubro","3":"NA","4":"NA"},{"1":"2006","2":"Novembro","3":"5","4":"850"},{"1":"2006","2":"Dezembro","3":"NA","4":"NA"},{"1":"2007","2":"Janeiro","3":"NA","4":"NA"},{"1":"2007","2":"Fevereiro","3":"6","4":"450"},{"1":"2007","2":"Março","3":"NA","4":"NA"},{"1":"2007","2":"Abril","3":"NA","4":"NA"},{"1":"2007","2":"Maio","3":"NA","4":"NA"},{"1":"2007","2":"Junho","3":"NA","4":"NA"},{"1":"2007","2":"Julho","3":"NA","4":"NA"},{"1":"2007","2":"Agosto","3":"NA","4":"NA"},{"1":"2007","2":"Setembro","3":"NA","4":"NA"},{"1":"2007","2":"Outubro","3":"NA","4":"NA"},{"1":"2007","2":"Novembro","3":"NA","4":"NA"},{"1":"2007","2":"Dezembro","3":"NA","4":"NA"},{"1":"2008","2":"Janeiro","3":"9","4":"700"},{"1":"2008","2":"Fevereiro","3":"NA","4":"NA"},{"1":"2008","2":"Março","3":"NA","4":"NA"},{"1":"2008","2":"Abril","3":"1","4":"750"},{"1":"2008","2":"Maio","3":"NA","4":"NA"},{"1":"2008","2":"Junho","3":"7","4":"600"},{"1":"2008","2":"Julho","3":"NA","4":"NA"},{"1":"2008","2":"Agosto","3":"NA","4":"NA"},{"1":"2008","2":"Setembro","3":"NA","4":"NA"},{"1":"2008","2":"Outubro","3":"NA","4":"NA"},{"1":"2008","2":"Novembro","3":"NA","4":"NA"},{"1":"2008","2":"Dezembro","3":"NA","4":"NA"},{"1":"2009","2":"Janeiro","3":"NA","4":"NA"},{"1":"2009","2":"Fevereiro","3":"NA","4":"NA"},{"1":"2009","2":"Março","3":"NA","4":"NA"},{"1":"2009","2":"Abril","3":"NA","4":"NA"},{"1":"2009","2":"Maio","3":"NA","4":"NA"},{"1":"2009","2":"Junho","3":"NA","4":"NA"},{"1":"2009","2":"Julho","3":"3","4":"300"},{"1":"2009","2":"Agosto","3":"NA","4":"NA"},{"1":"2009","2":"Setembro","3":"NA","4":"NA"},{"1":"2009","2":"Outubro","3":"NA","4":"NA"},{"1":"2009","2":"Novembro","3":"NA","4":"NA"},{"1":"2009","2":"Dezembro","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Veja o resultado: Temos os 12 meses para cada um dos cinco anos, um banco de dados completo (e uma linha duplicada para Novembro 2005). A maioria dos valores são desconhecidos, <code>NA</code>, porque não aparecem no banco de dados original, mas tudo bem, pelo menos entendemos onde temos dados e onde não, e não criamos lags e leads enganosos.</p>
+<p>Note para o futuro que é possível especificar o valor que o <code>complete</code> usa para preencher observações ausentes. Por exemplo, pode ser que o ‘valor’ nos dados reflita vendas e que saibamos que não houve vendas nos meses ausentes do banco de dados. Neste caso, faz sentido preencher as observações dos outros meses com zero usando o argumento <code>fill</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>complete</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Mes</span>, fill<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Valor<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Ano"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[2],"type":["ord"],"align":["right"]},{"label":["ID"],"name":[3],"type":["int"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2005","2":"Janeiro","3":"NA","4":"0"},{"1":"2005","2":"Fevereiro","3":"NA","4":"0"},{"1":"2005","2":"Março","3":"NA","4":"0"},{"1":"2005","2":"Abril","3":"NA","4":"0"},{"1":"2005","2":"Maio","3":"NA","4":"0"},{"1":"2005","2":"Junho","3":"NA","4":"0"},{"1":"2005","2":"Julho","3":"NA","4":"0"},{"1":"2005","2":"Agosto","3":"NA","4":"0"},{"1":"2005","2":"Setembro","3":"NA","4":"0"},{"1":"2005","2":"Outubro","3":"10","4":"350"},{"1":"2005","2":"Novembro","3":"2","4":"800"},{"1":"2005","2":"Novembro","3":"8","4":"450"},{"1":"2005","2":"Dezembro","3":"NA","4":"0"},{"1":"2006","2":"Janeiro","3":"NA","4":"0"},{"1":"2006","2":"Fevereiro","3":"NA","4":"0"},{"1":"2006","2":"Março","3":"4","4":"500"},{"1":"2006","2":"Abril","3":"NA","4":"0"},{"1":"2006","2":"Maio","3":"NA","4":"0"},{"1":"2006","2":"Junho","3":"NA","4":"0"},{"1":"2006","2":"Julho","3":"NA","4":"0"},{"1":"2006","2":"Agosto","3":"NA","4":"0"},{"1":"2006","2":"Setembro","3":"NA","4":"0"},{"1":"2006","2":"Outubro","3":"NA","4":"0"},{"1":"2006","2":"Novembro","3":"5","4":"850"},{"1":"2006","2":"Dezembro","3":"NA","4":"0"},{"1":"2007","2":"Janeiro","3":"NA","4":"0"},{"1":"2007","2":"Fevereiro","3":"6","4":"450"},{"1":"2007","2":"Março","3":"NA","4":"0"},{"1":"2007","2":"Abril","3":"NA","4":"0"},{"1":"2007","2":"Maio","3":"NA","4":"0"},{"1":"2007","2":"Junho","3":"NA","4":"0"},{"1":"2007","2":"Julho","3":"NA","4":"0"},{"1":"2007","2":"Agosto","3":"NA","4":"0"},{"1":"2007","2":"Setembro","3":"NA","4":"0"},{"1":"2007","2":"Outubro","3":"NA","4":"0"},{"1":"2007","2":"Novembro","3":"NA","4":"0"},{"1":"2007","2":"Dezembro","3":"NA","4":"0"},{"1":"2008","2":"Janeiro","3":"9","4":"700"},{"1":"2008","2":"Fevereiro","3":"NA","4":"0"},{"1":"2008","2":"Março","3":"NA","4":"0"},{"1":"2008","2":"Abril","3":"1","4":"750"},{"1":"2008","2":"Maio","3":"NA","4":"0"},{"1":"2008","2":"Junho","3":"7","4":"600"},{"1":"2008","2":"Julho","3":"NA","4":"0"},{"1":"2008","2":"Agosto","3":"NA","4":"0"},{"1":"2008","2":"Setembro","3":"NA","4":"0"},{"1":"2008","2":"Outubro","3":"NA","4":"0"},{"1":"2008","2":"Novembro","3":"NA","4":"0"},{"1":"2008","2":"Dezembro","3":"NA","4":"0"},{"1":"2009","2":"Janeiro","3":"NA","4":"0"},{"1":"2009","2":"Fevereiro","3":"NA","4":"0"},{"1":"2009","2":"Março","3":"NA","4":"0"},{"1":"2009","2":"Abril","3":"NA","4":"0"},{"1":"2009","2":"Maio","3":"NA","4":"0"},{"1":"2009","2":"Junho","3":"NA","4":"0"},{"1":"2009","2":"Julho","3":"3","4":"300"},{"1":"2009","2":"Agosto","3":"NA","4":"0"},{"1":"2009","2":"Setembro","3":"NA","4":"0"},{"1":"2009","2":"Outubro","3":"NA","4":"0"},{"1":"2009","2":"Novembro","3":"NA","4":"0"},{"1":"2009","2":"Dezembro","3":"NA","4":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Esta capacidade também ajudará muito na construção de gráficos em tutoriais futuros: Valores podem desaparecer da legenda, e cores podem ficar inconsistentes entre gráficos se não mantivermos estáveis os levels do factor, então é importante aprender como a trabalhar com eles do início.</p>
+<div class="blue">
+<p><strong>Habilidade Básica de Programação: Dados Ausentes, <code>NA</code></strong></p>
+<p>Muitos problemas e erros são gerados pelo tratamento inapropriado de dados ausentes. Vamos revisar isto várias vezes, mas por enquanto temos que reconhecer que <code>NA</code> é um pedaço de informação importante que não podemos ignorar. Jogar fora os dados ausentes significa perder muitas observações potenciais, o que pode gerar um viés de seleção em nossa análise. Então é sempre importante deixar os <code>NA</code>s explícitos.</p>
+<p>Por outro lado, um <code>NA</code> é ambíguo e pode significar duas coisas diferentes: (i) Um NA ‘estrutural’ que é <em>impossível</em> medir. Por exemplo, o PIB do Estado do Tocantins em 1970 (o estado foi criado apenas em 1988). (ii) Um NA que podia ter sido medido, mas por algum motivo não foi. Por exemplo, faltamos dados de 2014 porque os arquivos foram perdidos em um incêndio. O tipo de <code>NA</code> vai afetar a nossa interpretação e tratamento de dados.</p>
+<p>Trabalhando com dados <code>NA</code> exige algumas regras específicas. Para testar se um valor é <code>NA</code>, não podemos usar o padrão <code>x=="NA"</code>. Temos que usar <code>is.na(x)</code>, uma função dedicada para testar se um valor é NA ou não.</p>
+<p>Se quisemos criar valores <code>NA</code>, temos que usar uma versão apropriada para o tipo de dado da variável: existe <code>NA_character_</code>, <code>NA_real_</code> e <code>NA_integer_</code>. Para subtituir <code>NA</code> com outro valor, use a função <code>replace_na()</code>. Todos são demonstrados no exemplo abaixo.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>complete</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Mes</span>, fill<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Valor<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>ID_NA<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>ID</span><span class='op'>)</span><span class='op'>~</span><span class='fl'>1</span>,
+                         <span class='cn'>TRUE</span><span class='op'>~</span><span class='fl'>0</span><span class='op'>)</span>,
+         Valor<span class='op'>=</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>Valor</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>~</span><span class='cn'>NA_real_</span>,
+                          <span class='cn'>TRUE</span><span class='op'>~</span><span class='va'>Valor</span><span class='op'>)</span>,
+         ID<span class='op'>=</span><span class='fu'>replace_na</span><span class='op'>(</span><span class='va'>ID</span>, <span class='st'>"Desonhecido"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+</div>
+<h2 id="recodificação-de-levels-de-factors">Recodificação de levels de Factors</h2>
+<p>Um desafio em trabalhar com Factors é que eles exigem funções específicas para recodificação dos seus levels. Existe um pacote inteiro para isso, que se chama <code>forcats</code> e é parte do tidyverse.</p>
+<p>Existem três funções super-úteis para trabalhar com factors, todas que começam com <code>fct_</code>, e usamos todas dentro de um <code>mutate()</code>, dado que estamos mexendo com uma coluna que já existe.</p>
+<p>Primeiro, quando queremos renomear os <em>levels</em> de um factor, usamos <code>fct_recode</code>. Por exemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Mes<span class='op'>=</span><span class='fu'>fct_recode</span><span class='op'>(</span><span class='va'>Mes</span>,
+                                     <span class='st'>"abril"</span><span class='op'>=</span><span class='st'>"Abril"</span>,
+                                     <span class='st'>"junho"</span><span class='op'>=</span><span class='st'>"Junho"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["ord"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"3","2":"2009","3":"Julho","4":"300"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"7","2":"2008","3":"junho","4":"600"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"10","2":"2005","3":"Outubro","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Segundo, quando queremos ajustar a <em>ordem</em> de um factor ordenado, usamos <code>fct_relevel</code>. Por exemplo, para inverter a ordem do mês:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>Mes <span class='op'>=</span> <span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>Mes</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Dezembro"</span>, <span class='st'>"Novembro"</span>, <span class='st'>"Outubro"</span>, 
+        <span class='st'>"Setembro"</span>, <span class='st'>"Agosto"</span>, <span class='st'>"Julho"</span>, <span class='st'>"Junho"</span>, <span class='st'>"Maio"</span>, <span class='st'>"Abril"</span>, <span class='st'>"Março"</span>, 
+        <span class='st'>"Fevereiro"</span>, <span class='st'>"Janeiro"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>Ano</span>, <span class='va'>Mes</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["ord"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"10","2":"2005","3":"Outubro","4":"350"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"4","2":"2006","3":"Março","4":"500"},{"1":"6","2":"2007","3":"Fevereiro","4":"450"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"9","2":"2008","3":"Janeiro","4":"700"},{"1":"3","2":"2009","3":"Julho","4":"300"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Terceiro, quando queremos <em>reestruturar/simplificar</em> o factor para menos níveis, usamos <code>fct_collapse</code>. Por exemplo, podemos juntar os primeiros três meses e descrever como o primeiro quarto do ano, ‘Q1’:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ex_arrange</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Mes<span class='op'>=</span><span class='fu'>fct_collapse</span><span class='op'>(</span><span class='va'>Mes</span>,<span class='st'>"Q1"</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Janeiro"</span>,<span class='st'>"Fevereiro"</span>,<span class='st'>"Março"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Ano"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mes"],"name":[3],"type":["ord"],"align":["right"]},{"label":["Valor"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008","3":"Abril","4":"750"},{"1":"2","2":"2005","3":"Novembro","4":"800"},{"1":"3","2":"2009","3":"Julho","4":"300"},{"1":"4","2":"2006","3":"Q1","4":"500"},{"1":"5","2":"2006","3":"Novembro","4":"850"},{"1":"6","2":"2007","3":"Q1","4":"450"},{"1":"7","2":"2008","3":"Junho","4":"600"},{"1":"8","2":"2005","3":"Novembro","4":"450"},{"1":"9","2":"2008","3":"Q1","4":"700"},{"1":"10","2":"2005","3":"Outubro","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Mais detalhes no cheatsheet de forcats <a href="https://github.com/rstudio/cheatsheets/raw/master/factors.pdf">aqui</a>.</p>
+<p><br></p>
+<div class="green">
+<p><strong>Exercício 3: Factors</strong></p>
+<p>Usando os dados de <code>flights</code> de novo:</p>
+<ol type="1">
+<li>Transforme a variável <code>origin</code> para um factor (não-ordenado).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>origin</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Salve o resultado de (1) e tente-se usar o novo banco de dados para recodificar o aeroporto de origem “EWR” para “Newark” usando <code>case_when</code> dentro de <code>mutate</code>. É possível?</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"EWR"</span> <span class='op'>~</span> <span class='st'>"Newark"</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='va'>origin</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Usando as funções dedicadas do pacote <code>forcats</code>, recodifique o factor <code>origin</code> para os nomes completos dos aeroportos (Newark, John F Kennedy e LaGuardia).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'>fct_recode</span><span class='op'>(</span><span class='va'>origin</span>, Newark <span class='op'>=</span> <span class='st'>"EWR"</span>, `John F Kennedy` <span class='op'>=</span> <span class='st'>"JFK"</span>, 
+        LaGuardia <span class='op'>=</span> <span class='st'>"LGA"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Transforme a variável <code>month</code> para um factor ordenado.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>month <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>month</span>, levels <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, ordered <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<p><br></p>
+<h1 id="identificando-casosvalores-únicos-distinct">Identificando Casos/Valores Únicos (<code>distinct</code>)</h1>
+<p>Quais valores existem em nosso banco de dados? Em uma variável de 1.000 linhas, quais valores <em>únicos</em> existem? As nossas observações são duplicadas?</p>
+<p>Começando com um tibble, podemos pedir os valores/casos únicos que existem no banco de dados usando o verbo <code>distinct()</code>. Nos parênteses, especificamos quais variáveis queremos avaliar. Se especificarmos uma variável, recebemos todos os valores que existem no banco de dados para esta variável:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>origin</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["origin"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"EWR"},{"1":"LGA"},{"1":"JFK"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Com mais de uma variável, identificamos os conjuntos que existem no banco de dados. Por exemplo, imaginar que queremos saber quais companhias aéreas voam de quais aeroportos (com a ajuda de <code>arrange</code> para organizar o resultado):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>origin</span>, <span class='va'>carrier</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>origin</span>, <span class='va'>carrier</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["carrier"],"name":[1],"type":["chr"],"align":["left"]},{"label":["origin"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"9E","2":"EWR"},{"1":"AA","2":"EWR"},{"1":"AS","2":"EWR"},{"1":"B6","2":"EWR"},{"1":"DL","2":"EWR"},{"1":"EV","2":"EWR"},{"1":"MQ","2":"EWR"},{"1":"OO","2":"EWR"},{"1":"UA","2":"EWR"},{"1":"US","2":"EWR"},{"1":"VX","2":"EWR"},{"1":"WN","2":"EWR"},{"1":"9E","2":"JFK"},{"1":"AA","2":"JFK"},{"1":"B6","2":"JFK"},{"1":"DL","2":"JFK"},{"1":"EV","2":"JFK"},{"1":"HA","2":"JFK"},{"1":"MQ","2":"JFK"},{"1":"UA","2":"JFK"},{"1":"US","2":"JFK"},{"1":"VX","2":"JFK"},{"1":"9E","2":"LGA"},{"1":"AA","2":"LGA"},{"1":"B6","2":"LGA"},{"1":"DL","2":"LGA"},{"1":"EV","2":"LGA"},{"1":"F9","2":"LGA"},{"1":"FL","2":"LGA"},{"1":"MQ","2":"LGA"},{"1":"OO","2":"LGA"},{"1":"UA","2":"LGA"},{"1":"US","2":"LGA"},{"1":"WN","2":"LGA"},{"1":"YV","2":"LGA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>Finalmente, <code>distinct</code> nos ajuda a entender melhor a unidade de análise no banco de dados, e a presença de observações/informações duplicadas que podem indicar erros ou contaminar análises subsequentes. Por exemplo, em teoria deve ser impossível ter mais de um voo no mesmo horário, com o mesmo número da mesma companhia, da mesma origem ao mesmo destino. Podemos confirmar isso observando que o número de linhas na seguinte operação é igual ao número de linhas no banco de dados inteiro:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>origin</span>, <span class='va'>dest</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Os aviões são também identificados por um número de cauda (<code>tailnum</code>), e imaginando que o <code>tailnum</code> seja único para cada avião, parece razoável assumir que o mesmo avião não está voando no mesmo horário mais que uma vez:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>tailnum</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Repare, o número de linhas aqui é 334.067, menos do 336.776 no banco de dados inteiro. Isso significa que temos mais que um <code>tailnum</code> decolando no mesmo horário…Estranho. É crucial saber isso para informar as nossas análises. Com mais investigação, entenderemos que a diferença é produzida pela presença de observações de <code>dep_time</code> e <code>tailnum</code> que são <code>NA</code>, desconhecidos, e portanto aparecem como duplicados.</p>
+<div class="orange">
+<p><strong>Leitura para Tutorial 4</strong></p>
+<p>Antes da próxima aula, por favor leia <a href="https://r4ds.had.co.nz/">R 4 Data Science, Capítulos 17, 18 e 19-19.3</a></p>
+</div>
+<p><br></p>
+<div class="purple">
+<p><strong>Desafio 1</strong></p>
+<p>É mais ou menos fácil seguir um tutorial passo a passo. O teste real do nosso entendimento é quando temos que trabalhar com um novo banco de dados sem instrução. O <a href="Desafios/Desafio_1.html">Desafio 1</a> teste a sua capacidade de abrir, manipular e limpar um banco de dados para produzir um relatório bonito e claro em HTML.</p>
+<p>O prazo para entregar Desafio 1 por email à minha conta é <strong>14h, 30/04/2021</strong>, antes da aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

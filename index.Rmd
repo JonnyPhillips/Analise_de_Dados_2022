@@ -1,0 +1,32 @@
+---
+title: "Análise de Dados para as Ciências Sociais"
+description: |
+  Um curso do Departamento da Ciência Política, Universidade de São Paulo
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+<h4 style="text-align: center;" markdown="1"> 
+Primeiro Semestre, 2021  
+DCP - FFLCH - USP  
+Sexta-feira, 14h - 18h, Online  
+Jonathan Phillips
+</h4>
+
+Como passamos de um banco de dados bruto para um relatório ou artigo publicável com estatísticas precisas,
+tabelas claras e gráficos convincentes? Existem diversas ferramentas poderosas para facilitar o processo de
+análise de dados, pesquisa e publicação, mas elas podem parecer intimidadoras e complexas. Este curso
+oferece aos estudantes de pós-graduação em ciências sociais uma iniciação acessível ao uso de software para coleta, limpeza, análise, comparação e visualização de dados.
+
+O foco do curso é o desenvolvimento da habilidade de programação para solução de problemas diversos
+relacionados ao manejo de dados com fins de pesquisa. Note que este não é um curso de metodologia de
+pesquisa ou estatística. No final do curso os alunos serão capazes de desenvolver um script para baixar e organizar os dados, calcular medidas relevantes, construir tabelas, gráficos e mapas, e gerar um relatório final para uso na sua dissertação/tese, tudo de forma verificável, reproduzível, transparente e documentada.

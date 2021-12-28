@@ -1,0 +1,4341 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Analise de Dados para as Ciencias Sociais: Análise de Texto</title>
+
+
+
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Analise de Dados para as Ciencias Sociais: Análise de Texto"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="Analise de Dados para as Ciencias Sociais"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Analise de Dados para as Ciencias Sociais: Análise de Texto"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Análise de Texto"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Análise de Texto","authors":[]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">Analise de Dados para as Ciencias Sociais</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Introducao</a>
+<a href="syllabus.html">Syllabus</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Tutoriais
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="introducao.html">1. Introducao</a>
+<a href="abrindo_manipulando.html">2. Abrindo e Manipulando Dados</a>
+<a href="limpando_dados.html">3. Organizando e Limpando Dados</a>
+<a href="Estatisticas_Resumidas.html">4. Calculando Estatisticas Resumidas</a>
+<a href="Tabelas.html">5. Construindo Tabelas</a>
+<a href="Graficos.html">6. Visualizacao de Dados</a>
+<a href="Juntando_Bancos.html">7. Juntando Bancos de Dados</a>
+<a href="Mapas.html">8. Mapas e Analises Espaciais</a>
+<a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
+<a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
+<a href="Repeticao.html">11. Funcoes e Repeticao</a>
+<a href="Analise_Texto.html">12. Analise de Texto</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Desafios
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Desafios/Desafio_1.html">Desafio 1</a>
+<a href="Desafios/Desafio_2.html">Desafio 2</a>
+<a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
+<a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
+<a href="Desafios/Desafio_5_v3.html">Desafio 5</a>
+</div>
+</div>
+<a href="recursos.html">Recursos</a>
+<a href="projeto.html">Projeto Final</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Análise de Texto</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#o-que-há-em-uma-palavra-str_length-str_detect">O que há em uma palavra? (<code>str_length</code>, <code>str_detect</code>)</a></li>
+<li><a href="#transformando-strings-str_replace-str_split">Transformando Strings (<code>str_replace</code>, <code>str_split</code>)</a></li>
+<li><a href="#tokenizer-e-padronizar-o-texto-unnest_tokens">Tokenizer e Padronizar o Texto (<code>unnest_tokens</code>)</a></li>
+<li><a href="#frequência-de-palavras">Frequência de Palavras</a></li>
+<li><a href="#análise-de-sentimento">Análise de Sentimento</a></li>
+<li><a href="#comparando-documentos">Comparando Documentos</a></li>
+</ul>
+</nav>
+</div>
+<style>
+div.green { background-color:#e5f5e0; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.orange { background-color:#fee6ce; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
+</style>
+<style>
+div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
+</style>
+<p><a href="https://drive.google.com/file/d/16aIP05wzuoxGyroF14e85xbbZLvHlu_3/view?usp=sharing">Clique aqui</a> para assistir o vídeo da aula online do dia 18 de junho de 2021. E o <a href="https://drive.google.com/file/d/1VzdPJM4Gi22p33LT9UFmW2yqiNxO7LA5/view?usp=sharing">chat</a>.</p>
+<h1 id="o-que-há-em-uma-palavra-str_length-str_detect">O que há em uma palavra? (<code>str_length</code>, <code>str_detect</code>)</h1>
+<p>Palavras e conjuntos de caracteres são coisas complexas que podemos manipular e transformar da mesma forma que processamos números. É importante entender que o R trata todos os textos e as palavras como ‘strings’: conjuntos sequenciais de caracteres específicos. Por exemplo, veja o string do nome do primeiro aeroporto no banco de dados <code>airports</code> de <code>nycflights13</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/hadley/nycflights13'>"nycflights13"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/elbersb/tidylog/'>"tidylog"</a></span><span class='op'>)</span>
+
+<span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Lansdowne Airport&quot;</code></pre>
+</div>
+<p>O pacote <code>stringr</code> fornece uma variedade de funções para trabalhar com strings, todos começando com <code>str_</code>. Uma das funções mais úteis e fáceis é medir o número de caracteres com <code>str_length()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>caracteres<span class='op'>=</span><span class='fu'>str_length</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Uma tarefa comum é identificar a <em>presença</em> de um string com <code>str_detect()</code>. Por exemplo, queremos identificar os aeroportos que contém a palavra ‘field’ (a descrição de um aeroporto pequeno):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>string_field<span class='op'>=</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Field"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Observe que o resultado aqui é verdade/falsa (<code>TRUE</code>/<code>FALSE</code>). Para identificar quantos “field”s temos nos Estados Unidos podemos usar a nova coluna para contar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>string_field</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+string_field
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+1386
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+72
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<aside>
+<p>Tome cuidado com letras minúsculas vs. maiúsculas - elas são tratadas diferentemente!</p>
+</aside>
+<p>Identificar strings é um tema de programação enorme, pois não precisamos usar uma palavra exata e fixa; podemos usar um ‘modelo’ genérico para capturar uma variedade de possibilidades. Isso se chama um ‘regex’, uma ‘expressão regular’. Por exemplo, para capturar aeroportos que contém ‘Regional’ <em>ou</em> ‘Rgnl’, usamos o símbolo ‘|’ (como em <code>filter</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>string_regional<span class='op'>=</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Regional|Rgnl"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>string_regional</span><span class='op'>==</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Schaumburg Regional
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Finger Lakes Regional Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phoenix Regional Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Apalachicola Regional Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Abilene Rgnl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aberdeen Regional Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Southwest Georgia Regional Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jimmy Carter Regional
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Waco Rgnl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Augusta Rgnl At Bush Fld
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Que tal identificarmos os nomes que <em>começam</em> com ‘Z’? Para detectar caracteres apenas no <em>início</em> do string, usamos ‘^’. Para detectar caracteres apenas no final do string, usamos ‘$’ depois do caracter.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>string_z<span class='op'>=</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"^Z"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>string_z</span><span class='op'>==</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Zachar Bay Seaplane Base
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zamperini Field Airport
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As possibilidades inúmeras e, às vezes, complexas - por exemplo, é possível identificar os nomes que contém pelo menos dois ’f’s ou ’g’s juntos, através do código abaixo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>string_ffgg<span class='op'>=</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"[fg]{2,}"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>string_ffgg</span><span class='op'>==</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Jefferson County Intl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Effingham Memorial Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jefferson County Airpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Griffin-Spalding County Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Biggs Aaf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Buffalo Niagara Intl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Flagstaff Pulliam Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+McDuffie County Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jefferson City Memorial Airport
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Coffman Cove Seaplane Base
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Não se preocupe com todos os detalhes do ‘regex’ de texto - eles são complexos e bastante difíceis de lembrar, mas se precisar no futuro, pode utilizar a referência <a href="http://edrub.in/CheatSheets/cheatSheetStringr.pdf">na segunda página do cheatsheet de <code>stringr</code> aqui</a>.</p>
+<div class="blue">
+<p><strong>Habilidade Básica de Programação: Transformando PDFs em Texto Editável</strong></p>
+<p>Um dos formatos mais comuns para a disponibilização de textos é o PDF, um formato não editável. Porém na maioria dos casos é fácil traduzir um PDF em texto simples que o R pode entender. Usamos o pacote <code>pfdtools</code> e a função <code>pdf_text()</code>.</p>
+<p>Por exemplo, vamos abrir um artigo recente da Revista Brasileira da Ciência Política.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages("pdftools")</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://docs.ropensci.org/pdftools/'>"pdftools"</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>artigo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(páginas<span class="ot">=</span><span class="fu">pdf_text</span>(<span class="st">&quot;https://cutt.ly/Sy4vi7F&quot;</span>))</span></code></pre></div>
+</div>
+<p>Qual é o resultado de <code>pdf_text()</code>? É um vetor de strings - um para cada página no PDF. E para conveniência nós já inserimos o vetor como uma coluna de um tibble.</p>
+</div>
+<h1 id="transformando-strings-str_replace-str_split">Transformando Strings (<code>str_replace</code>, <code>str_split</code>)</h1>
+<p>Quando recebemos um banco de dados com strings, existe uma variação incrível no uso de palavras, refletindo o estilo e contexto do documento. Mas queremos trabalhar apenas com strings que nos interessam. Isso exige a manipulação e substituição de strings complexos ou “sujos”.</p>
+<p>Por exemplo, vamos substituir as instâncias de ‘Rgnl’ com ‘Regional’ com <code>str_replace</code> para deixar os strings mais consistentes. Os argumentos são (i) a coluna do tibble que contém os strings, (ii) o modelo (um regex) de caracteres para identificar, e, em seguida, (iii) o string para substituir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='fu'>str_replace</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Rgnl"</span>, <span class='st'>"Regional"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Ou, por exemplo, podemos substituir os hífens com um espaço para padronizar os strings, já que alguns usam hífens e outros não:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='fu'>str_replace</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"-"</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Observe que os nomes dos aeroportos são geralmente compostos por várias palavras - se quisermos manter apenas a primeira palavra, temos que dividir o string único em várias partes. Nessa situação, usamos a função <code>str_split</code>, especificando um string (um regex) para o local da divisão. Por exemplo, para separar cada palavra temos que dividir por espaço:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>nome_parcial<span class='op'>=</span><span class='fu'>str_split</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Como fica o resultado? Cada linha tem um <em>vetor</em> com as palavras únicas separadas. Note que o comprimento do vetor varia para cada linha - pode ter 1, 2, 3 ou mais elementos, dependendo do número de espaços no string original. Podemos selecionar, por exemplo, a primeira palavra, aproveitando da função <code>map</code> do tutorial passado, e usando ‘1’ para pedir o primeiro elemento do vetor, ou <code>tail</code> para pedir o último elemento:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>nome_parcial_primeiro<span class='op'>=</span><span class='fu'>map_chr</span><span class='op'>(</span><span class='va'>nome_parcial</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>nome_parcial_final<span class='op'>=</span><span class='fu'>map_chr</span><span class='op'>(</span><span class='va'>nome_parcial</span>, <span class='va'>tail</span>, n<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Lembre-se da função <code>separate()</code> do Tutorial 3? É bem parecida com <code>str_split()</code>. A diferença é que o produto de <code>separate</code> não é simplesmente um vetor - mas está <em>distribuído</em> em colunas novas dentro do nosso tibble. Isso é muito conveniente, mas exige que determinemos o número de parcelas em que dividimos o string em avanço. Por exemplo, com <code>separate()</code> fica mais difícil encontrar a última palavra do nome do aeroporto como calculamos acima.</p>
+<p><code>separate()</code> é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna <code>tzone</code> entre os partes antes e depois do ‘/’:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'>separate</span><span class='op'>(</span><span class='va'>tzone</span>, <span class='st'>"/"</span>, into<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"País"</span>, <span class='st'>"Região"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Vale a pena pensar bem se <code>str_split()</code> (dentro de <code>mutate()</code>), ou <code>separate()</code> é mais apropriado em cada situação.</p>
+<div class="blue">
+<p><strong>Habilidade Básica de Programação: Caracteres de Escape</strong></p>
+<p>Em algumas situações, é difícil identificar ou dividir por um caractere quando esse caractere é usado no código de programação mesmo. Por exemplo, definimos o string para dividir entre aspas: <code>""</code>, mas é possível querer dividir um string <em>por aspas</em>, por exemplo para dividir uma citação do autor.</p>
+<p>Como faremos? Temos que usar um indicador específico - um Caractere de ‘Escape’ para informar p R que queremos tratar o caractere como parte do string e não como parte do código de programação. O Caractere de ‘Escape’ em R é ‘\’. Então precisamos indicar “\”" para dividir por aspas. E se queremos dividir pela barra em si “\”?? Usamos quatro! “\\\\”.</p>
+</div>
+<h2 id="visualizando-strings">Visualizando Strings</h2>
+<p>Um jeito comum de apresentar a frequência de strings é uma nuvem de palavras - um ‘wordcloud’ - que exige os pacotes <code>wordcloud</code> e <code>tm</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages("wordcloud")</span>
+<span class='co'>#install.packages("tm")</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://blog.fellstat.com/?cat=11'>"wordcloud"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://tm.r-forge.r-project.org/'>"tm"</a></span><span class='op'>)</span>
+
+<span class='va'>airports</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Analise_Texto_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+</div>
+<aside>
+<p>Para mais controle de apresentação, é possível criar o wordcloud em <code>ggplot</code> com um pouco mais de esforço: veja o pacote <code>ggwordcloud</code>.</p>
+</aside>
+<div class="green">
+<p><strong>Exercício 1: Trabalhando com Strings</strong></p>
+<ol type="1">
+<li>No banco de dados <code>airlines</code> do pacote <code>nycflights13</code>, qual porcentagem dos nomes das companhias aéreas contém a palavra ‘Airlines’ e qual porcentagem contém a palavra ‘Airways’?</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>airlines <span class='op'>=</span> <span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Airlines"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>airlines</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Pct <span class='op'>=</span> <span class='fl'>100</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>n</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>airlines</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>airlines <span class='op'>=</span> <span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Airways"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>airlines</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Pct <span class='op'>=</span> <span class='fl'>100</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>n</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>No mesmo banco, substitua os nomes das companhias aéreas que contém ‘Inc.’ com ‘Incorporated’, e aquelas que contém ‘Co.’ com ‘Company’. (Observe que ‘.’ é um caracter especial, então tem que buscar ele com ‘\\.’).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span>
+<span class='va'>airlines</span> <span class='op'>&lt;-</span> <span class='va'>airlines</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'>str_replace</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Inc\\."</span>, <span class='st'>"Incorporated"</span><span class='op'>)</span>, name <span class='op'>=</span> <span class='fu'>str_replace</span><span class='op'>(</span><span class='va'>name</span>, 
+        <span class='st'>"Co\\."</span>, <span class='st'>"Company"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Gere um nome curto para cada companhia aérea, refletindo apenas a primeira palavra do nome.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'>&lt;-</span> <span class='va'>airlines</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>nome_curto <span class='op'>=</span> <span class='fu'>str_split</span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>" "</span><span class='op'>)</span>, nome_curto <span class='op'>=</span> <span class='fu'>map_chr</span><span class='op'>(</span><span class='va'>nome_curto</span>, 
+        <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Crie um ‘wordcloud’ dos nomes das companhias aéreas.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>pull</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<h1 id="tokenizer-e-padronizar-o-texto-unnest_tokens">Tokenizer e Padronizar o Texto (<code>unnest_tokens</code>)</h1>
+<!-- Por isso, é importante padronizar e  simplificar strings antes de realizar uma análise empírica.  -->
+<p>Para os fins de análise de texto queremos simplificar e padronizar as milhões de variedades que cada língua permite para que podemos reconhecer a presença das mesmas palavras/sentidos mesmo em contextos diferentes. Por exemplo, a mesma palavra pode aparecer em vários formatos: ‘Regional’, ‘regional’, ‘Rgnl’, ‘Region’, ‘region’, ‘Regionally’, ‘regionally’ etc. Mas todos representam o mesmo ‘conceito’ e queremos reconhecer que eles estão falando do mesmo conceito quando analisamos o texto.</p>
+<p>Para ilustrar as possibilidades com um texto mais completo, vamos acessar o texto inteiro do livro “Dom Casmurro” de Machado de Assis, disponível no site do <a href="http://www.gutenberg.org/">Project Gutenberg</a>. Podemos usar o pacote <code>gutenbergr</code> para acessar o texto em um formato bem conhecido - um tibble. O pacote permite baixar o texto por código numérico.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># install.packages("gutenbergr")</span>
+<span class='co'># install.packages("urltools") #Se necessário; depende do sistema</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://docs.ropensci.org/gutenbergr/'>"gutenbergr"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/Ironholds/urltools/'>"urltools"</a></span><span class='op'>)</span>
+
+<span class='co'>#http://www.gutenberg.org/cache/epub/55752/pg55752.txt #Machado de Assis, Dom Casmurro</span>
+
+<span class='va'>Assis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/gutenbergr/reference/gutenberg_download.html'>gutenberg_download</a></span><span class='op'>(</span><span class='fl'>55752</span>, mirror <span class='op'>=</span> <span class='st'>"https://gutenberg.pglaf.org/"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Temos que limpar e organizar o texto antes de usá-lo. Por motivos chatos e técnicos, o próximo código converte o encoding para UTF-8, e depois extrai manualmente as linhas do início e fim que não pertencem ao livro original. Aproveitamos para também adicionar uma nova coluna capturando o número da linha no livro, para facilitar a restreabilidade das linhas ao longo da análise.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis</span> <span class='op'>&lt;-</span> <span class='va'>Assis</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/iconv.html'>iconv</a></span><span class='op'>(</span><span class='va'>text</span>, from <span class='op'>=</span> <span class='st'>"latin1"</span>, to <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>gutenberg_id</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>21</span><span class='op'>:</span><span class='fl'>8549</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rownames_to_column</span><span class='op'>(</span><span class='st'>"Linha"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<p>Agora observe que cada linha do tibble ‘Assis’ é uma linha do livro, enquanto a nossa unidade de análise normalmente é cada palavra. Então a nossa primeira tarefa é separar as linhas em palavras (‘tokenize’). As seguintes funções são dos pacotes <code>tidytext</code>, <code>textstem</code> e <code>lexiconPT</code>, então lembre-se de instalar eles uma vez e abrir as bibliotecas depois.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># install.packages("tidytext")</span>
+<span class='co'># install.packages("textstem")</span>
+<span class='co'># install.packages("lexiconPT")</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/juliasilge/tidytext'>"tidytext"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='http://github.com/trinker/textstem'>"textstem"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"lexiconPT"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Desagregar linhas em palavras exige a função <code>unnest_tokens()</code>, com dois argumentos: o nome da nova coluna que contém as palavras, ‘palavra’, e o nome da coluna que contém o texto por linha, ‘text’.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Agora, ‘Assis_palavras’ tem muito mais linhas, uma para cada palavra. Perfeito.</p>
+<p>A próxima tarefa é a simplificação e padronização dessas palavras, e isso envolve vários passos:</p>
+<ol type="1">
+<li><strong>Tirar Pontuação:</strong> Frases contém pontuação, mas normalmente não importa se há uma vírgula ou não depois de uma palavra para identificar a presença do conceito no texto. A pontuação é tirada automaticamente por <code>unnest_tokens()</code>. Se quiser, pode desligar para manter a pontuação:</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_punct<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Tirar Maiúsculas:</strong> Também queremos ignorar se as palavras estão em letras minúsculas ou maiúsculas, e padronizar, por exemplo, para minúsculas. De novo, isso é o padrão de <code>unnest_tokens()</code>, mas podemos desligar se quisemos:</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, to_lower<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Tirar Números:</strong> O nosso texto contém vários números (anos, etc.) que não são relevantes para uma análise de texto. Não é a opção padrão, mas podemos tirar os números facilmente:</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Tirar stopwords:</strong> É comum tirar palavras pequenas e genéricas como ‘o’, ‘a’, ‘e’ etc. que são universais e não diferenciam o conteúdo dos textos. Essas palavras se chamam ‘stopwords’. Tirá-las exige mais um passo, aproveitando de um banco de dados de stopwords com a função <code>get_stopwords()</code> para a língua apropriada. Inspecione seu conteúdo.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>stopwords</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span>language<span class='op'>=</span><span class='st'>"pt"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/rename.html'>rename</a></span><span class='op'>(</span>palavra<span class='op'>=</span><span class='va'>word</span><span class='op'>)</span>
+
+<span class='va'>stopwords</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+palavra
+</th>
+<th style="text-align:left;">
+lexicon
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+de
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+o
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+que
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+e
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+do
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+da
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+em
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+um
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+para
+</td>
+<td style="text-align:left;">
+snowball
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Lembrando que queremos manter as linhas em ‘Assis_palavras’ que não existem no banco de <code>get_stopwords()</code>, o jeito mais eficiente é usar um <code>anti_join()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>A lista de stopwords não é nada oficial; são apenas as palavras que não nos interessam. Por exemplo, por algum motivo na lista de stopwords aqui falta a palavra ‘é’, que é muito comum e não agrega nada no conteúdo do texto. Nós podemos manualmente estender a lista de stopwords, adicionando mais linhas no tibble <code>stopwords</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>stopwords</span> <span class='op'>&lt;-</span> <span class='va'>stopwords</span> <span class='op'>%&gt;%</span> <span class='fu'>add_row</span><span class='op'>(</span>palavra<span class='op'>=</span><span class='st'>"é"</span>, lexicon<span class='op'>=</span><span class='st'>"pessoal"</span><span class='op'>)</span>
+
+<span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>‘Stem’ as palavras</strong> Mais um passo de processamento é a padronização de variedades da mesma palavra - uma técnica que se chama ‘stemming’. Por exemplo, português tem milhares de conjugações de cada verbo: ‘saber’, ‘sei’, ‘soube’ etc. que significam o mesmo conceito. O que nos interessa é a raiz (o ‘stem’) consistente da palavra. Usamos a função <code>stem_words()</code> para adicionar mais uma coluna ao nosso tibble com a raiz das palavras, de novo especificando a língua apropriada.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language<span class='op'>=</span><span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Agora veja a coluna ‘stem’ do tibble: observe o contraste entre ‘palavra’, e ‘stem’. Por exemplo, ambos ‘encontrei’ e ‘encontrou’ se tornam ‘encontr’. A padronização reduz bastante a base de dados - de 8.728 a 4.824 palavras distintas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/distinct.html'>distinct</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span>
+<span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/distinct.html'>distinct</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="frequência-de-palavras">Frequência de Palavras</h1>
+<p>Agora que temos um banco de dados textuais padronizado, podemos começar a analisar o conteúdo das palavras de Machado de Assis. Primeiramente, vamos estimar a frequência de uso das palavras, ou mais especificamente as raízes.</p>
+<p>Podemos visualizar a frequência das raízes (stems) das palavras com um wordcloud, como mostramos acima. (Vamos pedir uma amostra das linhas para acelerar o processamento).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/sample_n.html'>sample_n</a></span><span class='op'>(</span><span class='fl'>2000</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Analise_Texto_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
+</div>
+<p>Também podemos identificar as palavras (os ‘stems’ na verdade) mais frequentes usando as nossas habilidades bem conhecidas do tidyverse.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+stem
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+outr
+</td>
+<td style="text-align:right;">
+372
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+capitú
+</td>
+<td style="text-align:right;">
+341
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mã
+</td>
+<td style="text-align:right;">
+329
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cas
+</td>
+<td style="text-align:right;">
+269
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+á
+</td>
+<td style="text-align:right;">
+262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+elle
+</td>
+<td style="text-align:right;">
+239
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+diss
+</td>
+<td style="text-align:right;">
+218
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tod
+</td>
+<td style="text-align:right;">
+218
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dias
+</td>
+<td style="text-align:right;">
+191
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fal
+</td>
+<td style="text-align:right;">
+191
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Observe que algumas dessas palavras não são interessantes e não descreve bem o conteúdo do texto então podem ser bons candidatos para tirar na lista de stopwords, por exemplo ‘á’. E para visualizar os resultados num gráfico de barras:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem<span class='op'>=</span><span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>stem</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>stem</span>, x<span class='op'>=</span><span class='va'>n</span><span class='op'>)</span>, fill<span class='op'>=</span><span class='st'>"blue"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Analise_Texto_files/figure-html5/unnamed-chunk-41-1.png" width="624" /></p>
+</div>
+<p>Finalmente, podemos interrogar o banco de texto para verificar a presença de uma palavra específica, por exemplo o stem ‘govern’:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>==</span><span class='st'>"govern"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Linha
+</th>
+<th style="text-align:left;">
+palavra
+</th>
+<th style="text-align:left;">
+stem
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+183
+</td>
+<td style="text-align:left;">
+governou
+</td>
+<td style="text-align:left;">
+govern
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+185
+</td>
+<td style="text-align:left;">
+governou
+</td>
+<td style="text-align:left;">
+govern
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4986
+</td>
+<td style="text-align:left;">
+governo
+</td>
+<td style="text-align:left;">
+govern
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5162
+</td>
+<td style="text-align:left;">
+governasse
+</td>
+<td style="text-align:left;">
+govern
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Há quatro instâncias no texto, em três formas diferentes da palavra.</p>
+<h1 id="análise-de-sentimento">Análise de Sentimento</h1>
+<p>O ‘Dom Casmurro’ é um livro otimista ou pessimista? Cada palavra tem um significado complexo, sutil e contextual. Porém, existem bancos de dados que avaliam o ‘sentimento’ de cada palavra. O pacote <code>lexiconPT</code> fornece o banco <code>oplexicon_v3.0</code>. Nós precisamos apenas juntar o banco de dados de sentimentos com o nosso banco de palavras:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sentimento</span> <span class='op'>&lt;-</span> <span class='va'>oplexicon_v3.0</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>polarity</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/rename.html'>rename</a></span><span class='op'>(</span>palavra<span class='op'>=</span><span class='va'>term</span><span class='op'>)</span>
+
+<span class='va'>Assis_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/left_join.html'>left_join</a></span><span class='op'>(</span><span class='va'>sentimento</span>, by<span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Linha
+</th>
+<th style="text-align:left;">
+palavra
+</th>
+<th style="text-align:left;">
+stem
+</th>
+<th style="text-align:right;">
+polarity
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+i
+</td>
+<td style="text-align:left;">
+i
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+titulo
+</td>
+<td style="text-align:left;">
+titul
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+noite
+</td>
+<td style="text-align:left;">
+noit
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+destas
+</td>
+<td style="text-align:left;">
+dest
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+vindo
+</td>
+<td style="text-align:left;">
+vind
+</td>
+<td style="text-align:right;">
+-1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+cidade
+</td>
+<td style="text-align:left;">
+cidad
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+engenho
+</td>
+<td style="text-align:left;">
+engenh
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+novo
+</td>
+<td style="text-align:left;">
+nov
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+encontrei
+</td>
+<td style="text-align:left;">
+encontr
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+trem
+</td>
+<td style="text-align:left;">
+trem
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Observe que muitas palavras - as palavras ‘neutras’ - não existem no banco de dados de sentimentos, então a coluna ‘polarity’ tem valor <code>NA</code>. Podemos avaliar o sentimento ‘média’ do livro com <code>summarize</code>. Um valor positivo significa um texto mais otimista na média, e um valor negativo um texto mais pessimista na média:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>sentimento<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+sentimento
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.1157649
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O resultado positivo sugere que o livro é mais otimista do que pessimista na média. A análise também permite identificar as linhas mais otimistas e pessimistas do livro inteiro se agrupamos por linha e calcularmos a soma dos sentimentos contidos na linha (palavras positivas menos palavras negativas):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Linha<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>polarity<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>polarity</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Linha
+</th>
+<th style="text-align:right;">
+polarity
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+7500
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1403
+</td>
+<td style="text-align:right;">
+-4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ok, mas quais são as linhas 7500 e 1403? Temos que voltar ao banco de dados de linhas ‘Assis’ (não ‘Assis_palavras’) e filtrar por essas linhas:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>==</span><span class='fl'>7500</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='co'>#Linha mais otimista</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;activo, coração recto, amigo, bom amigo, digno da esposa amantissima&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>==</span><span class='fl'>1403</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='co'>#Linha mais pessimista</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;pouco, um intrigante, um bajulador, um especulador, e, apezar da casca&quot;</code></pre>
+</div>
+<p>Faz sentido, sim? Os nossos dados permitem responder a mais uma pergunta interessante: Como se desenvolve o sentimento ao longo do livro? Podemos usar o nosso resumo por linha, completar as linhas faltantes (que faltam palavras em nosso banco de dados de sentimentos) com <code>complete</code>, e encaminhar para <code>ggplot</code> para criar um gráfico de linhas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Linha<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>polarity<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>complete</span><span class='op'>(</span>Linha<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>8527</span>, fill<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>polarity<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Linha</span>, y<span class='op'>=</span><span class='va'>polarity</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_classic</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Sentimento"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Analise_Texto_files/figure-html5/unnamed-chunk-50-1.png" width="624" /></p>
+</div>
+<p>O gráfico não é fácil de interpretar porque há muitas observações e variações página por página. Uma forma de melhorar a apresentação da linha é calcular uma ‘média móvel’, que ‘suaviza’ os dados de sentimento. O pacote <code>zoo</code> fornece a função <code>rollapply</code> que podemos aplicar dentro de um <code>mutate</code> para calcular a média móvel de cada janela de 1000 linhas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://zoo.R-Forge.R-project.org/'>"zoo"</a></span><span class='op'>)</span>
+<span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Linha<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>polarity<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>complete</span><span class='op'>(</span>Linha<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>8527</span>, fill<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>polarity<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>polarity_rolling<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/pkg/zoo/man/rollapply.html'>rollapply</a></span><span class='op'>(</span><span class='va'>polarity</span>, <span class='fl'>1000</span>, <span class='va'>mean</span>, align<span class='op'>=</span><span class='st'>'right'</span>, fill<span class='op'>=</span><span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Linha</span>, y<span class='op'>=</span><span class='va'>polarity_rolling</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_classic</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Sentimento"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Analise_Texto_files/figure-html5/unnamed-chunk-51-1.png" width="624" /></p>
+</div>
+<p>O fluxo do livro é mais evidente agora - períodos otimistas antes de linha 5000 e depois de linha 6500, e períodos mais pessimistas cerca de linhas 6000 e 8000. Se você conhece o livro, pode nos ajudar a verificar se é verdade!</p>
+<h2 id="ngrams">Ngrams</h2>
+<p>Por que estamos trabalhando com palavras únicas? Não é obrigatório - podemos dividir o texto em várias formas. Por exemplo, podemos identificar <em>pares</em> de palavras - cada vez que um par de palavras - ‘grande gato’ - aparecem juntos. Isso se chama um ‘bigram’. A lógica de processamento é bem parecida com a rotina para palavras únicas. É só especificar <code>token=ngrams</code> e <code>n=2</code> na função de <code>unnest_tokens()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_bigrams</span> <span class='op'>&lt;-</span> <span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>bigram</span>, <span class='va'>text</span>,
+                                       token<span class='op'>=</span><span class='st'>"ngrams"</span>, n<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Tirar os stopwords exige um pouco mais trabalho com bigrams - temos que separar eles em palavras distintas, tirar cada instância de um stopword, e juntar de novo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_bigrams</span> <span class='op'>&lt;-</span> <span class='va'>Assis_bigrams</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>separate</span><span class='op'>(</span><span class='va'>bigram</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra1"</span>, <span class='st'>"palavra2"</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra1"</span><span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra2"</span><span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>unite</span><span class='op'>(</span><span class='st'>"bigram"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>palavra1</span>, <span class='va'>palavra2</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span>, remove<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_bigrams</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>bigram</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+bigram
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+NA NA
+</td>
+<td style="text-align:right;">
+2472
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+josé dias
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+prima justina
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tio cosme
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+outra vez
+</td>
+<td style="text-align:right;">
+28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+póde ser
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+á porta
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+outra cousa
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+padre cabral
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+alguma cousa
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O bigram mais comum (exceto ‘NA NA’ que devemos tirar) é “josé dias”, presumivelmente um personagem, e, em seguida, “prima justina”.</p>
+<p>Trabalhar com bigrams nos ajuda a identificar ao lado de quais outras palavras uma palavra aparece. Por exemplo, quais palavras aparecem ao lado da palavra ‘familia’?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_bigrams</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>palavra1</span><span class='op'>==</span><span class='st'>"familia"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>palavra2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;padua&quot;     &quot;elle&quot;      &quot;certa&quot;     &quot;dizia&quot;     &quot;fernandes&quot;
+ [6] &quot;tornar&quot;    &quot;imitar&quot;    &quot;saía&quot;      &quot;lembro&quot;    &quot;avisa&quot;    
+[11] &quot;hoje&quot;      &quot;pendura&quot;  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_bigrams</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>palavra2</span><span class='op'>==</span><span class='st'>"familia"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>pull</span><span class='op'>(</span><span class='va'>palavra1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;mesma&quot;</code></pre>
+</div>
+<p>Parece que ‘familia’ aparece ao lado de ‘imitar’, ‘avisa’, ‘pendura’, etc., fornecendo um pouco de contexto.</p>
+<p><strong>Ngrams</strong> são bigrams com mais de duas palavras - vamos identificar o mais comum ‘trigram’ (com três palavras):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_trigrams</span> <span class='op'>&lt;-</span> <span class='va'>Assis</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>trigram</span>, <span class='va'>text</span>,
+                                       token<span class='op'>=</span><span class='st'>"ngrams"</span>, n<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
+
+<span class='va'>Assis_trigrams</span> <span class='op'>&lt;-</span> <span class='va'>Assis_trigrams</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>separate</span><span class='op'>(</span><span class='va'>trigram</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra1"</span>, <span class='st'>"palavra2"</span>, <span class='st'>"palavra3"</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra1"</span><span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra2"</span><span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palavra3"</span><span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>unite</span><span class='op'>(</span><span class='st'>"trigram"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>palavra1</span>, <span class='va'>palavra2</span>, <span class='va'>palavra3</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span>, remove<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_trigrams</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>trigram</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+trigram
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+NA NA NA
+</td>
+<td style="text-align:right;">
+2696
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+josé dias achou
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+serás feliz bentinho
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1 070 000
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+aggregado josé dias
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+após alguns instantes
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ceu oh flòr
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dez libras esterlinas
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+oh flòr candida
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+póde ser tambem
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Um dos trigrams mais comuns é “josé dias achou”.</p>
+<div class="green">
+<p><strong>Exercício 2: Analisando um Documento</strong></p>
+<ol type="1">
+<li>Escolha um livro da sua preferência <a href="https://www.gutenberg.org/browse/languages/pt">no site de Projeto Gutenberg</a>, e abra ele em R usando o código do projeto.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/gutenbergr/reference/gutenberg_download.html'>gutenberg_download</a></span><span class='op'>(</span><span class='fl'>26913</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/iconv.html'>iconv</a></span><span class='op'>(</span><span class='va'>text</span>, from <span class='op'>=</span> <span class='st'>"latin1"</span>, to <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>gutenberg_id</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>rownames_to_column</span><span class='op'>(</span><span class='st'>"Linha"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>‘Tokenize’ o seu livro em palavras, tirando a pontuação, os números, os stopwords, virando as caracteres em minúsculo, e as palavras em seus stems (raízes).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Branco</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language <span class='op'>=</span> <span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Identifique os dez stems mais frequentes no seu livro.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Aplique uma análise de sentimento ao texto para identificar as linhas mais otimistas e as mais pessimistas do texto.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Branco_palavras</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/left_join.html'>left_join</a></span><span class='op'>(</span><span class='va'>sentimento</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span>
+
+<span class='va'>Branco_palavras</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Linha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>polarity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>polarity</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>kable</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='va'>Branco</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span> <span class='op'>==</span> <span class='fl'>594</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>pull</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>  <span class='co'>#Linha mais otimista</span>
+<span class='va'>Branco</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span> <span class='op'>==</span> <span class='fl'>2881</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>pull</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>  <span class='co'>#Linha mais pessimista</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<h1 id="comparando-documentos">Comparando Documentos</h1>
+<p>É possível trabalhar além de uma descrição de um livro único e <em>comparar</em> o conteúdo de documentos distintos. Para isso, precisamos distinguir <em>documentos</em> (livros ou artigos distintos) e <em>termos</em> (palavras ou ngrams em um documento). O jeito mais fácil de realizar isso é juntar vários documentos no mesmo tibble, com uma coluna adicional que indica com qual documento cada palavra é associada.</p>
+<p>Primeiramente, temos que abrir mais um documento para comparar com o livre de Machado de Assis. Vamos pegar o livro português de Jules Verne, ‘Da terra á lua’ de Projeto Gutenberg:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#http://www.gutenberg.org/cache/epub/28341/pg28341.txt #Jules Verne, 'Da terra à lua'</span>
+
+<span class='va'>Verne</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/gutenbergr/reference/gutenberg_download.html'>gutenberg_download</a></span><span class='op'>(</span><span class='fl'>28341</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/iconv.html'>iconv</a></span><span class='op'>(</span><span class='va'>text</span>, from <span class='op'>=</span> <span class='st'>"latin1"</span>, to <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>gutenberg_id</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>71</span><span class='op'>:</span><span class='fl'>7229</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rownames_to_column</span><span class='op'>(</span><span class='st'>"Linha"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>E vamos processar o banco de dados para padronizar o conteúdo e gerar os stems, para que o banco de dados fica no mesmo formato que o livro de Machado de Assis:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Verne_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Verne</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by<span class='op'>=</span><span class='st'>"palavra"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language<span class='op'>=</span><span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Agora precisamos juntar os dois bancos, ‘Assis_palavras’ e ‘Verne_palavras’ em um tibble único, adicionando uma coluna identificadora para preservar o livro relevante. Também precisamos contar a frequência de cada palavra, para que possamos comparar a frequência entre os dois livros. Para deixar os resultados mais fáceis de interpretar, vamos trabalhar com as palavras mesmas em vez dos stems:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_prep</span> <span class='op'>&lt;-</span> <span class='va'>Assis_palavras</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document<span class='op'>=</span><span class='st'>"Assis"</span><span class='op'>)</span>
+
+<span class='va'>Verne_prep</span> <span class='op'>&lt;-</span> <span class='va'>Verne_palavras</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document<span class='op'>=</span><span class='st'>"Verne"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Para juntar os dois bancos, usamos <code>bind_rows()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne</span> <span class='op'>&lt;-</span> <span class='va'>Assis_prep</span> <span class='op'>%&gt;%</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>Verne_prep</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="frequência-relativa-de-palavras-bind_tf_idf">Frequência Relativa de Palavras (<code>bind_tf_idf</code>)</h2>
+<p>Quais palavras distinguem melhor os dois livros? Ou seja, há palavras frequentes que existem nos dois livros (palavras comuns, tipo ‘pessoa’, ‘rua’), e há palavras que são comuns e <em>específicas</em> para cada livro, que ajudam a caracterizar o conteúdo distinto do livro.</p>
+<p>A medida que é usada na análise de texto é a frequência do termo (‘tf’) multiplicado pela frequência inversa do termo no documento (‘idf’) - o ‘tf-idf’. Os termos com os maiores valores da medida ‘tf-idf’ são os termos que são mais presentes em um documento <em>e não no outro</em>.</p>
+<p>Calculamos a medida com a função <code>bind_tf_idf()</code>, que exige três argumentos - a coluna que contém as palavras, a coluna que indica em qual documento aparece cada palavra, e a coluna que resume a frequência de cada palavra no documento:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_idf</span> <span class='op'>&lt;-</span> <span class='va'>Assis_Verne</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>document</span>, <span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Em seguida, é fácil identificar as palavras mais distintas para cada livro:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_idf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>document</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>tf_idf</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+document
+</th>
+<th style="text-align:left;">
+palavra
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+tf_idf
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:left;">
+capitú
+</td>
+<td style="text-align:right;">
+341
+</td>
+<td style="text-align:right;">
+0.0065044
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:left;">
+della
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+0.0015641
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:left;">
+escobar
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+0.0020982
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:left;">
+josé
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+0.0030519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:left;">
+seminario
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+0.0016213
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:left;">
+ardan
+</td>
+<td style="text-align:right;">
+143
+</td>
+<td style="text-align:right;">
+0.0029992
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:left;">
+barbicane
+</td>
+<td style="text-align:right;">
+256
+</td>
+<td style="text-align:right;">
+0.0053692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:left;">
+club
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+0.0025797
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:left;">
+maston
+</td>
+<td style="text-align:right;">
+143
+</td>
+<td style="text-align:right;">
+0.0029992
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:left;">
+projectil
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+0.0030831
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Os resultados indicam que no livro de Assis, as palavras mais distintas incluem ‘josé’, ‘escobar’, ‘capitú’ - os personagens centrais do livro. Na mesma forma, as palavras mais distintas do livro de Verne incluem ‘ardan’, ‘barbicane’, e ‘maston’, os personagens centrais. Isso é comum porque são esses nomes que são muito usados e distinguem os livros.</p>
+<h2 id="modelagem-de-tópicos">Modelagem de Tópicos</h2>
+<p>Uma alternativa para comparar documentos é uma técnica de clusterização que divide <em>automaticamente</em> (sem supervisão) o conjunto de documentos em temas, ou ‘tópicos’. Os tópicos são definidos pelo uso de conjuntos de palavras distintas, e cada documento é uma mistura de tópicos (ex. 90% A e 10% B). Essa técnica é útil para dizer que alguns documentos são mais parecidos que outros.</p>
+<p>Primeiramente, precisamos transformar o nosso tibble dos dois livros em uma ‘matriz de documento-termo’, uma ferramenta bem usada no mundo de análise de texto, com a função <code>cast_dtm()</code>, indicando como argumentos a coluna que identifica o documento, a coluna que contém as palavras (termos), e a coluna que conta a frequência de cada palavra.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_dtm</span> <span class='op'>&lt;-</span> <span class='va'>Assis_Verne</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span><span class='va'>document</span>, <span class='va'>palavra</span>, <span class='va'>n</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Com a nossa matriz de documento-termos, usamos a função <code>LDA()</code> do pacote <code>topicmodels</code> para classificar o conteúdo textual automaticamente (usando o modelo de Latent Dirichlet Allocation - LDA). Vamos especificar que queremos classificar os livros em quatro tópicos por enquanto.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages("topicmodels")</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"topicmodels"</span><span class='op'>)</span>
+
+<span class='va'>Assis_Verne_LDA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/topicmodels/man/lda.html'>LDA</a></span><span class='op'>(</span><span class='va'>Assis_Verne_dtm</span>, <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>O resultado de <code>LDA()</code> pode ser transformado em nosso amigo, o tibble, com a função <code>tidy()</code> do pacote <code>broom()</code>, o mesmo que usamos com regressões, especificando o matriz ‘gamma’.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://broom.tidymodels.org/'>"broom"</a></span><span class='op'>)</span>
+<span class='co'>#install.packages("reshape2")</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/hadley/reshape'>"reshape2"</a></span><span class='op'>)</span>
+
+<span class='va'>Assis_Verne_LDA_documentos</span> <span class='op'>&lt;-</span> <span class='va'>Assis_Verne_LDA</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span>matrix<span class='op'>=</span><span class='st'>'gamma'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_LDA_documentos</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+document
+</th>
+<th style="text-align:right;">
+topic
+</th>
+<th style="text-align:right;">
+gamma
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.4238592
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.0000018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.5761375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.0000018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0000016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.6557172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assis
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0000016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verne
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.3442792
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O resultado indica quanto cada tópico aparece em cada livro. O livre de Assis é 42% tópico 1, 58% tópico 2, 0% tópicos 3 e 4, enquanto o livro de Verne é 0% tópico 1 e 2, 66% tópico 3 e 34% tópico 4. Ou seja - cada livro contém dois tópicos e os tópicos não se sobrepõem aos livros.</p>
+<p>Mas o que representam esses tópicos? Não sabemos - eles não tem uma descrição fixa; são definidos pelo algoritmo e nós temos que <em>interpretar</em> o significado de cada tópico. Para facilitar isso, podemos inspecionar as palavras mais associadas a cada tópico. Pedimos o relacionamento entre os tópicos e as palavras (em vez dos documentos) com a matriz ‘beta’ em <code>tidy()</code>. O ‘beta’ reflete a probabilidade que a palavra é associada com o tópico.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_LDA_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Assis_Verne_LDA</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span>matrix<span class='op'>=</span><span class='st'>'beta'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Agora, podemos identificar as palavras mais frequentes em cada tópico:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Assis_Verne_LDA_palavras</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>beta</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>topic</span>, <span class='op'>-</span><span class='va'>beta</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+topic
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+beta
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tudo
+</td>
+<td style="text-align:right;">
+0.0086138
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+á
+</td>
+<td style="text-align:right;">
+0.0085267
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tambem
+</td>
+<td style="text-align:right;">
+0.0068205
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+ella
+</td>
+<td style="text-align:right;">
+0.0064950
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+agora
+</td>
+<td style="text-align:right;">
+0.0063633
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+capitú
+</td>
+<td style="text-align:right;">
+0.0118561
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+elle
+</td>
+<td style="text-align:right;">
+0.0084712
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+dias
+</td>
+<td style="text-align:right;">
+0.0078440
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+mãe
+</td>
+<td style="text-align:right;">
+0.0071768
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ser
+</td>
+<td style="text-align:right;">
+0.0066741
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+á
+</td>
+<td style="text-align:right;">
+0.0087607
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+barbicane
+</td>
+<td style="text-align:right;">
+0.0079236
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+lua
+</td>
+<td style="text-align:right;">
+0.0076624
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+todos
+</td>
+<td style="text-align:right;">
+0.0048421
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+gun
+</td>
+<td style="text-align:right;">
+0.0048236
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+havia
+</td>
+<td style="text-align:right;">
+0.0089316
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+maston
+</td>
+<td style="text-align:right;">
+0.0086029
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+j
+</td>
+<td style="text-align:right;">
+0.0085580
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+barbicane
+</td>
+<td style="text-align:right;">
+0.0074075
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+ardan
+</td>
+<td style="text-align:right;">
+0.0071698
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A nossa tarefa agora é resumir qual tópico é representado, por exemplo, pelo conjunto de palavras ‘capitú’, ‘elle’, ‘dias’, ‘mãe’, e ‘ser’ - pode ser que eles aparecem frequentemente em um diálogo que envolve o personagem ‘capitú’ e a sua mãe, por exemplo. Cada tópico não é óbvio, mas para o computador parece que eles formam tópicos coerentes presentes nos dois livros.</p>
+<p>Em outras aplicações a modelagem de tópicos é uma forma poderosa de identificar temas pareceidos em conjuntos grandes de documentos sem precisar ler todos os documentos.</p>
+<div class="green">
+<p><strong>Exercício 3: Comparando Documentos</strong></p>
+<ol type="1">
+<li>Copie e cole um texto que você mesmo escreveu de pelo menos um parágrafo e salve ele dentro de um tibble em R.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meu_texto</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>[1053 chars quoted with '"']</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>‘Tokenize’ o seu texto em palavras, tirando a pontuação, os números, os stopwords, transformando os caracteres em minúsculo, e as palavras em suas raízes (stems).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meu_texto_palavras</span> <span class='op'>&lt;-</span> <span class='va'>meu_texto</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language <span class='op'>=</span> <span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Junte dois textos tokenizados em um tibble com uma coluna que diferencia o documento e uma coluna que conta a frequência de cada palavra: (i) o seu texto da questão 1, e (ii) o livro que você usou no exercício 2.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_prep</span> <span class='op'>&lt;-</span> <span class='va'>Branco_palavras</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document <span class='op'>=</span> <span class='st'>"Branco"</span><span class='op'>)</span>
+
+<span class='va'>meu_texto_prep</span> <span class='op'>&lt;-</span> <span class='va'>meu_texto_palavras</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document <span class='op'>=</span> <span class='st'>"Meu Texto"</span><span class='op'>)</span>
+
+<span class='va'>dois_textos</span> <span class='op'>&lt;-</span> <span class='va'>Branco_prep</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>meu_texto_prep</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Calcule a medida ‘tf_idf’ para identificar as 5 palavras mais distintas de cada documento. Em qual sentido o seu documento é diferente do livro?</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dois_textos</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>document</span>, <span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>document</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>tf_idf</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<p><br></p>
+<div class="purple">
+<p><strong>Desafio 5</strong></p>
+<p>O <a href="Desafios/Desafio_5_v3.html">Desafio 5</a> irá testar a sua capacidade de juntar bancos de dados e gerar gráficos apropriados e claros.</p>
+<p>O prazo para entregar o Desafio 5 por email com título “[FLS6397] - D5” à minha conta é <strong>09/07/2021</strong>, antes da aula. Por favor entregue (i) o arquivo .Rmd (ou .Rnw se preferir), e (ii) o arquivo .html ou .PDF.</p>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

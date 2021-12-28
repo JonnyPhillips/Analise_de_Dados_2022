@@ -1,0 +1,44 @@
+name: "Website_Distill"
+title: "Analise de Dados para as Ciencias Sociais"
+description: |
+  Analise de Dados para as Ciencias Sociais
+output_dir: "."
+navbar:
+  right:
+    - text: "Introducao"
+      href: index.html
+    - text: "Syllabus"
+      href: syllabus.html
+    - text: "Tutoriais"
+      menu:
+          - text: "1. Introducao"
+            href: introducao.html
+          - text: "2. Abrindo e Manipulando Dados"
+            href: abrindo_manipulando.html
+          - text: "3. Organizando e Limpando Dados"
+            href: limpando_dados.html
+          - text: "4. Calculando Estatisticas Resumidas"
+            href: Estatisticas_Resumidas.html
+          - text: "5. Construindo Tabelas"
+            href: Tabelas.html
+          - text: "6. Visualizacao de Dados"
+            href: Graficos.html
+          - text: "7. Juntando Bancos de Dados"
+            href: Juntando_Bancos.html
+          - text: "8. Mapas e Analises Espaciais"
+            href: Mapas.html
+          - text: "9. Testes Estatisticos e Regressoes"
+            href: Regressoes.html
+          - text: "10. Relatorios Reproduziveis"
+            href: Reprodutibilidade.html
+          - text: "11. Funcoes e Repeticao"
+            href: Repeticao.html
+          - text: "12. Analise de Texto"
+            href: Analise_Texto.html            
+    - text: "Desafios"
+    - text: "Recursos"
+      href: recursos.html
+    - text: "Projeto Final"
+      href: projeto.html
+            
+output: distill::distill_article

@@ -1,0 +1,151 @@
+---
+title: "Desafio 1: De Banco de Dados ao Relatório"
+output:
+  distill::distill_article
+---
+
+```{r, echo=F}
+knitr::opts_chunk$set(echo = F, eval=F, highlight=T)
+```
+
+
+<style>
+div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
+</style>
+
+<div class = "purple">
+O prazo para entregar Desafio 1 por email com título “[FLS6397] - D1” na minha conta de email é **14h, 30/04/2021**, antes da aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
+</div>
+
+<br>
+
+[Respostas Sugeridas para Desafio 1 aqui](Desafio_1_Suggested_Responses.html)
+
+## Instruções
+
+Siga as instruções abaixo. Documente *todos* os seus passos em um script. Comente no seu script *todos* os seus passos e explique a si mesma(o) suas escolhas e estratégias. Se você se beneficiou da assistência de outra pessoa, sempre reconheça isso em comentários no código.
+
+## Roteiro
+
+1. Vá ao [Repositório de Dados Eleitorais do TSE](http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais). Na página "Resultados" e no ano 2012, faça o download do arquivo "Votação nominal por município e zona" e descompacte-o. 
+
+2. Abra o arquivo de São Paulo (*votacao_candidato_munzona_2012_SP.txt*) em R com os nomes de colunas e o encoding corretos de acordo com a seção relevante de leaime.pdf.
+
+```{r, echo=F}
+library(tidyverse)
+data <- read_delim("C:/Users/Jonny/Downloads/votacao_candidato_munzona_2012/votacao_candidato_munzona_2012_SP.txt",
+                   delim=";",
+                   locale=locale(encoding="latin1"),
+                   col_names=c("DATA_GERACAO","HORA_GERACAO","ANO_ELEICAO","NUM_TURNO",
+                               "DESCRICAO_ELEICAO","SIGLA_UF","SIGLA_UE",
+                               "CODIGO_MUNICIPIO","NOME_MUNICIPIO","NUMERO_ZONA",
+                               "CODIGO_CARGO","NUMERO_CAND","SQ_CANDIDATO",
+                               "NOME_CANDIDATO","NOME_URNA_CANDIDATO","DESCRICAO_CARGO",
+                               "COD_SIT_CAND_SUPERIOR","DESC_SIT_CAND_SUPERIOR",
+                               "CODIGO_SIT_CANDIDATO","DESC_SIT_CANDIDATO",
+                               "CODIGO_SIT_CAND_TOT","DESC_SIT_CAND_TOT",
+                               "NUMERO_PARTIDO","SIGLA_PARTIDO","NOME_PARTIDO",
+                               "SEQUENCIAL_LEGENDA","NOME_COLIGACAO",
+                               "COMPOSICAO_LEGENDA","TOTAL_VOTOS"))
+```
+
+3. Lendo o leaime.pdf e observando as variáveis no banco de dados, o que representa uma observação (uma linha)? Ou seja, qual a unidade de análise aqui?
+
+4. Leia até o final as instruções e identifique quais variáveis serão necessárias para o resto do exercício. Tire do seu banco de dados as variáveis desnecesárias.
+
+```{r}
+#data <- data %>% select()
+```
+
+5. Selecione apenas as linhas que contêm os resultados eleitorais para o primeiro turno da eleição do prefeito(a). 
+
+```{r}
+data_prefeito_turno_1 <- data %>% filter(DESCRICAO_CARGO=="PREFEITO" & NUM_TURNO==1)
+```
+
+6. Note que alguns candidatos podem aparecer mais de uma vez na tabela em Q5 (porque existem múltiplas zonas em cada município). Usando identificadores únicos, identifique os candidatos distintos e exclusivos para o primeiro turno do prefeito. Explique no seu relatório quantos candidatos concorrem para prefeito no primeiro turno em 2012.
+
+```{r}
+cands_prefeito_turno_1 <- data_prefeito_turno_1 %>% distinct(SQ_CANDIDATO)
+
+num_cands_prefeito_turno_1 <- nrow(cands_prefeito_turno_1)
+```
+
+7. No banco de dados de prefeitos no primeiro turno gerado na questão anterior, renomeie a variável com nome pouco claro `DESC_SIT_CAND_TOT` para `RESTULADO`
+
+```{r}
+data_prefeito_turno_1 <- data_prefeito_turno_1 %>% rename(RESULTADO=DESC_SIT_CAND_TOT)
+```
+
+8. No banco de dados de prefeitos no primeiro turno gerado na questão anterior, filtre os dados para os candidatos que se candidataram com Nome de Urna igual ao seu Nome completo, e identifique os candidatos únicos de novo. No seu relatório, explique qual percentagem de todos os candidatos para prefeito no primeiro turno isso representa.
+
+```{r}
+cands_prefeito_turno_1_nome_igual <- data_prefeito_turno_1 %>% 
+  filter(NOME_CANDIDATO==NOME_URNA_CANDIDATO) %>%
+  distinct(SQ_CANDIDATO)
+
+Pct_nome_igual <- 100*(nrow(cands_prefeito_turno_1_nome_igual)/nrow(cands_prefeito_turno_1))
+```
+
+9. Quantos dos candidatos identificados em Q8 foram eleitos no primeiro turno?
+
+```{r}
+data_prefeito_turno_1 %>% 
+  filter(NOME_CANDIDATO==NOME_URNA_CANDIDATO) %>% 
+  filter(RESULTADO=="ELEITO") %>%
+  distinct(SQ_CANDIDATO) %>% 
+  nrow()
+```
+
+10. Voltando para os dados de todos os candidatos no primeiro turno, vamos focar a nossa análise no município de São Paulo (código do TSE 71072). Ordene os dados por número de votos e identifique qual é o candidato que recebeu o maior número de votos em uma zona eleitoral. Ou seja, entre todas as zonas e todos os candidatos, qual foi a zona que registrou maior número de votos para um candidato? Quem é este candidato e quantos votos ele recebeu nesta zona? 
+
+```{r}
+data_prefeito_turno_1 %>% filter(CODIGO_MUNICIPIO==71072) %>%
+  arrange(-TOTAL_VOTOS) %>%
+  top_n(1, TOTAL_VOTOS)
+```
+
+11. Usando a sua própria classificação, crie uma nova variável que descreve a ideologia de cada partido no banco de dados do município de São Paulo nas três categorias 'Esquerda', 'Direita' e 'Outro'. 
+
+```{r}
+data_prefeito_turno_1 <- data_prefeito_turno_1 %>% 
+  filter(CODIGO_MUNICIPIO==71072) %>% 
+  mutate(Ideologia=case_when(SIGLA_PARTIDO %in% c("PDT","PV","PSOL","PTN",
+                                                  "PT","PPS","PTB","PSB",
+                                                  "PC do B","PT do B","PSTU",
+                                                  "PCB","PPL","PCO","SD")~"Esquerda",
+                             SIGLA_PARTIDO %in% c("PSD","PSDB","PRB","PRP",
+                                                  "PMDB","DEM","PSC","PP",
+                                                  "PRTB","PHS","PSL","PTC")~"Direita",
+                             SIGLA_PARTIDO %in% c("PR","PMN","PT do B","PSDC")~"Outro"))
+
+```
+
+12. Crie uma variável que indica se o candidato no município de São Paulo recebeu mais de 10.000 votos na zona.
+
+```{r}
+data_prefeito_turno_1 <- data_prefeito_turno_1 %>% 
+  filter(CODIGO_MUNICIPIO==71072) %>%
+  mutate(Mais_de_10000_votos=case_when(TOTAL_VOTOS>10000~TRUE,
+                                       TOTAL_VOTOS<=10000~FALSE))
+
+sum(data_prefeito_turno_1$Mais_de_10000_votos)
+```
+
+13. Voltando para os dados originais, filtre apenas os dados dos vereadores. Agora, imagine que não temos os dados do partido de cada candidato e queremos recuperar do `NUMERO_CAND`, em que os primeiros dois dígitos sempre refletem o número do partido do candidato. Divida a coluna `NUMERO_CAND` em duas para criar uma coluna de `NUM_PARTIDO` e outra de `NUM_CAND_RESTANTE`.
+
+```{r}
+data_verador <- data %>% filter(DESCRICAO_CARGO=="VEREADOR") %>%
+  separate(NUMERO_CAND, into=c("NUM_PARTIDO","NUM_CAND_RESTANTE"), sep=2)
+```
+
+14. Agora, unifique as colunas `NUM_PARTIDO` e `NUM_CAND_RESTANTE` criado em Q9. O resultado deve ser igual à coluna original `NUMERO_CAND`.
+
+```{r}
+data_verador <- data_verador %>% 
+  unite(NUMERO_CAND_NOVO,c(NUM_PARTIDO,NUM_CAND_RESTANTE)) %>%
+  mutate()
+```
+
+15. Limpe o seu script e Knit para um documento de HTML, por exemplo adicionando comentários, verificando que as respostas fazem sentidos, inserindo in-line código, tirando o código, warnings e mensagens do documento final, e formatando as tabelas melhores com `df_print: paged` no cabeçalho.
+
