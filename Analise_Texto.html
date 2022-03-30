@@ -2065,8 +2065,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" class="title">Analise de Dados para as Ciencias Sociais</a>
 </div>
 <div class="nav-right">
-<a href="index.html">Introducao</a>
-<a href="syllabus.html">Syllabus</a>
+<a href="index.html">Programa</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Tutoriais
@@ -2424,6 +2423,7 @@ Coffman Cove Seaplane Base
 </div>
 <p>Lembre-se da função <code>separate()</code> do Tutorial 3? É bem parecida com <code>str_split()</code>. A diferença é que o produto de <code>separate</code> não é simplesmente um vetor - mas está <em>distribuído</em> em colunas novas dentro do nosso tibble. Isso é muito conveniente, mas exige que determinemos o número de parcelas em que dividimos o string em avanço. Por exemplo, com <code>separate()</code> fica mais difícil encontrar a última palavra do nome do aeroporto como calculamos acima.</p>
 <p><code>separate()</code> é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna <code>tzone</code> entre os partes antes e depois do ‘/’:</p>
+<p>[[[<strong><em>NÃO FUNCIONA MAIS: tzone -&gt; tz em outro formato</em></strong>*]]]</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>tzone</span>, <span class='st'>"/"</span>, into<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"País"</span>, <span class='st'>"Região"</span><span class='op'>)</span><span class='op'>)</span>

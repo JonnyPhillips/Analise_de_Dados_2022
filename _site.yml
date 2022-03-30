@@ -5,10 +5,8 @@ description: |
 output_dir: "."
 navbar:
   right:
-    - text: "Introducao"
+    - text: "Programa"
       href: index.html
-    - text: "Syllabus"
-      href: syllabus.html
     - text: "Tutoriais"
       menu:
           - text: "1. Introducao"

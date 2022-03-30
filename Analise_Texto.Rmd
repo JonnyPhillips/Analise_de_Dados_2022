@@ -184,7 +184,9 @@ Lembre-se da função `separate()` do Tutorial 3? É bem parecida com `str_split
 
 `separate()` é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna `tzone` entre os partes antes e depois do '/': 
 
-```{r}
+[[[***NÃO FUNCIONA MAIS: tzone -> tz em outro formato****]]]
+
+```{r, eval=F}
 airports <- airports %>% separate(tzone, "/", into=c("País", "Região"))
 ```
 
