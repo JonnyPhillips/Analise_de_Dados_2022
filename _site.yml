@@ -11,6 +11,8 @@ navbar:
       menu:
           - text: "1. Introducao"
             href: introducao.html
+          - text: "2. Abrindo e Manipulando Dados"
+            href: abrindo_manipulando.html
     - text: "Desafios"
       menu:
     - text: "Recursos"
