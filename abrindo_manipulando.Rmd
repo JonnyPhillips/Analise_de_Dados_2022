@@ -757,20 +757,19 @@ Há critérios de conversão de variáveis categóricas, rótulos e etc, adotado
 **Exercício 3: Abrindo Dados Eleitorais**
 
 
-1. Escolha um banco de dados (qualquer arquivo único recente) da aba 'Resultados' do site do [Tribunal Superior Eleitoral aqui](https://dadosabertos.tse.jus.br/dataset/?groups=resultados), baixá-lo e dê unzip nele.
+1. Abre o [link aqui](https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2016_AC.zip) com dados da eleição de 2016 em Acre do site do [Tribunal Superior Eleitoral](https://dadosabertos.tse.jus.br/dataset/?groups=resultados). Baixá-lo e dê unzip nele.
 
-2. Use uma função apropriada para abrir o arquivo em R. 
+2. Use uma função apropriada para abrir o arquivo em R. Verifique quantas colunas existem no banco (deve ser mais que uma!).
 
 ```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
-data <- read_delim("arquivo.txt",
-                   delim=";",
-                   locale=locale(encoding = "latin1"))
+data <- read_delim("arquivo.csv",
+                   delim=";")
 ```
 
-3. Use o arquivo leiame.pdf que fica no zip com o arquivo do TSE para identificar o encoding dos dados, e os nomes das variáveis. Incorpore esta informação na abertura do arquivo.
+3. Use o arquivo leiame.pdf que fica no zip com o arquivo do TSE para identificar o encoding dos dados, e os nomes das variáveis. Incorpore esta informação na abertura do arquivo. (Imagine que os nomes das colunas já não existam dentro do banco de dados - isso foi o caso até este ano!).
 
 ```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
-data <- read_delim("arquivo.txt",
+data <- read_delim("arquivo.csv",
                    delim=";",
                    locale=locale(encoding = "latin1"),
                    col_names=c("Variavel_1","Variavel_2","..."))
