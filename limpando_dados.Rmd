@@ -583,7 +583,7 @@ ex_arrange %>% mutate(Mes=fct_collapse(Mes,"Q1"=c("Janeiro","Fevereiro","Março"
   paged_table()
 ```
 
-Mais detalhes no cheatsheet de forcats [aqui](https://github.com/rstudio/cheatsheets/raw/master/factors.pdf).
+Mais detalhes no cheatsheet de forcats [aqui](https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf).
 
 <br>
 
