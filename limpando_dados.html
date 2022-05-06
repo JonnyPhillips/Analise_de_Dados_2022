@@ -2080,9 +2080,19 @@ Tutoriais
 <div class="nav-dropdown-content">
 <a href="introducao.html">1. Introducao</a>
 <a href="abrindo_manipulando.html">2. Abrindo e Manipulando Dados</a>
+<a href="limpando_dados.html">3. Organizando e Limpando Dados</a>
 </div>
 </div>
-<span class="nav-dropdown-header">Desafios</span>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Desafios
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Desafios/Desafio_1.html">Desafio 1</a>
+</div>
+</div>
 <a href="recursos.html">Recursos</a>
 <a href="projeto.html">Projeto Final</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2126,7 +2136,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-<p><a href="https://drive.google.com/file/d/1ifqNas2Ob1IqoMy_BEJOBR_7IpvMmBoa/view">Clique aqui</a> para assistir o vídeo da aula online do dia 16 de abril de 2021. E o <a href="https://drive.google.com/file/d/1KWTBZBIPBAfv4l0Xi8VedVg9pq2JxdoX/view">chat</a>.</p>
 <h1 id="dividindo-e-unificando-variáveis">Dividindo e Unificando Variáveis</h1>
 <h2 id="dividir-variáveis-separate">Dividir Variáveis (<code>separate</code>)</h2>
 <p>Nós recebemos um banco de dados que combina dois pedaços de informação em uma variável único. Por exemplo, juntando mês e ano num formato combinado, ex. “jan2013” Para filtrar, manipular ou calcular baseado no mês ou ano individualmente, é sempre melhor organizar os dados em variáveis separadas para cada pedaço de informação. Isto é um princípio de análise dados: cada variável merece a sua própria coluna.</p>
@@ -2294,61 +2303,25 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 <li>Crie uma data completa numa variável única, com o formato “day-month-year”.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='st'>"Data"</span>, <span class='va'>day</span>, <span class='va'>month</span>, <span class='va'>year</span>, sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>Divida a variável <code>time_hour</code> em duas: uma variável de <code>time</code> e a outra variável de <code>hour</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>time_hour</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"time"</span>, <span class='st'>"hour"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Recodifique a variável <code>dep_delay</code> para uma variável binária, que seja <code>1</code> quando tem atraso, e <code>0</code> quando não tem atraso (valores negativos significam decolagens antes do horário previsto).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>dep_delay <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>dep_delay</span> <span class='op'>&gt;</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='fl'>1</span>, <span class='va'>dep_delay</span> <span class='op'>&lt;=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>A companhia aérea US Airways (código ‘US’) se fundiu com American Airlines (código ‘AA’). Recodifique voos de US Airways como voos de American Airlines.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>carrier <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>carrier</span> <span class='op'>==</span> <span class='st'>"US"</span> <span class='op'>~</span> <span class='st'>"AA"</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='va'>carrier</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <p><br></p>
@@ -2502,68 +2475,25 @@ Mostrar Código
 <li>Ordene o banco de dados da menor à maior duração (<code>air_time</code>), incluindo apenas os voos com destino de Anchorage (<code>ANC</code>).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ANC"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>air_time</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>Identifique o voo mais atrasado (<code>dep_delay</code>) entre LaGuardia (<code>LGA</code>) e Atlanta (<code>ATL</code>). Quão atrasado foi o voo?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"LGA"</span> <span class='op'>&amp;</span> <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ATL"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>dep_delay</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Calcule a velocidade de cada voo, e selecione os três voos mais rápidos. Eles partiram de qual aeroporto para qual destino?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>velocidade <span class='op'>=</span> <span class='va'>distance</span><span class='op'>/</span><span class='va'>air_time</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='va'>velocidade</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>velocidade</span>, <span class='va'>origin</span>, <span class='va'>dest</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Para os voos com destino em Anchorage (<code>ANC</code>), verifique que eles são ordenados cronologicamente (por <code>year</code>, <code>month</code>, <code>day</code>, e <code>dep_time</code>) e gera uma nova variável com a duração (<code>air_time</code>) do voo <em>anterior</em>. Agora, compare a duração de cada voo com a duração do voo anterior.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"ANC"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>dep_time</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>air_time_anterior <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>air_time</span><span class='op'>)</span>, air_time_anterior_dif <span class='op'>=</span> <span class='va'>air_time</span> <span class='op'>-</span>
-        <span class='va'>air_time_anterior</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <p><br></p>
@@ -2759,62 +2689,25 @@ Mostrar Código
 <li>Transforme a variável <code>origin</code> para um factor (não-ordenado).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>origin</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>Salve o resultado de (1) e tente-se usar o novo banco de dados para recodificar o aeroporto de origem “EWR” para “Newark” usando <code>case_when</code> dentro de <code>mutate</code>. É possível?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"EWR"</span> <span class='op'>~</span> <span class='st'>"Newark"</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='va'>origin</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Usando as funções dedicadas do pacote <code>forcats</code>, recodifique o factor <code>origin</code> para os nomes completos dos aeroportos (Newark, John F Kennedy e LaGuardia).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span><span class='op'>(</span><span class='va'>origin</span>, Newark <span class='op'>=</span> <span class='st'>"EWR"</span>, `John F Kennedy` <span class='op'>=</span> <span class='st'>"JFK"</span>,
-        LaGuardia <span class='op'>=</span> <span class='st'>"LGA"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Transforme a variável <code>month</code> para um factor ordenado.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>month <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>month</span>, levels <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, ordered <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <p><br></p>
@@ -2872,7 +2765,7 @@ Mostrar Código
 <div class="purple">
 <p><strong>Desafio 1</strong></p>
 <p>É mais ou menos fácil seguir um tutorial passo a passo. O teste real do nosso entendimento é quando temos que trabalhar com um novo banco de dados sem instrução. O <a href="Desafios/Desafio_1.html">Desafio 1</a> teste a sua capacidade de abrir, manipular e limpar um banco de dados para produzir um relatório bonito e claro em HTML.</p>
-<p>O prazo para entregar Desafio 1 por email à minha conta é <strong>14h, 30/04/2021</strong>, antes da aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.</p>
+<p>O prazo para entregar Desafio 1 por email à minha conta é <strong>19/05/2022</strong>. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.</p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

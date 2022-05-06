@@ -14,12 +14,12 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
 
 <div class = "purple">
-O prazo para entregar Desafio 1 por email com título “[FLS6397] - D1” na minha conta de email é **14h, 30/04/2021**, antes da aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
+O prazo para entregar Desafio 1 por email com título “[FLS6397] - D1” na minha conta de email é **19/05/2022**. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
 </div>
 
 <br>
 
-[Respostas Sugeridas para Desafio 1 aqui](Desafio_1_Suggested_Responses.html)
+<!-- [Respostas Sugeridas para Desafio 1 aqui](Desafio_1_Suggested_Responses.html) -->
 
 ## Instruções
 
@@ -27,7 +27,7 @@ Siga as instruções abaixo. Documente *todos* os seus passos em um script. Come
 
 ## Roteiro
 
-1. Vá ao [Repositório de Dados Eleitorais do TSE](http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais). Na página "Resultados" e no ano 2012, faça o download do arquivo "Votação nominal por município e zona" e descompacte-o. 
+1. Vá ao [Repositório de Dados Eleitorais do TSE](https://dadosabertos.tse.jus.br/dataset/?groups=resultados). Busque por "Resultados - 2012" (para o  ano 2012), faça o download do arquivo "Votação nominal por município e zona" e descompacte-o. 
 
 2. Abra o arquivo de São Paulo (*votacao_candidato_munzona_2012_SP.txt*) em R com os nomes de colunas e o encoding corretos de acordo com a seção relevante de leaime.pdf.
 
@@ -51,7 +51,7 @@ data <- read_delim("C:/Users/Jonny/Downloads/votacao_candidato_munzona_2012/vota
 
 3. Lendo o leaime.pdf e observando as variáveis no banco de dados, o que representa uma observação (uma linha)? Ou seja, qual a unidade de análise aqui?
 
-4. Leia até o final as instruções e identifique quais variáveis serão necessárias para o resto do exercício. Tire do seu banco de dados as variáveis desnecesárias.
+4. Leia até o final as instruções aqui e identifique quais variáveis serão necessárias para o resto do exercício. Tire do seu banco de dados as variáveis desnecesárias.
 
 ```{r}
 #data <- data %>% select()
@@ -135,14 +135,14 @@ sum(data_prefeito_turno_1$Mais_de_10000_votos)
 13. Voltando para os dados originais, filtre apenas os dados dos vereadores. Agora, imagine que não temos os dados do partido de cada candidato e queremos recuperar do `NUMERO_CAND`, em que os primeiros dois dígitos sempre refletem o número do partido do candidato. Divida a coluna `NUMERO_CAND` em duas para criar uma coluna de `NUM_PARTIDO` e outra de `NUM_CAND_RESTANTE`.
 
 ```{r}
-data_verador <- data %>% filter(DESCRICAO_CARGO=="VEREADOR") %>%
+data_vereador <- data %>% filter(DESCRICAO_CARGO=="VEREADOR") %>%
   separate(NUMERO_CAND, into=c("NUM_PARTIDO","NUM_CAND_RESTANTE"), sep=2)
 ```
 
-14. Agora, unifique as colunas `NUM_PARTIDO` e `NUM_CAND_RESTANTE` criado em Q9. O resultado deve ser igual à coluna original `NUMERO_CAND`.
+14. Agora, unifique as colunas `NUM_PARTIDO` e `NUM_CAND_RESTANTE` criado em Q13. O resultado deve ser igual à coluna original `NUMERO_CAND`.
 
 ```{r}
-data_verador <- data_verador %>% 
+data_veerador <- data_verador %>% 
   unite(NUMERO_CAND_NOVO,c(NUM_PARTIDO,NUM_CAND_RESTANTE)) %>%
   mutate()
 ```
