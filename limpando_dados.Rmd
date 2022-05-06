@@ -202,10 +202,10 @@ Usando o banco de dados de `flights` no pacote `nycflights13`, responda as segui
 flights %>% unite("Data", day, month, year, sep="-")
 ```
 
-2. Divida a variável `time_hour` em duas: uma variável de `time` e a outra variável de `hour`. 
+2. Divida a variável `time_hour` em duas: uma variável de `data` e a outra variável de `hora`. 
 
 ```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
-flights %>% separate(time_hour, c("time","hour"), sep=" ")
+flights %>% separate(time_hour, c("data","hora"), sep=" ")
 ```
 
 3. Recodifique a variável `dep_delay` para uma variável binária, que seja `1` quando tem atraso, e `0` quando não tem atraso (valores negativos significam decolagens antes do horário previsto).
