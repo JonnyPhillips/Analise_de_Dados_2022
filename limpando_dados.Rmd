@@ -525,7 +525,7 @@ ex_arrange %>% complete(Ano, Mes, fill=list(Valor=0)) %>%
                          TRUE~0),
          Valor=case_when(Valor==0~NA_real_,
                           TRUE~Valor),
-         ID=replace_na(ID, "Desonhecido"))
+         ID=replace_na(ID, 999))
 ```
 
 
