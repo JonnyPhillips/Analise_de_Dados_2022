@@ -33,8 +33,6 @@ library("tidyverse")
 library("rmarkdown")
 ```
 
-[Clique aqui](https://drive.google.com/file/d/1YyF3blWPqbuHUHPW5LlB1eehGMQy4YYG/view?usp=sharing) para assistir o vídeo da aula online do dia 30 de abril de 2021. E o [chat](https://drive.google.com/file/d/1oIdRr5OnSoXHef72wwvsIiMKt2WN-ozz/view?usp=sharing).
-
 # Tabelas Estáticas
 
 Até agora, trabalhamos com as tabelas padrões fornecidas pelo R e a opção `df_print: paged` no cabeçalho. É só digitar o nome do tibble num chunk e no resultado vai aparecer uma tabela com navegação por página e colunas. Mas existem várias funções de 'formatação' que traduz o conteúdo de um tibble para uma tabela bonita no documento final. Elas funcionam como qualquer outra função do R e ficam no final de nosso fluxo de pipes.
@@ -114,7 +112,7 @@ Mais profissional. Em segundo lugar, o `kable` deixa mais fácil formatar os res
 flights %>% sample_n(8) %>%
   mutate(velocidade=distance/air_time) %>%
   select(month, day, dep_time, carrier, flight, origin, dest, velocidade) %>%
-    kable(digits=1)
+  kable(digits=1)
 ```
 
 Em terceiro lugar, é comum que a descrição das nossas variáveis na tabela final seja diferente que o nome da variável no script de programação. Isto é natural; em nosso script temos que escrever os nomes das variáveis muitas vezes e um atalho é muito mais eficiente, mas na tabela final o leitor tem que entender o significado da variável com apenas a informação na tabela. O `kable` permite especificar nomes de colunas mais complexas, sem renomear elas no tibble original. Por exemplo, o significado de 'dep_time' não é óbvio:
@@ -188,7 +186,7 @@ flights %>%
 
 1. Gere uma tabela estática de duração (`air_time`) média dos voos de cada aeoporto de origem, ordenado de menor a maior duração. Inclua um título e a formatação apropriada na sua tabela.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% group_by(origin) %>%
   summarize(media_air_time=mean(air_time,na.rm=T)) %>%
   arrange(media_air_time) %>%
@@ -198,7 +196,7 @@ flights %>% group_by(origin) %>%
 
 2. Identifique os voos de origem 'EWR' no dia 1 de Abril com decolagem antes de 6h. Prepare uma tabela estática que mostra as variáveis `dep_time`, `dep_delay`, `carrier`, `flight`, `dest`, `air_time`, `distance`. Inclua um título e a formatação apropriada.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(month==4 & day==1 & origin=="EWR" & dep_time<600) %>%
   select(dep_time, dep_delay, carrier, flight, dest, air_time, distance) %>%
   kable(caption="Voos de EWR no dia 4 de abril, antes de 6h")
@@ -206,7 +204,7 @@ flights %>% filter(month==4 & day==1 & origin=="EWR" & dep_time<600) %>%
 
 3. Duplique a tabela de questão 2, mas agora mande o resultado para uma tabela interativa de `datatable`. (Não se preocupe com a formatação).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(month==4 & day==1 & origin=="EWR" & dep_time<600) %>%
   select(dep_time, dep_delay, carrier, flight, dest, air_time, distance) %>%
   datatable(caption="Voos de EWR no dia 4 de abril, antes de 6h")
@@ -261,19 +259,23 @@ O que falta aqui é que os nomes das colunas `name` e `value` são genéricas e 
 ```{r, eval=F}
 flights %>% filter(dest=="SNA") %>% 
   select(month, day, origin, dest) %>% 
-  pivot_longer(cols=c(origin, dest), names_to="Direção", values_to="Aeroporto")
+  pivot_longer(cols=c(origin, dest), 
+               names_to="Direção", 
+               values_to="Aeroporto")
 ```
 
 ```{r, echo=F}
 flights %>% filter(dest=="SNA") %>% 
   select(month, day, origin, dest) %>% 
-  pivot_longer(cols=c(origin, dest), names_to="Direção", values_to="Aeroporto") %>%
+  pivot_longer(cols=c(origin, dest), 
+               names_to="Direção", 
+               values_to="Aeroporto") %>%
   paged_table()
 ```
 
 Agora, recebemos o mesmo resultado, mas é bem mais fácil interpretar, pois a natureza do evento é cadastrada na coluna 'Direção' e o local do evento fica na coluna 'Aeroporto'.
 
-Mas ainda existe um problema sério aqui - como sabemos que a primeira linha - o voo com origem em EWR no dia 1 de janeiro é o mesmo voo que chegou no aeroporto SNA no mesmo dia? Não sabemos isso porque não temos dados suficientes para identificar os mesmos voos em linhas separadas. Pode ser que o voo da primeira linha de origem é o mesmo voo na linha 3 ou linha 
+Mas ainda existe um problema sério aqui - como sabemos que a primeira linha - o voo com origem em EWR no dia 1 de janeiro é o mesmo voo que chegou no aeroporto SNA no mesmo dia? Não sabemos isso porque não temos dados suficientes para identificar os mesmos voos em linhas separadas. Pode ser que o voo da primeira linha de origem é o mesmo voo na linha 3 ou linha 120.
 
 O problema é que não temos um **identificador único** para cada voo no banco de dados. Isto é importante para todos os bancos de dados, mas sobretudo quando usamos um 'pivot' para mudar a unidade de análise, pois temos que restrear a divisão de uma observação em duas.
 
@@ -288,13 +290,17 @@ Agora podemos refazer o `pivot_longer` incluindo estas variáveis identificadore
 ```{r, eval=F}
 flights_longo <- flights %>% filter(dest=="SNA") %>% 
   select(month, day, dep_time, carrier, flight, origin, dest) %>% 
-  pivot_longer(cols=c(origin, dest), names_to="Direção", values_to="Aeroporto")
+  pivot_longer(cols=c(origin, dest), 
+               names_to="Direção", 
+               values_to="Aeroporto")
 ```
 
 ```{r, echo=F}
 flights_longo <- flights %>% filter(dest=="SNA") %>% 
   select(month, day, dep_time, carrier, flight, origin, dest) %>% 
-  pivot_longer(cols=c(origin, dest), names_to="Direção", values_to="Aeroporto")
+  pivot_longer(cols=c(origin, dest), 
+               names_to="Direção", 
+               values_to="Aeroporto")
 
 flights_longo %>% 
   paged_table()
@@ -311,11 +317,15 @@ A função `pivot_wider` é exatamante o inverso de `pivot_longer`. Em vez de es
 Note que com `pivot_longer` os argumentos `names_to` e `values_to` precisam de aspas porque são colunas novas que não existem em nosso tibble. No `pivot_wider` os argumentos `names_from` e `values_from` são colunas atuais em nosso tibble, então não precisam de aspas. 
 
 ```{r, eval=F, tidy=T}
-flights_longo %>% pivot_wider(id_cols=c(month, day, dep_time, carrier, flight), names_from=Direção, values_from=Aeroporto)
+flights_longo %>% pivot_wider(id_cols=c(month, day, dep_time, carrier, flight), 
+                              names_from=Direção, 
+                              values_from=Aeroporto)
 ```
 
 ```{r, echo=F}
-flights_longo %>% pivot_wider(id_cols=c(month, day, dep_time, carrier, flight), names_from=Direção, values_from=Aeroporto) %>% paged_table()
+flights_longo %>% pivot_wider(id_cols=c(month, day, dep_time, carrier, flight), 
+                              names_from=Direção, 
+                              values_from=Aeroporto) %>% paged_table()
 ```
 
 Veja que o resultado aqui tem metade das linhas de `flights_longo`, e o mesmo número do nosso banco de dados original. O R peguou os valores da coluna 'Direção' e criou uma coluna para cada valor único (uma para 'origin', uma para 'dest'). Os valores destas duas novas colunas são preenchidas da coluna 'Aeroporto'.
@@ -323,7 +333,8 @@ Veja que o resultado aqui tem metade das linhas de `flights_longo`, e o mesmo n�
 Um atalho para simplificar aqui é quando queremos virar todas as colunas exceto eles mencionados em `names_from` e `values_from`, podemos pular a especificação de `id_cols`:
 
 ```{r, eval=F}
-flights_longo %>% pivot_wider(names_from=Direção, values_from=Aeroporto)
+flights_longo %>% pivot_wider(names_from=Direção, 
+                              values_from=Aeroporto)
 ```
 
 Essas duas funções de pivot são mais avançadas, mas as vezes são essenciais para gerar a estrutura e formato da tabela desejada. É comum que o resultado da nossa análise em R é em formato 'larga', mas seria mais bonito imprimir no relatório final no formato 'longo'. Podemos usar `pivot_longer` para rapidamente produzir a tabela desejada. Similarmente, na semana que vem, aprendemos que os gráficos exigem um formato específico - frequentemente o formato 'longo' - e estas novas habilidades ajudam bastante.
@@ -334,7 +345,7 @@ Essas duas funções de pivot são mais avançadas, mas as vezes são essenciais
 
 1. Use `pivot_longer` para virar a tabela `flights` mais longa, para que cada voo tem duas observações - uma para a hora de partida (`dep_time`) e uma outra para a hora de chegada (`arr_time`). 
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights_hora_longo <- flights %>% pivot_longer(c(arr_time, dep_time),
                          names_to="Direção",
                          values_to="Hora")
@@ -342,7 +353,7 @@ flights_hora_longo <- flights %>% pivot_longer(c(arr_time, dep_time),
 
 2. Usando o seu resultado de questão 1, gere uma tabela estática de 10 linhas selecionadas aleatoriamente por R, mostrando as variáveis `carrier`, `flight`, `origin`, `dest` e as colunas novas que você gerou na questão 1. 
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights_hora_longo %>% 
   select(carrier, flight, origin, dest, Direção, Hora) %>%
   sample_n(10) %>%
@@ -351,7 +362,7 @@ flights_hora_longo %>%
 
 3. Usando o seu resultado de questão 1, use `pivot_wider` para recuperar o banco de dados original de `flights`. Verifique que os números de colunas e linhas são íguais.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights_recuperado <- flights_hora_longo %>% pivot_wider(names_from="Direção",
                                                          values_from="Hora")
 ```
@@ -389,7 +400,7 @@ flights[1:5, ] %>% paged_table()
 flights[distance==200, ]
 ```
 
-Hmm, o primeiro funcionou bem, mas o `distance==200` não deu certo. As condições no R base são idênticas às que usamos no tidyverse, isso não é o problema. O problema é que no R base, o R não sabe o que significa `distance`. Ele busca para um *objeto* (um data.frame) se chama `distance`, mas realmente `distance` é uma coluna dentro do objeto `flights`. Mesmo que começamos com `flights`, temos que informar R que `distance` fica dentro de `flights` de novo (o motivo para exigir a repetição do objeto é que podemos querer no futuro filtro uma tabela baseado no conteúdo de uma segunda tabela). Digitamos isso assim, separando o data.frame e a coluna com o símbolo `$`:
+Hmm, o primeiro funcionou bem, mas o `distance==200` não deu certo. As condições no R base são idênticas às que usamos no tidyverse, isso não é o problema. O problema é que no R base, o R não sabe o que significa `distance`. Ele busca para um *objeto* (um data.frame) se chama `distance`, mas realmente `distance` é uma coluna dentro do objeto `flights`. Mesmo que começamos com `flights`, temos que informar R que `distance` fica dentro de `flights` de novo (o motivo para exigir a repetição do objeto é que podemos querer no futuro filtrar uma tabela baseado no conteúdo de uma segunda tabela). Digitamos isso assim, separando o data.frame e a coluna com o símbolo `$`:
 
 ```{r, eval=F}
 flights[flights$distance==200, ]
@@ -462,5 +473,5 @@ Antes da próxima aula, por favor leia [R 4 Data Science, Capítulo 3](https://r
 
 O [Desafio 2](Desafios/Desafio_2.html) teste a sua capacidade de organizar, resumir, agrupar, e apresentar um banco de dados para produzir um relatório bonito e claro em HTML.
 
-O prazo para entregar Desafio 2 por email com título “[FLS6397] - D2” à minha conta é **14h, 14/05/2021**, antes da próxima aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
+O prazo para entregar Desafio 2 por email com título “[FLS6397] - D2” à minha conta é **02/06/2021**, antes da próxima aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
 </div>
