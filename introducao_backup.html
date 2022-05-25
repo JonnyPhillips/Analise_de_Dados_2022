@@ -2090,6 +2090,7 @@ Tutoriais
 <a href="limpando_dados.html">3. Organizando e Limpando Dados</a>
 <a href="Estatisticas_Resumidas.html">4. Calculando Estatisticas Resumidas</a>
 <a href="Tabelas.html">5. Construindo Tabelas</a>
+<a href="Graficos.html">6. Visualizacao de Dados</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2432,7 +2433,7 @@ flights
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;2022-05-18&quot;</code></pre>
+<pre><code>[1] &quot;2022-05-25&quot;</code></pre>
 </div>
 </div>
 <p>Como sabemos o significado de algumas colunas com nomes ambíguos? Podemos acessor o <strong>help</strong> (documentação) do objeto para descobrir uma descrição do que há no <em>data frame</em> chamado <code>flights</code>:</p>
@@ -2599,8 +2600,8 @@ library(&quot;DT&quot;)
 datatable(tabela_aeroportos)
 ```</code></pre>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-f679ab5b74342a5c83f8" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f679ab5b74342a5c83f8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["NWR","JFK","LGA"],["Newark","John F Kennedy","Laguardia"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sigla<\/th>\n      <th>Nome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-15cc32a7f3b58d068d8c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-15cc32a7f3b58d068d8c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["NWR","JFK","LGA"],["Newark","John F Kennedy","Laguardia"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sigla<\/th>\n      <th>Nome<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p>O <code>datatable</code> funciona quando o formato do nosso documento final é um HTML, gerando uma tabela interativa.</p>
 <section id="exercício-1" class="green">

@@ -33,8 +33,6 @@ library("tidyverse")
 library("rmarkdown")
 ```
 
-[Clique aqui](https://drive.google.com/file/d/1WjT4G50xBE8Amr_nC0YF-u7l6b6d2jgt/view?usp=sharing) para assistir o vídeo da aula online do dia 7 de maio de 2021. E o [chat](https://drive.google.com/file/d/1wboO4ZfvxEm7hy7kR4jk164L2Tma4Z7w/view?usp=sharing).
-
 # Gráficos
 
 Já aprendemos muito sobre a 'gramática' de manipulação de dados para produzir tibbles/tabelas conforme os requisitos da nossa análise. Existe uma gramática diferente, mas conectada, que usamos para produzir um gráfico. Note que, em contraste com outras formas de produzir gráficos, não desenhamos os elementos à mão ou individualmente - para produzir gráficos através de programação, temos que definir todos os elementos do gráfico *baseado nas variáveis* em nosso tibble.
@@ -45,7 +43,7 @@ Neste tutorial vamos apresentar a estrutura do código para produzir gráficos a
 
 Antes de mais nada, temos que lembrar a classificação de tipos de dado, porque isso é crucial para determinar quais gráficos podemos produzir:
 
-|          |          | Tipo em R           | Shortcut em tibble |
+|          |          | Tipo em R           | Atalho em tibble |
 |----------|----------|---------------------|--------------------|
 | Discreta | Nominal  | Factor ou Character | fctr, chr          |
 |          | Ordinal  | Ordered Factor      | fctr, chr          |
@@ -83,6 +81,8 @@ Começamos - como sempre - com o nosso banco de dados (tibble) relevante. Seguim
 
 Agora, uma observação importante: os nossos gráficos são compostos por várias 'camadas', que podemos juntar em linhas separadas. Adicionamos as camadas com o símbolo '+' em vez de um pipe ('%>%'). É fácil esquecer a diferença, mas é importante: um pipe ('%>%') passa os dados para *transformação* e o '+' *adiciona* mais informação, mais camadas. 
 
+Para entender a última linha de `geom_point()` temos que discutir dois componentes cruciais: Estéticas - mapeamentos de variáveis para elementos do gráfico - e Geometrias - o estilo visual do gráfico. 
+
 # Estéticas
 
 Existem centenas de elementos do nosso gráfico que podemos personalizar. Em breve vamos ver como customizar os títulos, os eixos, o fundo, a legenda etc. Agora, vamos focar nos elementos visuais de cada camada (cada geometria) de dados. Há várias opções, a disponibilidade delas depende de qual geometria estamos usando, mas é bom resumir as opções mais comuns:
@@ -106,7 +106,7 @@ Estéticas podem ser ligadas com as variáveis do nosso banco de dados. Por exem
 
 ![](Mapping_Graphics.png)
 
-Há duas opções para especificar as estéticas de uma camada, dependendo se quiremos que as estéticas variem conforme com os nossos dados, ou sejam fixas e constantes para todas as observações. 
+Há duas opções para especificar as estéticas de uma camada, dependendo se queremos que as estéticas variem conforme com os nossos dados, ou sejam fixas e constantes para todas as observações. 
 
 1. Para estéticas que variam com os nossos dados (ex. a cor depende da companhia aérea), definimos a estética com uma variável, e *dentro da função `aes()`*. 
 
@@ -119,6 +119,13 @@ Há duas opções para especificar as estéticas de uma camada, dependendo se qu
 ```{r, eval=F}
 ... geom_point(size=10, alpha=0.7)
 ```
+
+Claro que podemos combinar as duas formas:
+
+```{r ,eval=F}
+... geom_point(aes(x=dep_time, y=dep_delay), size=1)
+```
+
 
 # Geometrias
 
@@ -293,7 +300,7 @@ flights %>%
   geom_bar(aes(x=velocidade))
 ```
 
-Este gráfico está quase em branco, por quê? Tentamos representar uma variável contínua (`velocidade`) com uma geometria construída para variáveis discretas (`geom_bar`). Como cada valor de velocidade é quase único, existe uma barra (minúscula) para cada indivíduo e o gráfico não faz sentido. Precisamos mudar o geometria: o equivalente de um gráfico de barras para variáveis únicas contínuas é uma histograma que agrega os valores em grupos (barras) pequenos, então usamos `geom_histogram`.
+Este gráfico está quase em branco, por quê? Tentamos representar uma variável contínua (`velocidade`) com uma geometria construída para variáveis discretas (`geom_bar`). Como cada valor de velocidade é quase único, existe uma barra (minúscula) para cada indivíduo e o gráfico não faz sentido. Precisamos mudar o geometria: o equivalente de um gráfico de barras para variáveis únicas contínuas é uma histograma que agrega os valores em grupos (barras), então usamos `geom_histogram`.
 
 ```{r}
 flights %>% 
@@ -323,7 +330,7 @@ flights %>%
   geom_histogram(aes(x=velocidade), binwidth=1, colour="black", fill="orange")
 ```
 
-Melhor, não? Em geral, os argumentos "colour" e "fill" servem a várias geometrias.
+Melhor, não? Em geral, os argumentos "colour" e "fill" servem as várias geometrias.
 
 Curiosidade: R aceita as duas grafias em inglês para a palavra cor, "colour" (britânico, e obviamente o mais correto e bonito!) e "color" (americano).
 
@@ -393,7 +400,7 @@ flights %>%
 
 1. Prepare um gráfico de barras mostrando o número de voos por mês.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% 
   ggplot() + 
   geom_bar(aes(x=month))
@@ -401,7 +408,7 @@ flights %>%
 
 2. Prepare um gráfico de barras mostrando o número de voos por companhia aérea (`carrier`) para o aeroporto de origem JFK.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="JFK") %>%
   ggplot() + 
   geom_bar(aes(x=carrier))
@@ -409,7 +416,7 @@ flights %>% filter(origin=="JFK") %>%
 
 3. Prepare um histograma mostrando a distribuição do número de voos por hora de partida (`dep_time`) para voos entre EWR e SFO (San Francisco).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="EWR" & dest=="SFO") %>%
   ggplot() + 
   geom_histogram(aes(x=dep_time))
@@ -417,7 +424,7 @@ flights %>% filter(origin=="EWR" & dest=="SFO") %>%
 
 4. Prepare um gráfico de densidade mostrando a distribuição de duração (`air_time`) para voos entre JFK e LAX (Los Angeles).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="JFK" & dest=="LAX") %>%
   ggplot() + 
   geom_density(aes(x=air_time))
@@ -547,7 +554,7 @@ flights %>% sample_n(1000) %>%
   geom_point(aes(x = distance, y = air_time), size=0.1, color="blue", shape=2)
 ```
 
-Sempre temos que experimentar várias vezes para achar uma formatação apropriada. A forma (`shape`) é um número que corresponde aos códigos oficiais - pode ver a lista deles na segunda página do [cheatsheet do ggplot2](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf), por exemplo.
+Sempre temos que experimentar várias vezes para achar uma formatação apropriada. A forma (`shape`) é um número que corresponde aos códigos oficiais - pode ver a lista deles na segunda página do [cheatsheet do ggplot2](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf), por exemplo.
 
 Uma geometria suplementar com duas variáveis contínuas resume a relação entre as duas variáveis com modelos lineares e não lineares. A geometria `geom_smooth` cumpre esse papel.
 
@@ -583,7 +590,7 @@ flights %>% sample_n(1000) %>% ggplot() +
 
 1. Prepare um gráfico de densidade mostrando a distribuição da hora de partida de voos entre EWR e BOS (Boston) por companhia aérea (`carrier`).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="EWR" & dest=="BOS") %>%
   ggplot() +
   geom_density(aes(x=dep_time, group=carrier, colour=carrier))
@@ -591,7 +598,7 @@ flights %>% filter(origin=="EWR" & dest=="BOS") %>%
 
 2. Prepare um gráfico de colunas/barras (`geom_col`) mostrando a duração média (`air_time`) de voos de cada companhia aérea.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% group_by(carrier) %>%
   summarize(duracao_media=mean(air_time, na.rm=T)) %>%
   ggplot() +
@@ -600,7 +607,7 @@ flights %>% group_by(carrier) %>%
 
 3. Prepare um gráfico de pontos mostrando a relação entre o atraso na partida (`dep_delay`) e o atraso na chegada (`arr_delay`) para os voos de JFK a MIA (Miama).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="JFK" & dest=="MIA") %>%
   ggplot() +
   geom_point(aes(x=dep_delay, y=arr_delay))
@@ -608,7 +615,7 @@ flights %>% filter(origin=="JFK" & dest=="MIA") %>%
 
 4. Prepare um gráfico de pontos mostrando a relação entre a duração (`air_time`) média e o atraso média (`dep_delay`) de cada companhia aérea.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% group_by(carrier) %>%
   summarize(dep_delay_media=mean(dep_delay, na.rm=T),
             duracao_media=mean(air_time, na.rm=T)) %>%
@@ -618,7 +625,7 @@ flights %>% group_by(carrier) %>%
 
 5. Adicione uma linha de tendência/regressão linear no gráfico da questão 4. 
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% group_by(carrier) %>%
   summarize(dep_delay_media=mean(dep_delay, na.rm=T),
             duracao_media=mean(air_time, na.rm=T)) %>%
@@ -920,6 +927,18 @@ flights %>% sample_n(1000) %>% ggplot() +
   theme(legend.position="bottom")
 ```
 
+O nome da legenda precisa ser especificada na camada da escala de cores:
+
+```{r}
+flights %>% sample_n(1000) %>% ggplot() + 
+  geom_point(aes(x = distance, y = air_time, color=origin)) +
+  ggtitle("Relação entre distância e duração de voo, por aeroporto do Nova Iorque") +
+  xlab("Distância") +
+  ylab("Duração") + 
+  theme(legend.position="bottom") +
+  scale_color_brewer(palette="Set2", name="Aeroporto")
+```
+
 Com esforço, literalmente todos os elementos podem ser modificados, por exemplo o tamanho do texto nos eixos: 
 
 ```{r}
@@ -1011,9 +1030,9 @@ graf_2 %>%
   ggplotly()
 ```
 
-Enfim, existem infinitas personalizações possíveis. Ninguém consegue lembrar todos os detalhes ou o código. É frequentemente necessário buscar online por ajuda ou ideias, porém pesuisar por 'gráfico bonito' não ajuda nada. Temos que usar a linguagem e a gramática de gráficos para encontrar o que estamos procurando, então é crucial entender o que significa uma geometria, uma estética, uma escala, etc. 
+Enfim, existem infinitas personalizações possíveis. Ninguém consegue lembrar todos os detalhes ou o código. É frequentemente necessário buscar online por ajuda ou ideias, porém pesquisar por 'gráfico bonito' não ajuda nada. Temos que usar a linguagem e a gramática de gráficos para encontrar o que estamos procurando, então é crucial entender o que significa uma geometria, uma estética, uma escala, etc. 
 
-Em caso de dúvida, pode consultar o cheatsheet [aqui](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf). Um outro ponto de referência é a lista de tipos de gráficos com exemplos [aqui](http://www.sthda.com/english/wiki/ggplot2-essentials).
+Em caso de dúvida, pode consultar o cheatsheet [aqui](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf). Um outro ponto de referência é a lista de tipos de gráficos com exemplos [aqui](http://www.sthda.com/english/wiki/ggplot2-essentials).
 
 <br>
 
@@ -1021,37 +1040,43 @@ Em caso de dúvida, pode consultar o cheatsheet [aqui](https://github.com/rstudi
 
 **Exercício 3: Gráficos Avançados**
 
-1. Começando com o mesmo gráfico de Exercício 2.3, prepare o gráfico de pontos mostrando a relação entre o atraso na partida (`dep_delay`) e o atraso na chegada (`arr_delay`) para os voos de JFK a MIA (Miama). Colora os pontos de acordo com a companhia aérea, e adicione títulos bem formatados nos eixos e para o gráfico inteiro.
+1. Começando com o mesmo gráfico de Exercício 2.3, prepare o gráfico de pontos mostrando a relação entre o atraso na partida (`dep_delay`) e o atraso na chegada (`arr_delay`) para os voos de JFK a MIA (Miami). Colora os pontos de acordo com a companhia aérea, e adicione títulos bem formatados nos eixos e para o gráfico inteiro.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="JFK" & dest=="MIA") %>%
   ggplot() +
-  geom_point(aes(x=dep_delay, y=arr_delay, colour=carrier))
+  geom_point(aes(x=dep_delay, y=arr_delay, colour=carrier)) +
+  ggtitle("Atrasos nos voos de JFK para Miama") +
+  xlab("Atraso na partida") +
+  ylab("Atraso na chegada")
 ```
 
 2. Ajuste o seu gráfico de questão 1 para que o cor do ponto reflete uma variável contínua, a hora de partida (`dep_time`), usando uma escala de cores apropriada.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% filter(origin=="JFK" & dest=="MIA") %>%
   ggplot() +
   geom_point(aes(x=dep_delay, y=arr_delay, colour=dep_time)) +
-  scale_colour_gradient(low="#efedf5", high="#4a1486")
+  scale_colour_gradient(low="#efedf5", high="#4a1486", name="Horário") +
+  ggtitle("Atrasos nos voos de JFK para Miama") +
+  xlab("Atraso na partida") +
+  ylab("Atraso na chegada")
 ```
 
-3. Prepare um gráfico de linhas mostrando a distância de viagem de todos os voos por mês, com uma linha para cada aeroporto de origem. Aplique uma escala de cores apropriada.
+3. Prepare um gráfico de linhas mostrando a distância total de viagem de todos os voos por mês, com uma linha para cada aeroporto de origem. Aplique uma escala de cores apropriada.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% mutate(month=factor(month, 1:12, ordered=TRUE)) %>% 
   group_by(month, origin) %>%
   summarize(distancia_total=sum(distance, na.rm=T)) %>% 
   ggplot() + 
   geom_line(aes(x=month, y=distancia_total, group=origin, colour=origin)) +
-  scale_colour_brewer(palette="Set2")
+  scale_colour_brewer(palette="Set2", name="Aeroporto")
 ```
 
-4. Prepare vários gráficos numa grade, cada um mostrando a relação entre a hora de partida (`hour`) e o atraso médio de partida em um aeroporto de origem para uma companhia aérea.
+4. Prepare vários gráficos de linha numa grade, cada um mostrando a relação entre a hora de partida (`hour`) e o atraso médio de partida em um aeroporto de origem para uma companhia aérea.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 flights %>% group_by(hour, origin, carrier) %>%
   summarize(dep_delay_media=mean(dep_delay,na.rm=T)) %>%
   ggplot() + 
