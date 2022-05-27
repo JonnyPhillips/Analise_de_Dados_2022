@@ -18,7 +18,7 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 
 **1. Vá ao [Repositório de Dados Eleitorais do TSE](http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais). Na página "Resultados" e no ano 2012, faça o download do arquivo "Votação nominal por município e zona" e descompacte-o.** 
 
-**2. Abre o arquivo para São Paulo (*votacao_candidato_munzona_2012_SP.txt*) em R com os nomes de colunas e o encoding corretos de acordo com a seção relevante de leaime.pdf.**
+**2. Abra o arquivo para São Paulo (*votacao_candidato_munzona_2012_SP.txt*) em R com os nomes de colunas e o encoding corretos de acordo com a seção relevante de leaime.pdf.**
 
 ```{r}
 library(tidyverse)

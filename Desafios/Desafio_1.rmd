@@ -19,7 +19,7 @@ O prazo para entregar Desafio 1 por email com título “[FLS6397] - D1” na mi
 
 <br>
 
-<!-- [Respostas Sugeridas para Desafio 1 aqui](Desafio_1_Suggested_Responses.html) -->
+[Respostas Sugeridas para Desafio 1 aqui](Desafio_1_Suggested_Responses.html)
 
 ## Instruções
 
@@ -27,7 +27,7 @@ Siga as instruções abaixo. Documente *todos* os seus passos em um script. Come
 
 ## Roteiro
 
-1. Vá ao [Repositório de Dados Eleitorais do TSE](https://dadosabertos.tse.jus.br/dataset/?groups=resultados). Busque por "Resultados - 2012" (para o  ano 2012), faça o download do arquivo "Votação nominal por município e zona" e descompacte-o. 
+1. Vá ao [Repositório de Dados Eleitorais do TSE](http://www.tse.jus.br/eleitor-e-eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais). Na página "Resultados" e no ano 2012, faça o download do arquivo "Votação nominal por município e zona" e descompacte-o.
 
 2. Abra o arquivo de São Paulo (*votacao_candidato_munzona_2012_SP.txt*) em R com os nomes de colunas e o encoding corretos de acordo com a seção relevante de leaime.pdf.
 
