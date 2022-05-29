@@ -247,7 +247,7 @@ educ_RO_long_por_mun_maior_pct` ``.
 
 O município com o maior porcentagem dos seus Professores alocado à nível Fundamental é `r educ_RO_long_por_mun_maior_pct`.
 
-  (c) Calcule o porcentagem dos professores em cada município, por nível de ensinamento, em uma tabela, e o município com o maior porcentagem de Professores de Ensino Fundamental.
+  (c) Calcule a porcentagem dos professores em cada município, por nível de ensino, em uma tabela. (Observe que isso é sutilmente diferente da questão em (b) acima). Qual é o município com a maior porcentagem de todos os Professores de Ensino Fundamental no estado?
 
 
 ```{r}

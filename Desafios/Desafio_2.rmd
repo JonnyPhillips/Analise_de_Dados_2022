@@ -151,7 +151,7 @@ educ_RO_long %>% group_by(Nível_Professor) %>%
 9. Usando o banco de dados 'longo' criado na questão 8:  
     (a) Calcule o total do número de professores e a média por escola em cada nível de ensino *em cada município* (inclua uma tabela)
     (b) Calcule a porcentagem dos professores em cada nível de ensino, por município, em uma tabela. Qual é o município com a maior porcentagem dos seus Professores alocado à nível Fundamental?
-    (c) Calcule a porcentagem dos professores em cada município, por nível de ensino, em uma tabela. (Observe que isso é sutilmente diferente da questão em (b) acima). Qual é o município com a maior porcentagem de todos os Professores de Ensino Fundamental no páis?
+    (c) Calcule a porcentagem dos professores em cada município, por nível de ensino, em uma tabela. (Observe que isso é sutilmente diferente da questão em (b) acima). Qual é o município com a maior porcentagem de todos os Professores de Ensino Fundamental no estado?
 
 ```{r}
 #(a) Média e total de Número de professores em cada nível de ensinamento em cada município
