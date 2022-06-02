@@ -16,12 +16,12 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
 
 <div class = "purple">
-O prazo para entregar Desafio 3 por email com título “[FLS6397] - D3” à minha conta é **14h, 28/05/2021**, antes da próxima aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
+O prazo para entregar Desafio 3 por email com título “[FLS6397] - D3” à minha conta é **23/06/2022**. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
 </div>
 
 <br>
 
-[Respostas Sugeridas para Desafio 3 aqui](Desafio_3_Suggested_Responses.html)
+<!-- [Respostas Sugeridas para Desafio 3 aqui](Desafio_3_Suggested_Responses.html) -->
 
 ## Instruções
 
@@ -51,7 +51,7 @@ candidatos %>% write_delim("candidatos_2016_RR.csv",
 
 1. Vamos trabalhar de novo com os dados eleitorais do Tribunal Superior Eleitoral, o qual disponibiliza dados sobre os resultados eleitorais separadamente dos dados sobre os candidatos. Baixe os dados de [Resultados](https://raw.githubusercontent.com/JonnyPhillips/Ciencia_de_Dados/master/Desafios/resultados_2016_RR.csv) e [Candidatos](https://raw.githubusercontent.com/JonnyPhillips/Ciencia_de_Dados/master/Desafios/candidatos_2016_RR.csv) de Roraima. Observe que os dados são processados (não sendo os originais) e contém apenas a informação de vereadores. 
 
-2. Abra os dois bancos em R com o separador apropriado (note que o formato é um pouco diferente dos arquivos no desafio 1 - o encoding é o padrão, UTF8. Logo, não é preciso mexer nisso). 
+2. Abra os dois bancos em R com o separador apropriado (note que o formato é um pouco diferente dos arquivos no desafio 1 - o encoding é o padrão, UTF8 e os nomes de colunas já estão presentes). 
 
 ```{r}
 library("tidyverse")
@@ -417,7 +417,7 @@ resultados_totais_partidos %>% anti_join(IDH, by="NM_UE") %>%
   paged_table()
 ```
 
-(d) Use um `left_join()` para juntar os dados de voto por partido de questão (a) com a tabela de HDI de questão (b). 
+(d) Use um `left_join()` para juntar os dados de voto por partido de questão (a) com a tabela de IDH de questão (b). 
 
 ```{r}
 IDH <- IDH %>% mutate(NM_UE=case_when(NM_UE=="BOAVISTA"~"BOA VISTA",
@@ -442,7 +442,7 @@ resultados_totais_partidos_IDH %>%
   theme_classic()
 ```
 
-(e) Ajuste o seu gráfico na questão (d) para que o tamanho de cada ponto mostra o total de votos que o PMDB recebeu no município.
+(f) Ajuste o seu gráfico na questão (d) para que o tamanho de cada ponto mostra o total de votos que o PMDB recebeu no município.
 
 ```{r}
 resultados_totais_partidos_IDH %>% 
@@ -455,7 +455,7 @@ resultados_totais_partidos_IDH %>%
   theme_classic()
 ```
 
-(f) Ajuste o seu gráfico na questão (e) para que 1 cor dos pontos (em vez do tamanho) mostre o total de votos que o PMDB recebeu no município. Aplique uma escala de cores apropriada de sua escolha.
+(g) Ajuste o seu gráfico na questão (d) para que 1 cor dos pontos (em vez do tamanho) mostre o total de votos que o PMDB recebeu no município. Aplique uma escala de cores apropriada de sua escolha.
 
 ```{r}
 resultados_totais_partidos_IDH %>% 
