@@ -15,6 +15,8 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 O prazo para entregar Desafio 5 por email com título “[FLS6397] - D5” à minha conta é **09/07/2021**. Por favor entregue (i) o arquivo .Rmd (ou .Rnw se preferir), e (ii) o arquivo .html ou .PDF.
 </div>
 
+******SIMPLIFY BEFORE USING*********************
+
 <br>
 
 ## Instruções
