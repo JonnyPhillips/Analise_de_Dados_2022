@@ -13,7 +13,7 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
 
 <div class = "purple">
-O prazo para entregar Desafio 2 por email com título “[FLS6397] - D2” à minha conta é **14h, 17/04/2020**, antes da próxima aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
+O prazo para entregar Desafio 2 por email com título “[FLS6397] - D2” à minha conta é **02/06/2022**, antes da aula. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
 </div>
 
 ## Instruções
@@ -209,6 +209,13 @@ educ_RO_long %>% group_by(Nível_Professor) %>%
     (a) Calcule a média e o total do número de professores em cada nível de ensinamento em cada município (inclua uma tabela)
 
 ```{r}
+educ_RO %>%filter(MUNIC=="AMAJARI") %>%
+  summarize(prof=sum(PROFESS, na.rm=T))
+  
+
+educ_RO_long %>% filter(MUNIC=="AMAJARI") %>%
+  summarize(prof=sum(Numero_Professores, na.rm=T))
+
 educ_RO_long_mun_nivel <- educ_RO_long %>% group_by(CODMUNIC, MUNIC, Nível_Professor) %>%
   summarize(Media_Professores=mean(Numero_Professores,na.rm=T),
             Total_Professores=sum(Numero_Professores,na.rm=T)) %>%
