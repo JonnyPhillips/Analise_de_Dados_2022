@@ -40,3 +40,9 @@ O critério de avaliação será a aplicação dos princípios e técnicas discu
 - Avaliação da condição de saúde de pacientes com mutações genéticas
 - Descrição da trajetória de inflação
 - Mensuração de desigualdades no uso de transporte público
+
+### Em caso que você precisa ideais para um banco de dados
+
+1. Para dados sobre Brasil, [https://basedosdados.org/](https://basedosdados.org/)
+2. Para dados sobre ciência política, [www.poliscidata.com](www.poliscidata.com) ou [www.github.com/erikgahner/PolData](www.github.com/erikgahner/PolData)
+3. Dados do Banco Mundial, [data.worldbank.org](data.worldbank.org)

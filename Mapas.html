@@ -2100,6 +2100,7 @@ Tutoriais
 <a href="Graficos.html">6. Visualizacao de Dados</a>
 <a href="Juntando_Bancos.html">7. Juntando Bancos de Dados</a>
 <a href="Mapas.html">8. Mapas e Analises Espaciais</a>
+<a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2112,6 +2113,7 @@ Desafios
 <a href="Desafios/Desafio_1.html">Desafio 1</a>
 <a href="Desafios/Desafio_2.html">Desafio 2</a>
 <a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
+<a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
 </div>
 </div>
 <a href="recursos.html">Recursos</a>
@@ -2537,31 +2539,71 @@ Germany
 </table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cidades</span> <span class='op'>&lt;-</span> <span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span>coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Long"</span>, <span class='st'>"Lat"</span><span class='op'>)</span>, crs <span class='op'>=</span> <span class='fl'>4326</span>, remove <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="2" type="1">
 <li>Elabore um mapa simples para visualizar os seus dados com <code>ggplot()</code>, com uma cor diferente para cada ponto baseado na variável <code>População</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cidades <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">colour =</span> População)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 <ol start="3" type="1">
 <li>Quando estiver criando o seu objeto sf, pode usar o argumento <code>remove=FALSE</code> para preservar as colunas de longitude e latitude explicitamente. Use essas duas colunas para adicionar mais uma camada de geometria (<code>geom_text()</code>) que imprime os rótulos dos nomes das cidades ao seu mapa.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cidades <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">colour =</span> População)) <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> Long,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> (Lat <span class="sc">-</span> <span class="fl">0.5</span>), <span class="at">label =</span> Cidade)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 <ol start="4" type="1">
 <li>Tire os rótulos dos nomes das cidades e transforme os seus dados para a projeção com CRS 23035, e apresente um novo mapa.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cidades <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_transform</span>(<span class="dv">23035</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">colour =</span> População)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 <ol start="5" type="1">
 <li>Calcule a matriz da distância euclidiana entre as cidades.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_distance</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 </div>
 <h1 id="trabalhando-com-polígonos">Trabalhando com Polígonos</h1>
@@ -2679,13 +2721,13 @@ First 10 features:
 <p>Até agora, os nossos dados espaciais já chegaram quase pronto para usar. O que podemos fazer se não tivermos dados espaciais? Temos que criá-los. Podemos usar um aplicativo de celular para capturar dados com GPS, ou podemos ‘georeferenciar’ descrições de lugares, como endereços.</p>
 <p>Por exemplo, vamos criar um tibble simples com alguns endereços, e usar a função <code>geocode_OSM</code> do pacote <code>tmaptools</code> para converter o endereço em coordenadas de longitude e latitude. A função usa o banco de dados do Open Street Maps. (Note que a função exige usar o <code>$</code> de R base para especificar a coluna relevante).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Lugares <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">ID=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       Endereço<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Av. Prof. Luciano Gualberto, 298-460 - Butantã, São Paulo, Brazil&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Av. Paulista, 1578 - Bela Vista, São Paulo, Brazil&quot;</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Lugares <span class="ot">&lt;-</span> <span class="fu">geocode_OSM</span>(Lugares<span class="sc">$</span>Endereço, <span class="at">projection=</span><span class="dv">4326</span>, <span class="at">as.sf=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Lugares <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">ID=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       Endereço<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Av. Prof. Luciano Gualberto, 298-460 - Butantã, São Paulo, Brazil&quot;</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Av. Paulista, 1578 - Bela Vista, São Paulo, Brazil&quot;</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Lugares <span class="ot">&lt;-</span> <span class="fu">geocode_OSM</span>(Lugares<span class="sc">$</span>Endereço, <span class="at">projection=</span><span class="dv">4326</span>, <span class="at">as.sf=</span>T)</span></code></pre></div>
 </div>
 <p>Note que especificamos o CRS (o <code>projection</code>) em que queremos receber os dados, para que ele seja padronizado com as nossas outras camadas. E usamos <code>as.sf=T</code> para que o resultado já é um tibble de simple features pronto para analisar/visualizar.</p>
 <h2 id="mapas-interativos">Mapas Interativos</h2>
@@ -2712,25 +2754,75 @@ First 10 features:
 <li>Abra o shapefile dos países da Europa no link <a href="https://raw.githubusercontent.com/JonnyPhillips/Ciencia_de_Dados/master/Europe.zip">aqui</a>. Elabore um mapa simples usando a projeção 23035</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Europe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="2" type="1">
 <li>Adicione os dados das cidades do Exercício 1 ao seu mapa da Europa de Questão 1 e formate o mapa com um tema, título etc. apropriado.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Europe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Cidades Maiores da Europe"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="3" type="1">
 <li>Desenvolvendo o mesmo mapa, para cada país da Europa, elabore a visualização da população nacional (variável <code>POP_EST</code>) no mapa, com uma escala e legenda apropriada.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Europe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>POP_EST</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Cidades Maiores da Europe"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradient</a></span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"#e5f5f9"</span>, high <span class='op'>=</span> <span class='st'>"#00441b"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="4" type="1">
 <li>Queremos adicionar a próxima cidade na lista, Milão, mas não sabemos a longitude e a latitude da cidade. Georeferencie o endereço de “Piazza del Duomo, 20122 Milano, Italy”, e (em vez de juntar com o banco de dados de <code>cidades</code>), adicione os resultados como mais uma camada do seu mapa de Questão 3 com a mesma formatação da camada do resto das <code>cidades</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Milan</span> <span class='op'>&lt;-</span> <span class='fu'>geocode_OSM</span><span class='op'>(</span><span class='st'>"Piazza del Duomo, 20122 Milano, Italy"</span>, projection <span class='op'>=</span> <span class='fl'>4326</span>,
+    as.sf <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
 
+<span class='va'>Europe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>POP_EST</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Milan</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fl'>23035</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Cidades Maiores da Europe"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradient</a></span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"#e5f5f9"</span>, high <span class='op'>=</span> <span class='st'>"#00441b"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 </div>
 <h1 id="joins-não-espaciais">Joins Não-Espaciais</h1>
@@ -2838,25 +2930,70 @@ First 10 features:
 <li>Junte os dois bancos de Cidades e Países Europeus usando <strong>o nome do país</strong>. O resultado deve ser os <strong>pontos</strong> das cidades. (Uma das nossas tabelas tem que ser um tibble simples (não <code>sf</code>), então use a função <code>st_drop_geometry()</code> para voltar a uma tabela simples). Mostre num mapa a população dos países de cada cidade.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cidades_pais</span> <span class='op'>&lt;-</span> <span class='va'>cidades</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/left_join.html'>left_join</a></span><span class='op'>(</span><span class='va'>Europe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+        <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/rename.html'>rename</a></span><span class='op'>(</span>Pais <span class='op'>=</span> <span class='va'>NAME</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+        <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_drop_geometry</a></span><span class='op'>(</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='st'>"Pais"</span><span class='op'>)</span>
 
+<span class='va'>cidades_pais</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>POP_EST</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="2" type="1">
 <li>Junte os dois bancos de cidades e países Europeus usando <strong>um join espacial</strong>. O resultado deve ser os pontos das cidades. Reproduza o mapa de Questão 1.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cidades_pais_espacial <span class="ot">&lt;-</span> cidades <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_join</span>(Europe <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">st_transform</span>(<span class="dv">4326</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>cidades_pais_espacial <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> População)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 <ol start="3" type="1">
 <li>Junte os dois bancos de cidades e países Europeus usando <strong>o nome do país</strong>. Agora (diferentemente de 1), o resultado deve ser os <strong>polígonos</strong> dos países. Mostre num mapa a população das cidades metropolitanas.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pais_cidades <span class="ot">&lt;-</span> Europe <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Pais =</span> NAME) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(cidades <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">st_drop_geometry</span>(), <span class="at">by =</span> <span class="st">&quot;Pais&quot;</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>pais_cidades <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> População)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 <ol start="4" type="1">
 <li>Junte os dois bancos de cidades e países Europeus usando <strong>um join espacial</strong>. Agora (diferentemente de 2), o resultado deve ser os <strong>polígonos</strong> dos países. Reproduza o mapa de Questão 3. Existe algum problema?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pais_cidades_espacial <span class="ot">&lt;-</span> Europe <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_transform</span>(<span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_join</span>(cidades)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>pais_cidades_espacial <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> População)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</details>
 </div>
 </div>
 <h1 id="rasters">Rasters</h1>
@@ -2898,7 +3035,7 @@ First 10 features:
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

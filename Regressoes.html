@@ -2083,6 +2083,7 @@ Tutoriais
 <a href="Graficos.html">6. Visualizacao de Dados</a>
 <a href="Juntando_Bancos.html">7. Juntando Bancos de Dados</a>
 <a href="Mapas.html">8. Mapas e Analises Espaciais</a>
+<a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2095,6 +2096,7 @@ Desafios
 <a href="Desafios/Desafio_1.html">Desafio 1</a>
 <a href="Desafios/Desafio_2.html">Desafio 2</a>
 <a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
+<a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
 </div>
 </div>
 <a href="recursos.html">Recursos</a>
@@ -2141,7 +2143,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-<p><a href="https://drive.google.com/file/d/1yPhouj70ANgZds1vWXFILJzcnvmaY9_R/view?usp=sharing">Clique aqui</a> para assistir o vídeo da aula online do dia 28 de maio de 2021. E o <a href="https://drive.google.com/file/d/1cn7bapYVY9P-K-SmYZdiGsvsUARAqqNr/view?usp=sharing">chat</a>.</p>
 <h1 id="introdução">Introdução</h1>
 <p>Não se preocupe se você não esteja treinado em métodos quantitativos - não discutimos os detalhes de estatística aqui. Mas é comum aplicar um teste simples ou uma regressão aos nossos dados para avaliar alguma hipótese, e sabendo como fazer isto é um bom treinamento para construir fluxos de análise mais complexos para outros objetivos também.</p>
 <p>Os pontos cruciais de testes estatísticos são os seguintes:</p>
@@ -2406,89 +2407,31 @@ origin    OO    UA    US    VX    WN    YV
 <li>Use a função <code>rnorm(1000, 0, 1)</code> para gerar um vetor de 1000 observações aleatoriamente da distribuição normal. Avalie se os valores gerados sejam realmente distribuido de forma normal com um teste Shapiro-Wilk.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/shapiro.test.html'>shapiro.test</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>No banco de dados <code>planes</code>, teste se a média do ano de fabricação dos voos de fabricador Boeing seja diferente de 2000.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>planes</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>manufacturer</span> <span class='op'>==</span> <span class='st'>"BOEING"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span>mu <span class='op'>=</span> <span class='fl'>2000</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Avalie com um teste apropriado se a velocidade média de voos de Newark (EWR) seja igual à velocidade dos vôos de LaGuardia (LGA). (Lembre-se que tem que calcular a variável velocidade).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>!=</span> <span class='st'>"JFK"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>velocidade <span class='op'>=</span> <span class='va'>distance</span><span class='op'>/</span><span class='va'>air_time</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span><span class='va'>velocidade</span> <span class='op'>~</span> <span class='va'>origin</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Usando o banco de dados <code>weather</code>, qual é a correlação entre temperatura (<code>temp</code>) e pressão (<code>pressure</code>)?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/cor.test.html'>cor.test</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>temp</span> <span class='op'>+</span> <span class='va'>pressure</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="5" type="1">
 <li>Crie um gráfico usando <code>geom_errorbar()</code> para comunicar o intervalo de confiança da estimativa de correlação em questão 4. Adicione uma linha horizontal para comparar com uma correlação de zero.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>!=</span> <span class='st'>"EWR"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/cor.test.html'>cor.test</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>temp</span> <span class='op'>+</span> <span class='va'>pressure</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Variavel <span class='op'>=</span> <span class='st'>"Correlação entre temperatura e pressão"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Variavel</span>, y <span class='op'>=</span> <span class='va'>estimate</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span>,
-    lty <span class='op'>=</span> <span class='fl'>2</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>geom_errorbar</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Variavel</span>, ymin <span class='op'>=</span> <span class='va'>conf.low</span>,
-    ymax <span class='op'>=</span> <span class='va'>conf.high</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <h1 id="regressões-simples">Regressões Simples</h1>
@@ -3105,13 +3048,14 @@ F Statistic
 <h1 id="modelos-alternativos">Modelos Alternativos</h1>
 <p>A partir desta seção, não se preocupe se você não tem muita preperação prévia. Pode acompanhar os exemplos mesmo assim, ou pular para o final do tutorial se preferir.</p>
 <p>Uma regressão linear é apenas uma das possibilidades. O tipo de regressão reflete o tipo de dado em nossa variável dependente. Usamos uma regressão linear apenas quando a nossa variável dependente é contínua. Variáveis dependentes binárias (0/1), por exemplo, exigem um modelo de regressão de tipo ‘logit’ (ou ‘probit’).</p>
-<p>Para acomodar uma variedade de modelos vamos aproveitar do pacote <code>Zelig</code> que aceita várias possibilidades.</p>
+<p>Para acomodar uma variedade de modelos vamos aproveitar do pacote <code>Zelig</code> que aceita várias possibilidades. Observe que o Zelig funciona só se baixamos do site de Github (que vamos explorar mais no próximo tutorial) então o processo de instalação exige um pouco mais de esforço:</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages("Zelig")</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages("devtools")</span>
+<span class='co'>#devtools::install_github('IQSS/Zelig')</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cran.r-project.org/package=Zelig'>Zelig</a></span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -3530,99 +3474,31 @@ fd
 <li>Usando uma regressão linear, qual é a associação entre precipitação (<code>precip</code>, variável dependente) e as três variáveis pressão (<code>pressure</code>), temperatura (<code>temp</code>) e humidade (<code>humid</code>) no banco de dados <code>weather</code>? Qual dessas três variáveis tem relação positiva com a variável dependente, e qual uma relação negativa?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model1</span> <span class='op'>&lt;-</span> <span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>precip</span> <span class='op'>~</span> <span class='va'>pressure</span> <span class='op'>+</span> <span class='va'>temp</span> <span class='op'>+</span> <span class='va'>humid</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span>
 
-<span class='va'>model1</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
 </div>
 <ol start="2" type="1">
 <li>Execute mais um modelo de regressão adicionando mais uma variável explicativa do aeroporto de <code>origin</code> ao modelo de questão 1. Mostre os seus dois modelos juntos numa tabela apropriada.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>precip</span> <span class='op'>~</span> <span class='va'>pressure</span> <span class='op'>+</span> <span class='va'>temp</span> <span class='op'>+</span> <span class='va'>humid</span> <span class='op'>+</span> <span class='va'>origin</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>model2</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/stargazer/man/stargazer.html'>stargazer</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Modelo de Precipitação, Q2"</span>, type <span class='op'>=</span> <span class='st'>"html"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
 </div>
 <ol start="3" type="1">
 <li>Crie um gráfico de efeitos marginais para a sua regressão na questão 2.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model2</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>conf.lo <span class='op'>=</span> <span class='va'>estimate</span> <span class='op'>-</span> <span class='fl'>1.96</span> <span class='op'>*</span> <span class='va'>std.error</span>, conf.hi <span class='op'>=</span> <span class='va'>estimate</span> <span class='op'>+</span>
-        <span class='fl'>1.96</span> <span class='op'>*</span> <span class='va'>std.error</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>term</span> <span class='op'>!=</span> <span class='st'>"(Intercept)"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>term</span>, y <span class='op'>=</span> <span class='va'>estimate</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>geom_errorbar</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>term</span>,
-    y <span class='op'>=</span> <span class='va'>estimate</span>, ymin <span class='op'>=</span> <span class='va'>conf.lo</span>, ymax <span class='op'>=</span> <span class='va'>conf.hi</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Execute uma regressão do tipo ‘logit’ que explica se um vôo dure mais de três horas ou não (gere esta variável) baseado nas variáveis <code>dep_time</code>, <code>distance</code> e <code>origin</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>mais_de_tres_horas <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>air_time</span> <span class='op'>&gt;</span> <span class='fl'>180</span> <span class='op'>~</span> <span class='fl'>1</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/zelig.html'>zelig</a></span><span class='op'>(</span><span class='va'>mais_de_tres_horas</span> <span class='op'>~</span> <span class='va'>dep_time</span> <span class='op'>+</span> <span class='va'>distance</span> <span class='op'>+</span> <span class='va'>origin</span>, data <span class='op'>=</span> <span class='va'>.</span>,
-        model <span class='op'>=</span> <span class='st'>"logit"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/from_zelig_model.html'>from_zelig_model</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/stargazer/man/stargazer.html'>stargazer</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Modelo de Duração, Q3"</span>, type <span class='op'>=</span> <span class='st'>"html"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="5" type="1">
 <li>Use a sua regressão de questão 4 e as funções de <code>Zelig</code> para prever quanto mais provável é que um vôo tenha mais de três horas de duração quando a distância aumenta de 700 para 1300 kilometros.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>modelo_tres_horas</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>mais_de_tres_horas <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>air_time</span> <span class='op'>&gt;</span> <span class='fl'>180</span> <span class='op'>~</span> <span class='fl'>1</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>origin <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>origin</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/zelig.html'>zelig</a></span><span class='op'>(</span><span class='va'>mais_de_tres_horas</span> <span class='op'>~</span> <span class='va'>dep_time</span> <span class='op'>+</span> <span class='va'>distance</span> <span class='op'>+</span> <span class='va'>origin</span>, data <span class='op'>=</span> <span class='va'>.</span>,
-        model <span class='op'>=</span> <span class='st'>"logit"</span><span class='op'>)</span>
 
-<span class='va'>modelo_tres_horas</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/setx.html'>setx</a></span><span class='op'>(</span>distance <span class='op'>=</span> <span class='fl'>700</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/setx1.html'>setx1</a></span><span class='op'>(</span>distance <span class='op'>=</span> <span class='fl'>1300</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/Zelig/man/sim.html'>sim</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
 </div>
 </div>
 <p><br></p>
@@ -3644,6 +3520,12 @@ Mostrar Código
 <ol start="4" type="1">
 <li>Leia a guia introdutória para Latex, um sistema e linguagem de preparação de relatórios profissionais <a href="https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1)">no site de Overleaf</a></li>
 </ol>
+</div>
+<p><br></p>
+<div class="purple">
+<p><strong>Desafio 4</strong></p>
+<p>O <a href="Desafios/Desafio_4_v1.html">Desafio 4</a> é uma oportunidade para trocar ideais entre vocês, entender os desafios em interpretar o código de outros, e praticar aperfeiçoar scripts reproduzíveis. Vamos pedir que você oferecer comentários sobre o código do Desafio 3 de uma colega na disciplina.</p>
+<p>O prazo para entregar Desafio 4 por email com título “[FLS6397] - D4” à minha conta é <strong>07/07/2022</strong>. Por favor entregue apenas o arquivo .Rmd, incluindo os seus comentários adicionais.</p>
 </div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
