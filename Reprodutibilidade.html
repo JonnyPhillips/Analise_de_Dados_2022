@@ -2082,6 +2082,7 @@ Tutoriais
 <a href="Juntando_Bancos.html">7. Juntando Bancos de Dados</a>
 <a href="Mapas.html">8. Mapas e Analises Espaciais</a>
 <a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
+<a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2140,7 +2141,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-<p><a href="https://drive.google.com/file/d/1Cw7gbwi2SMrTF70T1zn6wELjNClbrklB/view?usp=sharing">Clique aqui</a> para assistir o vídeo da aula online do dia 4 de junho de 2021. E o <a href="https://drive.google.com/file/d/1ALNQHE-rkP3TYmJY5WuonTFQfkbpnSJO/view?usp=sharing">chat</a>.</p>
 <h1 id="introdução">Introdução</h1>
 <p>Neste tutorial, vamos ampliar o nosso conhecimento sobre as ferramentas que funcionam com R para gerar facilmente relatórios reproduzíveis. Como estas ferramentas podem ser acessadas abertamente pelo público (‘open-source’), podemos aproveitar sem custo do mesmo ambiente assim como milhões de outros pesquisadores.</p>
 <p>A primeira ferramenta é o Latex, um programa que compila scripts para o formato bem conhecido de PDF. Sua maior vantagem é a profissionalização dos nossos relatórios - PDF é um formato comum para compartilhar relatórios finais porque eles não podem ser fácilmente editados, e - em contraste com HTML - têm páginas distintas.</p>
@@ -2153,9 +2153,9 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </div>
 </div>
 <p>Siga as instruções - por exemplo, vão aparecer alguns ‘erros’ mas pode continuar sem problema; eles não são problemáticos. Depois da instalação, feche o seu R e abra de novo.</p>
-<p>Um passo adicional para verificar que tudo está bem configurado é acessar em RStudio Tools -&gt; Global Options -&gt; Sweave -&gt; ‘Weave Rnw files using:’ e escolher ‘knitr’.</p>
+<p>Um passo adicional para verificar que tudo está bem configurado é acessar em RStudio: Tools -&gt; Global Options -&gt; Sweave -&gt; ‘Weave Rnw files using:’ e escolher ‘knitr’.</p>
 <h1 id="compilando-scripts-de-r-markdown-para-pdf">Compilando Scripts de R Markdown para PDF</h1>
-<p>A nossa primeira tarefa não exige nenhuma programação adicional. Na mesma forma que compilamos os nossos documentos com ‘Knit para HTML’ ou ‘Knit para Doc’, a instalação de Latex habilita uma nova opção ‘Knit para PDF’.</p>
+<p>A nossa primeira tarefa não exige nenhuma programação adicional. Na mesma forma que compilamos os nossos documentos com ‘Knit para HTML’ ou ‘Knit para Doc’, a instalação de Latex habilita uma nova opção: ‘Knit para PDF’.</p>
 <p>Abra um script anterior seu de R Markdown (.Rmd) que compila bem para HTML. Em seguida, escolha a opcão ‘Knit para PDF’. Fácil, não? Como aparece o novo documento? Mais profissional, eu espero.</p>
 <p>No futuro, você fica no controle: você poderá compilar para qualquer formato que seja o mais apropriado para o seu relatório.</p>
 <h1 id="relatórios-escritos-em-latex-e-compilados-para-pdf">Relatórios escritos em Latex e compilados para PDF</h1>
@@ -2163,13 +2163,13 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 <p>Isso funciona bem, mas nós estamos habituados para preparar os nossos documentos na linguagem de R Markdown, que é bom e muito fácil de aprender, mas limitado. Por exemplo, se quisermos controlar em detalhe a formatação ou a paginação, não é possível em R Markdown. Então existe uma segunda forma de usar Latex: preparando o nosso script diretamente na linguagem de Latex, e pulando a etapa de R Markdown. O custo é a necessidade de aprender a linguagem de Latex. Dado o uso frequente de Latex no mundo acadêmico para a preparação de manuscritos, artigos e slides, oferecemos aqui um guia preliminar.</p>
 <p>O nome para a combinação de R + Latex é ‘Knitr’. Há quatro diferenças fundamentais em usar Knitr em vez de R Markdown.</p>
 <h3 id="o-tipo-de-arquivo">1. O Tipo de Arquivo</h3>
-<p>Os nossos scripts de R Markdown tem extensão “.Rmd” e um cabeçalho simples. Quando preparamos um script diretamente em Latex, ele precisa uma extensão “.Rnw”. É sempre melhor começar com um modelo, então começa com “File -&gt; New File -&gt; R Sweave” (ignore o significativo de ‘Sweave’, é um nome velho).</p>
+<p>Os nossos scripts de R Markdown têm extensão “.Rmd” e um cabeçalho simples. Quando preparamos um script diretamente em Latex, ele precisa uma extensão “.Rnw”. É sempre melhor começar com um modelo, então começa com “File -&gt; New File -&gt; R Sweave” (ignore o significativo de ‘Sweave’, é um nome velho).</p>
 <p>O documento abre com três linhas de texto; os mínimos necessários para um documento de Latex:</p>
-<p><strong>\documentclass{article}</strong> - O tipo de documento que queremos gerar, o mais comum é um article (artigo). Vamos ver a seguir como gerar apresentações.</p>
-<p><strong>\begin{document}</strong> - um indicador do começo do conteúdo a ser inserido no documento final. Antes disso podemos inserir pacotes e parâmetros. Depois, digitamos diretamente o seu texto na gramática de Latex.</p>
-<p><strong>\end{document}</strong> - um indicador do fim do documento. Texto o texto depois ele será ignorado.</p>
+<p><strong>\documentclass{article}</strong> - O tipo de documento que queremos gerar, o mais comum é um article (artigo). Também é possível criar livros inteiros, ou apresentações, que vamos discutir em breve.</p>
+<p><strong>\begin{document}</strong> - um indicador do começo do conteúdo a ser inserido no documento final. Antes disso podemos inserir pacotes/bibliotecas e parâmetros. Depois, digitamos diretamente o seu texto na gramática de Latex.</p>
+<p><strong>\end{document}</strong> - um indicador do fim do documento. Texto depois ele será ignorado.</p>
 <h3 id="compilando-o-documento-pdf">2. Compilando o Documento PDF</h3>
-<p>Escreva algo simples (eg. Hello World!) depois de <code>\begin{document}</code>. Já é um script de Latex/Knitr válido. Como criamos o nosso PDF final a partir desse script? Observe que quando abrimos um arquivo “.Rnw” não há a opção ‘Knit’ em Rstudio. O equivalente é “Compile PDF”. Experimente! Pode demorar um pouco para compilar pela primeira vez, mas, no fim, o R deve ter produzido um PDF, o qual estará salvo na pasta do seu projeto.</p>
+<p>Escreva algo simples (eg. “Hello World!”) depois de <code>\begin{document}</code>. Já é um script de Latex/Knitr válido. Como criamos o nosso PDF final a partir desse script? Observe que quando abrimos um arquivo “.Rnw” não há a opção ‘Knit’ em Rstudio. O equivalente é “Compile PDF”. Experimente! Pode demorar um pouco para compilar pela primeira vez, mas, no fim, o R deve ter produzido um PDF, o qual estará salvo na pasta do seu projeto.</p>
 <h3 id="formatação-de-chunks-de-código">3. Formatação de Chunks de Código</h3>
 <p>A importância de Knitr é que os nossos relatórios contêm os produtos da nossa análise de dados, igual como R Markdown. Mas um ponto chato é que os ‘chunks’ que guardam o nosso código de R têm uma definição diferente.</p>
 <p>Para inserir um novo chunk, use a opção ‘+ C’ (ao lado de ‘Run’) em Rstudio. Ele aparece um pouco diferente:</p>
@@ -2201,10 +2201,10 @@ x
 \item Texto 2<br />
 \end{itemize}</p>
 <p>Para gerar listas ordenadas:</p>
-<p>\begin{enumerate}<br />
-\item Texto 1<br />
-\item Texto 2<br />
-\end{enumerate}</p>
+<p>\begin{enumerate}</p>
+<p>\item Texto 1<br />
+\item Texto 2</p>
+<p>\end{enumerate}</p>
 <p>Títulos e Seções numeradas:<br />
 \section{Titulo 1}<br />
 \subsection{Subtitulo 1}<br />
@@ -2227,11 +2227,10 @@ x
 \author{My Name}<br />
 \date{Maio 2019}</p>
 <p>Se você compilar o seu PDF agora, não verá nenhuma diferença. Por que? Porque não tem nada diferente entre begin{document} e end{document}. Para fazer estas características aparecem em nosso documento, precisamos inserir o seguinte código depois de \begin{document}:</p>
-<p>\begin{document}</p>
 <p>\maketitle</p>
 <p>Agora, seu resultado deve ser um documento muito profissional.</p>
 <h4 id="tabelas-em-knitr">Tabelas em Knitr</h4>
-<p>O Latex tem uma gramática de tabelas um pouco chata de preparar. Mas é bem raro recisar digitar ela manualmente. Como em R Markdown, o jeito mais fácil de gerar uma tabela é criar um tibble em R e passar para a função <code>kable()</code>. Após inseri-lo dentro de um chunk no seu documento .Rnw, precisamos fazer apenas mais uma coisa para que ele pereça bonito: adicione o parâmetro <code>results='asis'</code> no header do chunk, como já fizemos com as tabelas de regressão com <code>stargazer</code> no tutorial anterior.</p>
+<p>O Latex tem uma gramática de tabelas um pouco chata de preparar. Mas é bem raro precisar digitar ela manualmente. Como em R Markdown, o jeito mais fácil de gerar uma tabela é criar um tibble em R e passar para a função <code>kable()</code>. Após inseri-lo dentro de um chunk no seu documento .Rnw, precisamos fazer apenas mais uma coisa para que ele pereça bonito: adicione o parâmetro <code>results='asis'</code> no header do chunk, como já fizemos com as tabelas de regressão com <code>stargazer</code> no tutorial anterior.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="er">&lt;</span>results<span class="ot">=</span><span class="st">&#39;asis&#39;</span><span class="sc">&gt;</span><span class="er">&gt;=</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
@@ -2361,34 +2360,13 @@ pages={175-191}<br />
 <li><p>Adicione uma tabela simples no PDF usando o banco de dados de <code>weather</code>, resumindo o total de precipitação por mês.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>precip <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>precip</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Adicione um gráfico simples usando o banco de dados <code>weather</code>, ilustrando temperatura média por aeroporto.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>temp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>temp</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span>, y <span class='op'>=</span> <span class='va'>temp</span>, group <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="5" type="1">
 <li><p>Verifique que o seu documento compila sem erro para PDF.</p></li>
@@ -2468,18 +2446,7 @@ Mostrar Código
 <li><p>Adicione mais um gráfico ao seu script, mostrando a umidade média por mês do banco de dados de <code>weather</code>.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>humid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>humid</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span>, y <span class='op'>=</span> <span class='va'>humid</span>, group <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li><p>Usando a aba de Git, execute <code>Commit</code> com a versão atualizada do script Rnw, atribuindo uma descrição apropriada.</p></li>

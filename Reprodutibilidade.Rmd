@@ -23,9 +23,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
 
-[Clique aqui](https://drive.google.com/file/d/1Cw7gbwi2SMrTF70T1zn6wELjNClbrklB/view?usp=sharing) para assistir o vídeo da aula online do dia 4 de junho de 2021. E o [chat](https://drive.google.com/file/d/1ALNQHE-rkP3TYmJY5WuonTFQfkbpnSJO/view?usp=sharing).
-
-
 ```{r setup, include=FALSE, echo=F}
 knitr::opts_chunk$set(echo = T, eval=T, highlight=T)
 library("nycflights13")
@@ -52,11 +49,11 @@ tinytex::install_tinytex()
 
 Siga as instruções - por exemplo, vão aparecer alguns 'erros' mas pode continuar sem problema; eles não são problemáticos. Depois da instalação, feche o seu R e abra de novo.
 
-Um passo adicional para verificar que tudo está bem configurado é acessar em RStudio Tools -> Global Options -> Sweave -> 'Weave Rnw files using:' e escolher 'knitr'. 
+Um passo adicional para verificar que tudo está bem configurado é acessar em RStudio: Tools -> Global Options -> Sweave -> 'Weave Rnw files using:' e escolher 'knitr'. 
 
 # Compilando Scripts de R Markdown para PDF
 
-A nossa primeira tarefa não exige nenhuma programação adicional. Na mesma forma que compilamos os nossos documentos com 'Knit para HTML' ou 'Knit para Doc', a instalação de Latex habilita uma nova opção 'Knit para PDF'. 
+A nossa primeira tarefa não exige nenhuma programação adicional. Na mesma forma que compilamos os nossos documentos com 'Knit para HTML' ou 'Knit para Doc', a instalação de Latex habilita uma nova opção: 'Knit para PDF'. 
 
 Abra um script anterior seu de R Markdown (.Rmd) que compila bem para HTML. Em seguida, escolha a opcão 'Knit para PDF'. Fácil, não? Como aparece o novo documento? Mais profissional, eu espero.
 
@@ -73,19 +70,19 @@ O nome para a combinação de R + Latex é 'Knitr'. Há quatro diferenças funda
 
 ### 1. O Tipo de Arquivo
 
-Os nossos scripts de R Markdown tem extensão ".Rmd" e um cabeçalho simples. Quando preparamos um script diretamente em Latex, ele precisa uma extensão ".Rnw". É sempre melhor começar com um modelo, então começa com "File -> New File -> R Sweave" (ignore o significativo de 'Sweave', é um nome velho). 
+Os nossos scripts de R Markdown têm extensão ".Rmd" e um cabeçalho simples. Quando preparamos um script diretamente em Latex, ele precisa uma extensão ".Rnw". É sempre melhor começar com um modelo, então começa com "File -> New File -> R Sweave" (ignore o significativo de 'Sweave', é um nome velho). 
 
 O documento abre com três linhas de texto; os mínimos necessários para um documento de Latex:  
 
-**\\documentclass{article}** - O tipo de documento que queremos gerar, o mais comum é um article (artigo). Vamos ver a seguir como gerar apresentações.
+**\\documentclass{article}** - O tipo de documento que queremos gerar, o mais comum é um article (artigo). Também é possível criar livros inteiros, ou apresentações, que vamos discutir em breve.
 
-**\\begin{document}** - um indicador do começo do conteúdo a ser inserido no documento final. Antes disso podemos inserir pacotes e parâmetros. Depois, digitamos diretamente o seu texto na gramática de Latex.
+**\\begin{document}** - um indicador do começo do conteúdo a ser inserido no documento final. Antes disso podemos inserir pacotes/bibliotecas e parâmetros. Depois, digitamos diretamente o seu texto na gramática de Latex.
 
-**\\end{document}** - um indicador do fim do documento. Texto o texto depois ele será ignorado.
+**\\end{document}** - um indicador do fim do documento. Texto depois ele será ignorado.
 
 ### 2. Compilando o Documento PDF
 
-Escreva algo simples (eg. Hello World!) depois de `\begin{document}`. Já é um script de Latex/Knitr válido. Como criamos o nosso PDF final a partir desse script? Observe que quando abrimos um arquivo ".Rnw" não há a opção 'Knit' em Rstudio. O equivalente é "Compile PDF". Experimente! Pode demorar um pouco para compilar pela primeira vez, mas, no fim, o R deve ter produzido um PDF, o qual estará salvo na pasta do seu projeto. 
+Escreva algo simples (eg. "Hello World!") depois de `\begin{document}`. Já é um script de Latex/Knitr válido. Como criamos o nosso PDF final a partir desse script? Observe que quando abrimos um arquivo ".Rnw" não há a opção 'Knit' em Rstudio. O equivalente é "Compile PDF". Experimente! Pode demorar um pouco para compilar pela primeira vez, mas, no fim, o R deve ter produzido um PDF, o qual estará salvo na pasta do seu projeto. 
 
 ### 3. Formatação de Chunks de Código
 
@@ -173,9 +170,7 @@ O nosso tipo de documento 'article' nos permite especificar um título e várias
 \\author{My Name}  
 \\date{Maio 2019}
 
-Se você compilar o seu PDF agora, não verá nenhuma diferença. Por que? Porque não tem nada diferente entre begin{document} e end{document}. Para fazer estas características aparecem em nosso documento, precisamos inserir o seguinte código depois de \\begin{document}:
-
-\\begin{document}
+Se você compilar o seu PDF agora, não verá nenhuma diferença. Por que? Porque não tem nada diferente entre begin{document} e end{document}. Para fazer estas características aparecem em nosso documento, precisamos inserir o seguinte código depois de \\begin{document}: 
 
 \\maketitle
 
@@ -183,7 +178,7 @@ Agora, seu resultado deve ser um documento muito profissional.
 
 #### Tabelas em Knitr
 
-O Latex tem uma gramática de tabelas um pouco chata de preparar. Mas é bem raro recisar digitar ela manualmente. Como em R Markdown, o jeito mais fácil de gerar uma tabela é criar um tibble em R e passar para a função `kable()`. Após inseri-lo dentro de um chunk no seu documento .Rnw, precisamos fazer apenas mais uma coisa para que ele pereça bonito: adicione o parâmetro `results='asis'` no header do chunk, como já fizemos com as tabelas de regressão com `stargazer` no tutorial anterior. 
+O Latex tem uma gramática de tabelas um pouco chata de preparar. Mas é bem raro precisar digitar ela manualmente. Como em R Markdown, o jeito mais fácil de gerar uma tabela é criar um tibble em R e passar para a função `kable()`. Após inseri-lo dentro de um chunk no seu documento .Rnw, precisamos fazer apenas mais uma coisa para que ele pereça bonito: adicione o parâmetro `results='asis'` no header do chunk, como já fizemos com as tabelas de regressão com `stargazer` no tutorial anterior. 
 
 ```{r, eval=F}
 <<results='asis'>>=
@@ -304,14 +299,14 @@ Em **Knitr (com o Latex)** o uso de bibliografias é um pouco mais complexo infe
 
 3. Adicione uma tabela simples no PDF usando o banco de dados de `weather`, resumindo o total de precipitação por mês.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 weather %>% group_by(month) %>%
   summarize(precip=sum(precip, na.rm=T))
 ```
 
 4. Adicione um gráfico simples usando o banco de dados `weather`, ilustrando  temperatura média por aeroporto.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 weather %>% group_by(month) %>%
   summarize(temp=mean(temp, na.rm=T)) %>%
   ggplot() +
@@ -419,7 +414,7 @@ Se você tiver uma conta paga, ou uma [conta estudantil](https://education.githu
 
 3. Adicione mais um gráfico ao seu script, mostrando a umidade média por mês do banco de dados de `weather`.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 weather %>% group_by(month) %>%
   summarize(humid=mean(humid, na.rm=T)) %>%
   ggplot() +

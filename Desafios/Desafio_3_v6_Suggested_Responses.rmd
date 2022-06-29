@@ -15,10 +15,6 @@ library(rmarkdown)
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
 
-<div class = "purple">
-O prazo para entregar Desafio 3 por email com título “[FLS6397] - D3” à minha conta é **23/06/2022**. Por favor entregue (i) o arquivo .Rmd, e (ii) o arquivo .html.
-</div>
-
 <br>
 
 <!-- [Respostas Sugeridas para Desafio 3 aqui](Desafio_3_Suggested_Responses.html) -->
