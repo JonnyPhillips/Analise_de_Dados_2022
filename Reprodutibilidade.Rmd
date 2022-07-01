@@ -333,7 +333,7 @@ O Git/Github é um sistema de controle de versões com três objetivos:
 Para utilizá-lo (se ainda não executei):  
 1. [Instale git](https://git-scm.com/downloads) no seu computador.  
 2. Crie uma conta no site [github](https://github.com/).  
-3. Em R, encontre a aba de 'Terminal' ao lado de 'Console' e 'R Markdown'. No terminal, digite o seguinte (duas linhas separadas), substituindo os valores de usuário e email com eles que você usou para abrir a conta de Github online:
+3. Em RStudio, faça um restart e encontre a aba de 'Terminal' ao lado de 'Console' e 'R Markdown'. No terminal, digite o seguinte (duas linhas separadas e sequenciais), substituindo os valores de usuário e email com eles que você usou para abrir a conta de Github online:
 
 `git config --global user.name 'usuario_de_github'`  
 `git config --global user.email 'nome@email.com'`
