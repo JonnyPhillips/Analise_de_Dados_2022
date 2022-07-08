@@ -2083,6 +2083,7 @@ Tutoriais
 <a href="Mapas.html">8. Mapas e Analises Espaciais</a>
 <a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
 <a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
+<a href="Repeticao.html">11. Funcoes e Repeticao</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2096,6 +2097,7 @@ Desafios
 <a href="Desafios/Desafio_2.html">Desafio 2</a>
 <a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
 <a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
+<a href="Desafios/Desafio_5_v4.html">Desafio 5</a>
 </div>
 </div>
 <a href="recursos.html">Recursos</a>
@@ -2360,13 +2362,34 @@ pages={175-191}<br />
 <li><p>Adicione uma tabela simples no PDF usando o banco de dados de <code>weather</code>, resumindo o total de precipitação por mês.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>precip <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>precip</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="4" type="1">
 <li>Adicione um gráfico simples usando o banco de dados <code>weather</code>, ilustrando temperatura média por aeroporto.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>temp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>temp</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span>, y <span class='op'>=</span> <span class='va'>temp</span>, group <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="5" type="1">
 <li><p>Verifique que o seu documento compila sem erro para PDF.</p></li>
@@ -2446,7 +2469,18 @@ pages={175-191}<br />
 <li><p>Adicione mais um gráfico ao seu script, mostrando a umidade média por mês do banco de dados de <code>weather</code>.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+Mostrar Código
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>humid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>humid</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span>, y <span class='op'>=</span> <span class='va'>humid</span>, group <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <ol start="4" type="1">
 <li><p>Usando a aba de Git, execute <code>Commit</code> com a versão atualizada do script Rnw, atribuindo uma descrição apropriada.</p></li>

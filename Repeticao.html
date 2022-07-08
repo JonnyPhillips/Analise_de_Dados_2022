@@ -2083,6 +2083,7 @@ Tutoriais
 <a href="Mapas.html">8. Mapas e Analises Espaciais</a>
 <a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
 <a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
+<a href="Repeticao.html">11. Funcoes e Repeticao</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2096,6 +2097,7 @@ Desafios
 <a href="Desafios/Desafio_2.html">Desafio 2</a>
 <a href="Desafios/Desafio_3_v6.html">Desafio 3</a>
 <a href="Desafios/Desafio_4_v1.html">Desafio 4</a>
+<a href="Desafios/Desafio_5_v4.html">Desafio 5</a>
 </div>
 </div>
 <a href="recursos.html">Recursos</a>
@@ -2142,7 +2144,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-<p><a href="https://drive.google.com/file/d/1JnY9BEDBMOfGGFaeHAUfVudkSRTo5PbL/view?usp=sharing">Clique aqui</a> para assistir o vídeo da aula online do dia 11 de junho de 2021. E o <a href="https://drive.google.com/file/d/1RxH0KT7HAGnYBNH_8C3_YhzPaeEERENJ/view?usp=sharing">chat</a>.</p>
 <h1 id="introdução">Introdução</h1>
 <p>Usar scripts de programação para a análise de dados tem várias vantagens: transparência, reprodutibilidade, etc. Mas uma vantagem fundamental é a capacidade para ganhar escala e para repetição das nossas análises várias vezes, sem repetir o código. A ideia é que podemos preparar uma análise para produzir uma estatística, uma tabela, um gráfico, um teste estatístico ou uma regressão para variáveis e valores específicos, e indicar para R refazer a análise várias vezes, deixando alguns elementos da análise fixos e permitindo a outros variarem.</p>
 <p>Por exemplo, imagine que nós queremos calcular a amplitude de uma variável: o máximo menos o mínimo. E queremos rodar a análise para três variáveis:</p>
@@ -2587,86 +2588,31 @@ Tibble
 <li>Gere três tibbles separados derivados do banco de dados <code>flights</code>, um para cada aeroporto de origem (<code>origin</code>). Em seguida, coloque os três tibbles em uma lista única (<code>list()</code>), com o nome de cada elemento da lista a sigla do aeroporto.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>EWR</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"EWR"</span><span class='op'>)</span>
-<span class='va'>JFK</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"JFK"</span><span class='op'>)</span>
-<span class='va'>LGA</span> <span class='op'>&lt;-</span> <span class='va'>flights</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>origin</span> <span class='op'>==</span> <span class='st'>"LGA"</span><span class='op'>)</span>
 
-<span class='va'>flights_por_origem</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>EWR <span class='op'>=</span> <span class='va'>EWR</span>, JFK <span class='op'>=</span> <span class='va'>JFK</span>, LGA <span class='op'>=</span> <span class='va'>LGA</span><span class='op'>)</span>
-
-<span class='co'># Ou, mais eficiente: flights_por_origem &lt;- flights %&gt;%</span>
-<span class='co'># split(.$origin)</span>
-</code></pre>
-</div>
-</details>
 </div>
 <ol start="2" type="1">
 <li>Use <code>map</code> para calcular o número de observações (voos) em cada tibble usando a função <code>nrow</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights_por_origem</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>nrow</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Filtre os três bancos de questão 1 para vôos com destino ‘SFO’ (San Francisco) usando <code>map</code>. Quantos voos (observações) têm cada aeroporto de Nova Iorque para SFO?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights_por_origem</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>filter</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"SFO"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>nrow</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Para cada um dos três bancos de dados de questão 1, calcule a velocidade de cada voo usando <code>map</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights_por_origem</span> <span class='op'>&lt;-</span> <span class='va'>flights_por_origem</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>mutate</span>, velocidade <span class='op'>=</span> <span class='va'>distance</span><span class='op'>/</span><span class='va'>air_time</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="5" type="1">
 <li>Baseado no seu resultado da questão 4, resuma cada um dos três bancos para calcular a média da velocidade dos voos usando uma função da família <code>map</code>. O resultado deve ser um tibble com todos os detalhes apropriados.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flights_por_origem</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='va'>summarize</span>, dep_delay <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>velocidade</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>, .id <span class='op'>=</span> <span class='st'>"Aeroporto"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <h1 id="gerando-novas-colunas-com-map-e-mutate">Gerando Novas Colunas com <code>map</code> e <code>mutate</code></h1>
@@ -2803,71 +2749,39 @@ Coefficients:
 <li>Gere um tibble ‘nested’ com uma linha para cada mês usando o banco de dados <code>weather</code>.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather_month</span> <span class='op'>&lt;-</span> <span class='va'>weather</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/nest.html'>nest</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>Adicione uma coluna ao tibble gerado em questão 1 que mostra o número de observações em cada mês.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather_month</span> <span class='op'>&lt;-</span> <span class='va'>weather_month</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>obs <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_dbl</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>nrow</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Usando o seu banco de dados nested de questão 2, execute uma regressão para cada mês separadamente, com ‘precip’ (chuva) na variável dependente e ‘temp’ (temperatura) na variável independente na fórmula. Salve o coeficiente da variável temperatura numa coluna nova.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>weather_month <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(regressão <span class="ot">=</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(precip <span class="sc">~</span> temp, <span class="at">data =</span> .)), <span class="at">coef =</span> <span class="fu">map</span>(regressão,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        tidy), <span class="at">coef =</span> <span class="fu">map</span>(coef, filter, term <span class="sc">==</span> <span class="st">&quot;temp&quot;</span>), <span class="at">coef =</span> <span class="fu">map_dbl</span>(coef,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        pull, estimate))</span></code></pre></div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Separe a coluna de temperatura de cada mês em uma nova coluna nested como um vetor para cada mês, e aplique um teste shapiro (veja tutorial 9, <code>shapiro.test</code>) de normalidade para a temperatura de cada mês, processando o resultado para que o valor ‘p’ seja visível no tibble de resumo por mês.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>weather_month</span> <span class='op'>&lt;-</span> <span class='va'>weather_month</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>temp <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>pull</span>, <span class='va'>temp</span><span class='op'>)</span>, normal_temp <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>shapiro.test</span><span class='op'>)</span>,
-        normal_temp <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>normal_temp</span>, <span class='va'>tidy</span><span class='op'>)</span>, normal_temp <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_dbl</a></span><span class='op'>(</span><span class='va'>normal_temp</span>,
-            <span class='va'>pull</span>, <span class='va'>p.value</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <p><br></p>
 <div class="orange">
 <p><strong>Leitura para Tutorial 12</strong></p>
-<p>Antes da próxima aula, por favor leia <a href="https://r4ds.had.co.nz/vectors.html">R 4 Data Science, Capítulo 14 sobre Strings</a> e <a href="https://www.tidytextmining.com/tidytext.html">Tidy Text Mining Capítulo 1</a></p>
+<p>Antes da próxima aula, por favor leia <a href="https://r4ds.had.co.nz/strings.html">R 4 Data Science, Capítulo 14 sobre Strings</a> e <a href="https://www.tidytextmining.com/tidytext.html">Tidy Text Mining Capítulo 1</a></p>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><br></p>
+<div class="purple">
+<p><strong>Desafio 5</strong></p>
+<p>O <a href="Desafios/Desafio_5_v4.html">Desafio 5</a> teste as habilidades fundamentais dos tutoriais de testes estatísticos e repetição usando os dados do Censo 2010.</p>
+<p>O prazo para entregar Desafio 5 por email com título “[FLS6397] - D5” à minha conta é <strong>22/07/2021</strong>. Por favor entregue (i) o arquivo .Rmd (ou .Rnw se preferir), e (ii) o arquivo .html ou .PDF.</p>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
