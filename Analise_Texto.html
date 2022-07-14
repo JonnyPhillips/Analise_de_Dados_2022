@@ -2084,6 +2084,7 @@ Tutoriais
 <a href="Regressoes.html">9. Testes Estatisticos e Regressoes</a>
 <a href="Reprodutibilidade.html">10. Relatorios Reproduziveis</a>
 <a href="Repeticao.html">11. Funcoes e Repeticao</a>
+<a href="Analise_Texto.html">12. Analise de Texto</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2144,7 +2145,6 @@ div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-<p><a href="https://drive.google.com/file/d/16aIP05wzuoxGyroF14e85xbbZLvHlu_3/view?usp=sharing">Clique aqui</a> para assistir o vídeo da aula online do dia 18 de junho de 2021. E o <a href="https://drive.google.com/file/d/1VzdPJM4Gi22p33LT9UFmW2yqiNxO7LA5/view?usp=sharing">chat</a>.</p>
 <h1 id="o-que-há-em-uma-palavra-str_length-str_detect">O que há em uma palavra? (<code>str_length</code>, <code>str_detect</code>)</h1>
 <p>Palavras e conjuntos de caracteres são coisas complexas que podemos manipular e transformar da mesma forma que processamos números. É importante entender que o R trata todos os textos e as palavras como ‘strings’: conjuntos sequenciais de caracteres específicos. Por exemplo, veja o string do nome do primeiro aeroporto no banco de dados <code>airports</code> de <code>nycflights13</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2446,7 +2446,6 @@ Coffman Cove Seaplane Base
 </div>
 <p>Lembre-se da função <code>separate()</code> do Tutorial 3? É bem parecida com <code>str_split()</code>. A diferença é que o produto de <code>separate</code> não é simplesmente um vetor - mas está <em>distribuído</em> em colunas novas dentro do nosso tibble. Isso é muito conveniente, mas exige que determinemos o número de parcelas em que dividimos o string em avanço. Por exemplo, com <code>separate()</code> fica mais difícil encontrar a última palavra do nome do aeroporto como calculamos acima.</p>
 <p><code>separate()</code> é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna <code>tzone</code> entre os partes antes e depois do ‘/’:</p>
-<p>[[[<strong><em>NÃO FUNCIONA MAIS: tzone -&gt; tz em outro formato</em></strong>*]]]</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airports</span> <span class='op'>&lt;-</span> <span class='va'>airports</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>tzone</span>, <span class='st'>"/"</span>, into<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"País"</span>, <span class='st'>"Região"</span><span class='op'>)</span><span class='op'>)</span>
@@ -2482,74 +2481,25 @@ Coffman Cove Seaplane Base
 <li>No banco de dados <code>airlines</code> do pacote <code>nycflights13</code>, qual porcentagem dos nomes das companhias aéreas contém a palavra ‘Airlines’ e qual porcentagem contém a palavra ‘Airways’?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>airlines <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Airlines"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>airlines</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Pct <span class='op'>=</span> <span class='fl'>100</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>n</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>airlines</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>airlines <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Airways"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>airlines</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Pct <span class='op'>=</span> <span class='fl'>100</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>n</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
 </div>
 <ol start="2" type="1">
 <li>No mesmo banco, substitua os nomes das companhias aéreas que contém ‘Inc.’ com ‘Incorporated’, e aquelas que contém ‘Co.’ com ‘Company’. (Observe que ‘.’ é um caracter especial, então tem que buscar ele com ‘\\.’).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span>
-<span class='va'>airlines</span> <span class='op'>&lt;-</span> <span class='va'>airlines</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>"Inc\\."</span>, <span class='st'>"Incorporated"</span><span class='op'>)</span>, name <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace</a></span><span class='op'>(</span><span class='va'>name</span>,
-        <span class='st'>"Co\\."</span>, <span class='st'>"Company"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Gere um nome curto para cada companhia aérea, refletindo apenas a primeira palavra do nome.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'>&lt;-</span> <span class='va'>airlines</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>nome_curto <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='st'>" "</span><span class='op'>)</span>, nome_curto <span class='op'>=</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>nome_curto</span>,
-        <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Crie um ‘wordcloud’ dos nomes das companhias aéreas.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>airlines</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 </div>
 <h1 id="tokenizer-e-padronizar-o-texto-unnest_tokens">Tokenizer e Padronizar o Texto (<code>unnest_tokens</code>)</h1>
@@ -3528,83 +3478,25 @@ póde ser tambem
 <li>Escolha um livro da sua preferência <a href="https://www.gutenberg.org/browse/languages/pt">no site de Projeto Gutenberg</a>, e abra ele em R usando o código do projeto.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/gutenbergr/reference/gutenberg_download.html'>gutenberg_download</a></span><span class='op'>(</span><span class='fl'>26913</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/iconv.html'>iconv</a></span><span class='op'>(</span><span class='va'>text</span>, from <span class='op'>=</span> <span class='st'>"latin1"</span>, to <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>gutenberg_id</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames_to_column</a></span><span class='op'>(</span><span class='st'>"Linha"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>‘Tokenize’ o seu livro em palavras, tirando a pontuação, os números, os stopwords, virando as caracteres em minúsculo, e as palavras em seus stems (raízes).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Branco</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language <span class='op'>=</span> <span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Identifique os dez stems mais frequentes no seu livro.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='va'>n</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="4" type="1">
 <li>Aplique uma análise de sentimento ao texto para identificar as linhas mais otimistas e as mais pessimistas do texto.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_palavras</span> <span class='op'>&lt;-</span> <span class='va'>Branco_palavras</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/left_join.html'>left_join</a></span><span class='op'>(</span><span class='va'>sentimento</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span>
 
-<span class='va'>Branco_palavras</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>Linha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Linha</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/summarize.html'>summarize</a></span><span class='op'>(</span>polarity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>polarity</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>polarity</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'>kable</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>Branco</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span> <span class='op'>==</span> <span class='fl'>594</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>  <span class='co'>#Linha mais otimista</span>
-<span class='va'>Branco</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Linha</span> <span class='op'>==</span> <span class='fl'>2881</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>  <span class='co'>#Linha mais pessimista</span>
-</code></pre>
-</div>
-</details>
 </div>
 </div>
 <h1 id="comparando-documentos">Comparando Documentos</h1>
@@ -4246,81 +4138,26 @@ ardan
 <li>Copie e cole um texto que você mesmo escreveu de pelo menos um parágrafo e salve ele dentro de um tibble em R.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meu_texto</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>[1053 chars quoted with '"']</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="2" type="1">
 <li>‘Tokenize’ o seu texto em palavras, tirando a pontuação, os números, os stopwords, transformando os caracteres em minúsculo, e as palavras em suas raízes (stems).</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meu_texto_palavras</span> <span class='op'>&lt;-</span> <span class='va'>meu_texto</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>text</span>, strip_numeric <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/anti_join.html'>anti_join</a></span><span class='op'>(</span><span class='va'>stopwords</span>, by <span class='op'>=</span> <span class='st'>"palavra"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/textstem/man/stem_words.html'>stem_words</a></span><span class='op'>(</span><span class='va'>palavra</span>, language <span class='op'>=</span> <span class='st'>"pt"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
+
 </div>
 <ol start="3" type="1">
 <li>Junte dois textos tokenizados em um tibble com uma coluna que diferencia o documento e uma coluna que conta a frequência de cada palavra: (i) o seu texto da questão 1, e (ii) o livro que você usou no exercício 2.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Branco_prep</span> <span class='op'>&lt;-</span> <span class='va'>Branco_palavras</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document <span class='op'>=</span> <span class='st'>"Branco"</span><span class='op'>)</span>
 
-<span class='va'>meu_texto_prep</span> <span class='op'>&lt;-</span> <span class='va'>meu_texto_palavras</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>palavra</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/tally.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/mutate.html'>mutate</a></span><span class='op'>(</span>document <span class='op'>=</span> <span class='st'>"Meu Texto"</span><span class='op'>)</span>
-
-<span class='va'>dois_textos</span> <span class='op'>&lt;-</span> <span class='va'>Branco_prep</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>meu_texto_prep</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
 </div>
 <ol start="4" type="1">
 <li>Calcule a medida ‘tf_idf’ para identificar as 5 palavras mais distintas de cada documento. Em qual sentido o seu documento é diferente do livro?</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Mostrar Código
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dois_textos</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span><span class='va'>palavra</span>, <span class='va'>document</span>, <span class='va'>n</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>document</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidylog/man/top_n.html'>top_n</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>tf_idf</span><span class='op'>)</span>
-</code></pre>
+
 </div>
-</details>
-</div>
-</div>
-<p><br></p>
-<div class="purple">
-<p><strong>Desafio 5</strong></p>
-<p>O <a href="Desafios/Desafio_5_v3.html">Desafio 5</a> irá testar a sua capacidade de juntar bancos de dados e gerar gráficos apropriados e claros.</p>
-<p>O prazo para entregar o Desafio 5 por email com título “[FLS6397] - D5” à minha conta é <strong>09/07/2021</strong>, antes da aula. Por favor entregue (i) o arquivo .Rmd (ou .Rnw se preferir), e (ii) o arquivo .html ou .PDF.</p>
 </div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

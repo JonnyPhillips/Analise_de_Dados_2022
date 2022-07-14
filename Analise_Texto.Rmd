@@ -7,23 +7,26 @@ output:
     toc_depth: 1
 ---
 
+```{=html}
 <style>
 div.green { background-color:#e5f5e0; border-radius: 5px; padding: 20px;}
 </style>
-
+```
+```{=html}
 <style>
 div.orange { background-color:#fee6ce; border-radius: 5px; padding: 20px;}
 </style>
-
+```
+```{=html}
 <style>
 div.blue { background-color:#deebf7; border-radius: 5px; padding: 20px;}
 </style>
-
+```
+```{=html}
 <style>
 div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 </style>
-
-[Clique aqui](https://drive.google.com/file/d/16aIP05wzuoxGyroF14e85xbbZLvHlu_3/view?usp=sharing) para assistir o vídeo da aula online do dia 18 de junho de 2021. E o [chat](https://drive.google.com/file/d/1VzdPJM4Gi22p33LT9UFmW2yqiNxO7LA5/view?usp=sharing).
+```
 
 ```{r setup, include=FALSE, echo=F}
 knitr::opts_chunk$set(echo = T, eval=T, highlight=T)
@@ -38,7 +41,7 @@ filter <- dplyr::filter
 
 # O que há em uma palavra? (`str_length`, `str_detect`)
 
-Palavras e conjuntos de caracteres são coisas complexas que podemos manipular e transformar da mesma forma que processamos números. É importante entender que o R trata todos os textos e as palavras como 'strings': conjuntos sequenciais de caracteres específicos. Por exemplo, veja o string do nome do primeiro aeroporto no banco de dados `airports` de `nycflights13`. 
+Palavras e conjuntos de caracteres são coisas complexas que podemos manipular e transformar da mesma forma que processamos números. É importante entender que o R trata todos os textos e as palavras como 'strings': conjuntos sequenciais de caracteres específicos. Por exemplo, veja o string do nome do primeiro aeroporto no banco de dados `airports` de `nycflights13`.
 
 ```{r}
 library("nycflights13")
@@ -60,7 +63,7 @@ Uma tarefa comum é identificar a *presença* de um string com `str_detect()`. P
 airports <- airports %>% mutate(string_field=str_detect(name, "Field"))
 ```
 
-Observe que o resultado aqui é verdade/falsa (`TRUE`/`FALSE`). Para identificar quantos "field"s temos nos Estados Unidos podemos usar a nova coluna para contar. 
+Observe que o resultado aqui é verdade/falsa (`TRUE`/`FALSE`). Para identificar quantos "field"s temos nos Estados Unidos podemos usar a nova coluna para contar.
 
 ```{r, eval=F}
 airports %>% group_by(string_field) %>%
@@ -79,7 +82,7 @@ Tome cuidado com letras minúsculas vs. maiúsculas - elas são tratadas diferen
 
 </aside>
 
-Identificar strings é um tema de programação enorme, pois não precisamos usar uma palavra exata e fixa; podemos usar um 'modelo' genérico para capturar uma variedade de possibilidades. Isso se chama um 'regex', uma 'expressão regular'. Por exemplo, para capturar aeroportos que contém 'Regional' *ou* 'Rgnl', usamos o símbolo '|' (como em `filter`).  
+Identificar strings é um tema de programação enorme, pois não precisamos usar uma palavra exata e fixa; podemos usar um 'modelo' genérico para capturar uma variedade de possibilidades. Isso se chama um 'regex', uma 'expressão regular'. Por exemplo, para capturar aeroportos que contém 'Regional' *ou* 'Rgnl', usamos o símbolo '\|' (como em `filter`).
 
 ```{r, eval=F}
 airports %>% mutate(string_regional=str_detect(name, "Regional|Rgnl")) %>%
@@ -95,7 +98,7 @@ airports %>% mutate(string_regional=str_detect(name, "Regional|Rgnl")) %>%
   kable()
 ```
 
-Que tal identificarmos os nomes que *começam* com 'Z'? Para detectar caracteres apenas no *início* do string, usamos '^'. Para detectar caracteres apenas no final do string, usamos '$' depois do caracter. 
+Que tal identificarmos os nomes que *começam* com 'Z'? Para detectar caracteres apenas no *início* do string, usamos '\^'. Para detectar caracteres apenas no final do string, usamos '\$' depois do caracter.
 
 ```{r, eval=F}
 airports %>% mutate(string_z=str_detect(name, "^Z")) %>%
@@ -128,12 +131,12 @@ airports %>% mutate(string_ffgg=str_detect(name, "[fg]{2,}")) %>%
 
 Não se preocupe com todos os detalhes do 'regex' de texto - eles são complexos e bastante difíceis de lembrar, mas se precisar no futuro, pode utilizar a referência [na segunda página do cheatsheet de `stringr` aqui](http://edrub.in/CheatSheets/cheatSheetStringr.pdf).
 
-<div class = "blue">
+::: blue
 **Habilidade Básica de Programação: Transformando PDFs em Texto Editável**
 
 Um dos formatos mais comuns para a disponibilização de textos é o PDF, um formato não editável. Porém na maioria dos casos é fácil traduzir um PDF em texto simples que o R pode entender. Usamos o pacote `pfdtools` e a função `pdf_text()`.
 
-Por exemplo, vamos abrir um artigo recente da Revista Brasileira da Ciência Política. 
+Por exemplo, vamos abrir um artigo recente da Revista Brasileira da Ciência Política.
 
 ```{r}
 #install.packages("pdftools")
@@ -145,12 +148,11 @@ artigo <- tibble(páginas=pdf_text("https://cutt.ly/Sy4vi7F"))
 ```
 
 Qual é o resultado de `pdf_text()`? É um vetor de strings - um para cada página no PDF. E para conveniência nós já inserimos o vetor como uma coluna de um tibble.
-
-</div>
+:::
 
 # Transformando Strings (`str_replace`, `str_split`)
 
-Quando recebemos um banco de dados com strings, existe uma variação incrível no uso de palavras, refletindo o estilo e contexto do documento. Mas queremos trabalhar apenas com strings que nos interessam. Isso exige a manipulação e substituição de strings complexos ou "sujos". 
+Quando recebemos um banco de dados com strings, existe uma variação incrível no uso de palavras, refletindo o estilo e contexto do documento. Mas queremos trabalhar apenas com strings que nos interessam. Isso exige a manipulação e substituição de strings complexos ou "sujos".
 
 Por exemplo, vamos substituir as instâncias de 'Rgnl' com 'Regional' com `str_replace` para deixar os strings mais consistentes. Os argumentos são (i) a coluna do tibble que contém os strings, (ii) o modelo (um regex) de caracteres para identificar, e, em seguida, (iii) o string para substituir.
 
@@ -180,30 +182,27 @@ airports <- airports %>% mutate(nome_parcial_primeiro=map_chr(nome_parcial, 1))
 airports <- airports %>% mutate(nome_parcial_final=map_chr(nome_parcial, tail, n=1))
 ```
 
-Lembre-se da função `separate()` do Tutorial 3? É bem parecida com `str_split()`. A diferença é que o produto de `separate` não é simplesmente um vetor - mas está *distribuído* em colunas novas dentro do nosso tibble. Isso é muito conveniente, mas exige que determinemos o número de parcelas em que dividimos o string em avanço. Por exemplo, com `separate()` fica mais difícil encontrar a última palavra do nome do aeroporto como calculamos acima. 
+Lembre-se da função `separate()` do Tutorial 3? É bem parecida com `str_split()`. A diferença é que o produto de `separate` não é simplesmente um vetor - mas está *distribuído* em colunas novas dentro do nosso tibble. Isso é muito conveniente, mas exige que determinemos o número de parcelas em que dividimos o string em avanço. Por exemplo, com `separate()` fica mais difícil encontrar a última palavra do nome do aeroporto como calculamos acima.
 
-`separate()` é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna `tzone` entre os partes antes e depois do '/': 
-
-[[[***NÃO FUNCIONA MAIS: tzone -> tz em outro formato****]]]
+`separate()` é mais útil quando temos um formato fixo com um número de parcelas previsível. Por exemplo, podemos dividir a coluna `tzone` entre os partes antes e depois do '/':
 
 ```{r, eval=F}
 airports <- airports %>% separate(tzone, "/", into=c("País", "Região"))
 ```
 
-Vale a pena pensar bem se `str_split()` (dentro de `mutate()`), ou `separate()` é mais apropriado em cada situação. 
+Vale a pena pensar bem se `str_split()` (dentro de `mutate()`), ou `separate()` é mais apropriado em cada situação.
 
-<div class = "blue">
+::: blue
 **Habilidade Básica de Programação: Caracteres de Escape**
 
-Em algumas situações, é difícil identificar ou dividir por um caractere quando esse caractere é usado no código de programação mesmo. Por exemplo, definimos o string para dividir entre aspas: `""`, mas é possível querer dividir um string *por aspas*, por exemplo para dividir uma citação do autor. 
+Em algumas situações, é difícil identificar ou dividir por um caractere quando esse caractere é usado no código de programação mesmo. Por exemplo, definimos o string para dividir entre aspas: `""`, mas é possível querer dividir um string *por aspas*, por exemplo para dividir uma citação do autor.
 
-Como faremos? Temos que usar um indicador específico - um Caractere de 'Escape' para informar p R que queremos tratar o caractere como parte do string e não como parte do código de programação. O Caractere de 'Escape' em R é '\\'. Então precisamos indicar "\\"" para dividir por aspas. E se queremos dividir pela barra em si "\\"?? Usamos quatro! "\\\\\\\\". 
-
-</div>
+Como faremos? Temos que usar um indicador específico - um Caractere de 'Escape' para informar p R que queremos tratar o caractere como parte do string e não como parte do código de programação. O Caractere de 'Escape' em R é '\\'. Então precisamos indicar "\\"" para dividir por aspas. E se queremos dividir pela barra em si "\\"?? Usamos quatro! "\\\\\\\\".
+:::
 
 ## Visualizando Strings
 
-Um jeito comum de apresentar a frequência de strings é uma nuvem de palavras - um 'wordcloud' - que exige os pacotes `wordcloud` e `tm`. 
+Um jeito comum de apresentar a frequência de strings é uma nuvem de palavras - um 'wordcloud' - que exige os pacotes `wordcloud` e `tm`.
 
 ```{r}
 #install.packages("wordcloud")
@@ -220,13 +219,12 @@ Para mais controle de apresentação, é possível criar o wordcloud em `ggplot`
 
 </aside>
 
-<div class = "green">
-
+::: green
 **Exercício 1: Trabalhando com Strings**
 
-1. No banco de dados `airlines` do pacote `nycflights13`, qual porcentagem dos nomes das companhias aéreas contém a palavra 'Airlines' e qual porcentagem contém a palavra 'Airways'?
+1.  No banco de dados `airlines` do pacote `nycflights13`, qual porcentagem dos nomes das companhias aéreas contém a palavra 'Airlines' e qual porcentagem contém a palavra 'Airways'?
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 airlines %>% mutate(airlines=str_detect(name, "Airlines")) %>%
   group_by(airlines) %>%
   tally() %>%
@@ -238,35 +236,33 @@ airlines %>% mutate(airlines=str_detect(name, "Airways")) %>%
   mutate(Pct=100*(n/sum(n)))
 ```
 
-2. No mesmo banco, substitua os nomes das companhias aéreas que contém 'Inc.' com 'Incorporated', e aquelas que contém 'Co.' com 'Company'. (Observe que '.' é um caracter especial, então tem que buscar ele com '\\\\.').
+2.  No mesmo banco, substitua os nomes das companhias aéreas que contém 'Inc.' com 'Incorporated', e aquelas que contém 'Co.' com 'Company'. (Observe que '.' é um caracter especial, então tem que buscar ele com '\\\\.').
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 airlines
 airlines <- airlines %>% mutate(name=str_replace(name, "Inc\\.", "Incorporated"),
                     name=str_replace(name, "Co\\.", "Company"))
 ```
 
-3. Gere um nome curto para cada companhia aérea, refletindo apenas a primeira palavra do nome.
+3.  Gere um nome curto para cada companhia aérea, refletindo apenas a primeira palavra do nome.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 airlines <- airlines %>% mutate(nome_curto=str_split(name, " "),
                                 nome_curto=map_chr(nome_curto, 1))
 ```
 
-4. Crie um 'wordcloud' dos nomes das companhias aéreas.
+4.  Crie um 'wordcloud' dos nomes das companhias aéreas.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 airlines %>% pull(name) %>% wordcloud()
 ```
-
-
-</div>
+:::
 
 # Tokenizer e Padronizar o Texto (`unnest_tokens`)
 
 <!-- Por isso, é importante padronizar e  simplificar strings antes de realizar uma análise empírica.  -->
 
-Para os fins de análise de texto queremos simplificar e padronizar as milhões de variedades que cada língua permite para que podemos reconhecer a presença das mesmas palavras/sentidos mesmo em contextos diferentes. Por exemplo, a mesma palavra pode aparecer em vários formatos: 'Regional', 'regional', 'Rgnl',   'Region', 'region', 'Regionally', 'regionally' etc. Mas todos representam o mesmo 'conceito' e queremos reconhecer que eles estão falando do mesmo conceito quando analisamos o texto. 
+Para os fins de análise de texto queremos simplificar e padronizar as milhões de variedades que cada língua permite para que podemos reconhecer a presença das mesmas palavras/sentidos mesmo em contextos diferentes. Por exemplo, a mesma palavra pode aparecer em vários formatos: 'Regional', 'regional', 'Rgnl', 'Region', 'region', 'Regionally', 'regionally' etc. Mas todos representam o mesmo 'conceito' e queremos reconhecer que eles estão falando do mesmo conceito quando analisamos o texto.
 
 Para ilustrar as possibilidades com um texto mais completo, vamos acessar o texto inteiro do livro "Dom Casmurro" de Machado de Assis, disponível no site do [Project Gutenberg](http://www.gutenberg.org/). Podemos usar o pacote `gutenbergr` para acessar o texto em um formato bem conhecido - um tibble. O pacote permite baixar o texto por código numérico.
 
@@ -291,7 +287,7 @@ Assis <- Assis %>%
   rownames_to_column("Linha") 
 ```
 
-Agora observe que cada linha do tibble 'Assis' é uma linha do livro, enquanto a nossa unidade de análise normalmente é cada palavra. Então a nossa primeira tarefa é separar as linhas em palavras ('tokenize'). As seguintes funções são dos pacotes `tidytext`, `textstem` e `lexiconPT`, então lembre-se de instalar eles uma vez e abrir as bibliotecas depois. 
+Agora observe que cada linha do tibble 'Assis' é uma linha do livro, enquanto a nossa unidade de análise normalmente é cada palavra. Então a nossa primeira tarefa é separar as linhas em palavras ('tokenize'). As seguintes funções são dos pacotes `tidytext`, `textstem` e `lexiconPT`, então lembre-se de instalar eles uma vez e abrir as bibliotecas depois.
 
 ```{r}
 # install.packages("tidytext")
@@ -303,35 +299,35 @@ library("textstem")
 library("lexiconPT")
 ```
 
-Desagregar linhas em palavras exige a função `unnest_tokens()`, com dois argumentos: o nome da nova coluna que contém as palavras, 'palavra', e o nome da coluna que contém o texto por linha, 'text'. 
+Desagregar linhas em palavras exige a função `unnest_tokens()`, com dois argumentos: o nome da nova coluna que contém as palavras, 'palavra', e o nome da coluna que contém o texto por linha, 'text'.
 
 ```{r}
 Assis_palavras <- Assis %>% unnest_tokens(palavra, text)
 ```
 
-Agora, 'Assis_palavras' tem muito mais linhas, uma para cada palavra. Perfeito. 
+Agora, 'Assis_palavras' tem muito mais linhas, uma para cada palavra. Perfeito.
 
 A próxima tarefa é a simplificação e padronização dessas palavras, e isso envolve vários passos:
 
-1. **Tirar Pontuação:** Frases contém pontuação, mas normalmente não importa se há uma vírgula ou não depois de uma palavra para identificar a presença do conceito no texto. A pontuação é tirada automaticamente por `unnest_tokens()`. Se quiser, pode desligar para manter a pontuação:
+1.  **Tirar Pontuação:** Frases contém pontuação, mas normalmente não importa se há uma vírgula ou não depois de uma palavra para identificar a presença do conceito no texto. A pontuação é tirada automaticamente por `unnest_tokens()`. Se quiser, pode desligar para manter a pontuação:
 
 ```{r, eval=F}
 Assis %>% unnest_tokens(palavra, text, strip_punct=F)
 ```
 
-2. **Tirar Maiúsculas:** Também queremos ignorar se as palavras estão em letras minúsculas ou maiúsculas, e padronizar, por exemplo, para minúsculas. De novo, isso é o padrão de `unnest_tokens()`, mas podemos desligar se quisemos:
+2.  **Tirar Maiúsculas:** Também queremos ignorar se as palavras estão em letras minúsculas ou maiúsculas, e padronizar, por exemplo, para minúsculas. De novo, isso é o padrão de `unnest_tokens()`, mas podemos desligar se quisemos:
 
 ```{r, eval=F}
 Assis %>% unnest_tokens(palavra, text, to_lower=F)
 ```
 
-3. **Tirar Números:** O nosso texto contém vários números (anos, etc.) que não são relevantes para uma análise de texto. Não é a opção padrão, mas podemos tirar os números facilmente:
+3.  **Tirar Números:** O nosso texto contém vários números (anos, etc.) que não são relevantes para uma análise de texto. Não é a opção padrão, mas podemos tirar os números facilmente:
 
 ```{r, eval=F}
 Assis_palavras <- Assis %>% unnest_tokens(palavra, text, strip_numeric=TRUE)
 ```
 
-4. **Tirar stopwords:** É comum tirar palavras pequenas e genéricas como 'o', 'a', 'e' etc. que são universais e não diferenciam o conteúdo dos textos. Essas palavras se chamam 'stopwords'. Tirá-las exige mais um passo, aproveitando de um banco de dados de stopwords com a função `get_stopwords()` para a língua apropriada. Inspecione seu conteúdo. 
+4.  **Tirar stopwords:** É comum tirar palavras pequenas e genéricas como 'o', 'a', 'e' etc. que são universais e não diferenciam o conteúdo dos textos. Essas palavras se chamam 'stopwords'. Tirá-las exige mais um passo, aproveitando de um banco de dados de stopwords com a função `get_stopwords()` para a língua apropriada. Inspecione seu conteúdo.
 
 ```{r, eval=F}
 stopwords <- get_stopwords(language="pt") %>%
@@ -353,7 +349,7 @@ Lembrando que queremos manter as linhas em 'Assis_palavras' que não existem no 
 Assis_palavras <- Assis_palavras %>% anti_join(stopwords, by="palavra")
 ```
 
-A lista de stopwords não é nada oficial; são apenas as palavras que não nos interessam. Por exemplo, por algum motivo na lista de stopwords aqui falta a palavra 'é', que é muito comum e não agrega nada no conteúdo do texto. Nós podemos manualmente estender a lista de stopwords, adicionando mais linhas no tibble `stopwords`. 
+A lista de stopwords não é nada oficial; são apenas as palavras que não nos interessam. Por exemplo, por algum motivo na lista de stopwords aqui falta a palavra 'é', que é muito comum e não agrega nada no conteúdo do texto. Nós podemos manualmente estender a lista de stopwords, adicionando mais linhas no tibble `stopwords`.
 
 ```{r}
 stopwords <- stopwords %>% add_row(palavra="é", lexicon="pessoal")
@@ -361,13 +357,13 @@ stopwords <- stopwords %>% add_row(palavra="é", lexicon="pessoal")
 Assis_palavras <- Assis_palavras %>% anti_join(stopwords, by="palavra")
 ```
 
-5. **'Stem' as palavras** Mais um passo de processamento é a padronização de variedades da mesma palavra - uma técnica que se chama 'stemming'. Por exemplo, português tem milhares de conjugações de cada verbo: 'saber', 'sei', 'soube' etc. que significam o mesmo conceito. O que nos interessa é a raiz (o 'stem') consistente da palavra. Usamos a função `stem_words()` para adicionar mais uma coluna ao nosso tibble com a raiz das palavras, de novo especificando a língua apropriada.
+5.  **'Stem' as palavras** Mais um passo de processamento é a padronização de variedades da mesma palavra - uma técnica que se chama 'stemming'. Por exemplo, português tem milhares de conjugações de cada verbo: 'saber', 'sei', 'soube' etc. que significam o mesmo conceito. O que nos interessa é a raiz (o 'stem') consistente da palavra. Usamos a função `stem_words()` para adicionar mais uma coluna ao nosso tibble com a raiz das palavras, de novo especificando a língua apropriada.
 
 ```{r}
 Assis_palavras <- Assis_palavras %>% mutate(stem=stem_words(palavra, language="pt"))
 ```
 
-Agora veja a coluna 'stem' do tibble: observe o contraste entre 'palavra', e 'stem'. Por exemplo, ambos 'encontrei' e 'encontrou' se tornam 'encontr'. A padronização reduz bastante a base de dados - de 8.728 a 4.824 palavras distintas. 
+Agora veja a coluna 'stem' do tibble: observe o contraste entre 'palavra', e 'stem'. Por exemplo, ambos 'encontrei' e 'encontrou' se tornam 'encontr'. A padronização reduz bastante a base de dados - de 8.728 a 4.824 palavras distintas.
 
 ```{r, eval=F}
 Assis_palavras %>% distinct(palavra)
@@ -376,9 +372,9 @@ Assis_palavras %>% distinct(stem)
 
 # Frequência de Palavras
 
-Agora que temos um banco de dados textuais padronizado, podemos começar a analisar o conteúdo das palavras de Machado de Assis. Primeiramente, vamos estimar a frequência de uso das palavras, ou mais especificamente as raízes. 
+Agora que temos um banco de dados textuais padronizado, podemos começar a analisar o conteúdo das palavras de Machado de Assis. Primeiramente, vamos estimar a frequência de uso das palavras, ou mais especificamente as raízes.
 
-Podemos visualizar a frequência das raízes (stems) das palavras com um wordcloud, como mostramos acima. (Vamos pedir uma amostra das linhas para acelerar o processamento). 
+Podemos visualizar a frequência das raízes (stems) das palavras com um wordcloud, como mostramos acima. (Vamos pedir uma amostra das linhas para acelerar o processamento).
 
 ```{r}
 Assis_palavras %>% sample_n(2000) %>% 
@@ -386,7 +382,7 @@ Assis_palavras %>% sample_n(2000) %>%
   wordcloud()
 ```
 
-Também podemos identificar as palavras (os 'stems' na verdade) mais frequentes usando as nossas habilidades bem conhecidas do tidyverse. 
+Também podemos identificar as palavras (os 'stems' na verdade) mais frequentes usando as nossas habilidades bem conhecidas do tidyverse.
 
 ```{r, eval=F}
 Assis_palavras %>% group_by(stem) %>%
@@ -480,7 +476,7 @@ Assis %>% filter(Linha==7500) %>% pull(text) #Linha mais otimista
 Assis %>% filter(Linha==1403) %>% pull(text) #Linha mais pessimista
 ```
 
-Faz sentido, sim? Os nossos dados permitem responder a mais uma pergunta interessante: Como se desenvolve o sentimento ao longo do livro? Podemos usar o nosso resumo por linha, completar as linhas faltantes (que faltam palavras em nosso banco de dados de sentimentos) com `complete`, e encaminhar para `ggplot` para criar um gráfico de linhas. 
+Faz sentido, sim? Os nossos dados permitem responder a mais uma pergunta interessante: Como se desenvolve o sentimento ao longo do livro? Podemos usar o nosso resumo por linha, completar as linhas faltantes (que faltam palavras em nosso banco de dados de sentimentos) com `complete`, e encaminhar para `ggplot` para criar um gráfico de linhas.
 
 ```{r}
 Assis_palavras %>% mutate(Linha=as.numeric(Linha)) %>%
@@ -493,7 +489,7 @@ Assis_palavras %>% mutate(Linha=as.numeric(Linha)) %>%
   ylab("Sentimento")
 ```
 
-O gráfico não é fácil de interpretar porque há muitas observações e variações página por página. Uma forma de melhorar a apresentação da linha é calcular uma 'média móvel', que 'suaviza' os dados de sentimento. O pacote `zoo` fornece a função `rollapply` que podemos aplicar dentro de um `mutate` para calcular a média móvel de cada janela de 1000 linhas. 
+O gráfico não é fácil de interpretar porque há muitas observações e variações página por página. Uma forma de melhorar a apresentação da linha é calcular uma 'média móvel', que 'suaviza' os dados de sentimento. O pacote `zoo` fornece a função `rollapply` que podemos aplicar dentro de um `mutate` para calcular a média móvel de cada janela de 1000 linhas.
 
 ```{r}
 library("zoo")
@@ -518,9 +514,9 @@ Por que estamos trabalhando com palavras únicas? Não é obrigatório - podemos
 Assis_bigrams <- Assis %>% unnest_tokens(bigram, text,
                                        token="ngrams", n=2)
 ```
- 
+
 Tirar os stopwords exige um pouco mais trabalho com bigrams - temos que separar eles em palavras distintas, tirar cada instância de um stopword, e juntar de novo:
- 
+
 ```{r}
 Assis_bigrams <- Assis_bigrams %>% 
   separate(bigram, c("palavra1", "palavra2"), sep=" ") %>% 
@@ -546,11 +542,10 @@ Assis_bigrams %>%
   kable()
 ```
 
+O bigram mais comum (exceto 'NA NA' que devemos tirar) é "josé dias", presumivelmente um personagem, e, em seguida, "prima justina".
 
-O bigram mais comum (exceto 'NA NA' que devemos tirar) é "josé dias", presumivelmente um personagem, e, em seguida, "prima justina".  
- 
 Trabalhar com bigrams nos ajuda a identificar ao lado de quais outras palavras uma palavra aparece. Por exemplo, quais palavras aparecem ao lado da palavra 'familia'?
- 
+
 ```{r}
 Assis_bigrams %>% filter(palavra1=="familia") %>% pull(palavra2)
 Assis_bigrams %>% filter(palavra2=="familia") %>% pull(palavra1)
@@ -558,7 +553,7 @@ Assis_bigrams %>% filter(palavra2=="familia") %>% pull(palavra1)
 
 Parece que 'familia' aparece ao lado de 'imitar', 'avisa', 'pendura', etc., fornecendo um pouco de contexto.
 
-**Ngrams** são bigrams com mais de duas palavras  - vamos identificar o mais comum 'trigram' (com três palavras):
+**Ngrams** são bigrams com mais de duas palavras - vamos identificar o mais comum 'trigram' (com três palavras):
 
 ```{r}
 Assis_trigrams <- Assis %>% unnest_tokens(trigram, text,
@@ -589,41 +584,40 @@ Assis_trigrams %>%
   kable()
 ```
 
-Um dos trigrams mais comuns é "josé dias achou".  
+Um dos trigrams mais comuns é "josé dias achou".
 
-<div class = "green">
-
+::: green
 **Exercício 2: Analisando um Documento**
 
-1. Escolha um livro da sua preferência [no site de Projeto Gutenberg](https://www.gutenberg.org/browse/languages/pt), e abra ele em R usando o código do projeto.
+1.  Escolha um livro da sua preferência [no site de Projeto Gutenberg](https://www.gutenberg.org/browse/languages/pt), e abra ele em R usando o código do projeto.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 Branco <- gutenberg_download(26913) %>% 
   mutate(text=iconv(text, from = "latin1", to = "UTF-8")) %>%
   select(-gutenberg_id) %>% 
   rownames_to_column("Linha") 
 ```
 
-2. 'Tokenize' o seu livro em palavras, tirando a pontuação, os números, os stopwords, virando as caracteres em minúsculo, e as palavras em seus stems (raízes).
+2.  'Tokenize' o seu livro em palavras, tirando a pontuação, os números, os stopwords, virando as caracteres em minúsculo, e as palavras em seus stems (raízes).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 Branco_palavras <- Branco %>% unnest_tokens(palavra, text, strip_numeric=TRUE) %>%
   anti_join(stopwords, by="palavra") %>%
   mutate(stem=stem_words(palavra, language="pt"))
 ```
 
-3. Identifique os dez stems mais frequentes no seu livro. 
+3.  Identifique os dez stems mais frequentes no seu livro.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 Branco_palavras %>% group_by(stem) %>%
   tally() %>%
   top_n(10, n) %>%
   arrange(-n)
 ```
 
-4. Aplique uma análise de sentimento ao texto para identificar as linhas mais otimistas e as mais pessimistas do texto.
+4.  Aplique uma análise de sentimento ao texto para identificar as linhas mais otimistas e as mais pessimistas do texto.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 Branco_palavras <- Branco_palavras %>% left_join(sentimento, by="palavra")
 
 Branco_palavras %>% mutate(Linha=as.numeric(Linha)) %>%
@@ -636,10 +630,7 @@ Branco_palavras %>% mutate(Linha=as.numeric(Linha)) %>%
 Branco %>% filter(Linha==594) %>% pull(text) #Linha mais otimista
 Branco %>% filter(Linha==2881) %>% pull(text) #Linha mais pessimista
 ```
-
-
-</div>
-
+:::
 
 # Comparando Documentos
 
@@ -687,9 +678,9 @@ Assis_Verne <- Assis_prep %>% bind_rows(Verne_prep)
 
 ## Frequência Relativa de Palavras (`bind_tf_idf`)
 
-Quais palavras distinguem melhor os dois livros? Ou seja, há palavras frequentes que existem nos dois livros (palavras comuns, tipo 'pessoa', 'rua'), e há palavras que são comuns e *específicas* para cada livro, que ajudam a caracterizar o conteúdo distinto do livro. 
+Quais palavras distinguem melhor os dois livros? Ou seja, há palavras frequentes que existem nos dois livros (palavras comuns, tipo 'pessoa', 'rua'), e há palavras que são comuns e *específicas* para cada livro, que ajudam a caracterizar o conteúdo distinto do livro.
 
-A medida que é usada na análise de texto é a frequência do termo ('tf') multiplicado pela frequência inversa do termo no documento ('idf') - o 'tf-idf'. Os termos com os maiores valores da medida 'tf-idf' são os termos que são mais presentes em um documento *e não no outro*. 
+A medida que é usada na análise de texto é a frequência do termo ('tf') multiplicado pela frequência inversa do termo no documento ('idf') - o 'tf-idf'. Os termos com os maiores valores da medida 'tf-idf' são os termos que são mais presentes em um documento *e não no outro*.
 
 Calculamos a medida com a função `bind_tf_idf()`, que exige três argumentos - a coluna que contém as palavras, a coluna que indica em qual documento aparece cada palavra, e a coluna que resume a frequência de cada palavra no documento:
 
@@ -761,9 +752,9 @@ Assis_Verne_LDA_documentos %>%
   kable()
 ```
 
-O resultado indica quanto cada tópico aparece em cada livro. O livre de Assis é 42% tópico 1, 58% tópico 2, 0% tópicos 3 e 4, enquanto o livro de Verne é 0% tópico 1 e 2, 66% tópico 3 e 34% tópico 4. Ou seja - cada livro contém dois tópicos e os tópicos não se sobrepõem aos livros. 
+O resultado indica quanto cada tópico aparece em cada livro. O livre de Assis é 42% tópico 1, 58% tópico 2, 0% tópicos 3 e 4, enquanto o livro de Verne é 0% tópico 1 e 2, 66% tópico 3 e 34% tópico 4. Ou seja - cada livro contém dois tópicos e os tópicos não se sobrepõem aos livros.
 
-Mas o que representam esses tópicos? Não sabemos - eles não tem uma descrição fixa; são definidos pelo algoritmo e nós temos que *interpretar* o significado de cada tópico. Para facilitar isso, podemos inspecionar as palavras mais associadas a cada tópico. Pedimos o relacionamento entre os tópicos e as palavras (em vez dos documentos) com a matriz 'beta' em `tidy()`. O 'beta' reflete a probabilidade que a palavra é associada com o tópico. 
+Mas o que representam esses tópicos? Não sabemos - eles não tem uma descrição fixa; são definidos pelo algoritmo e nós temos que *interpretar* o significado de cada tópico. Para facilitar isso, podemos inspecionar as palavras mais associadas a cada tópico. Pedimos o relacionamento entre os tópicos e as palavras (em vez dos documentos) com a matriz 'beta' em `tidy()`. O 'beta' reflete a probabilidade que a palavra é associada com o tópico.
 
 ```{r}
 Assis_Verne_LDA_palavras <- Assis_Verne_LDA %>% tidy(matrix='beta')
@@ -784,31 +775,30 @@ Assis_Verne_LDA_palavras %>% group_by(topic) %>%
   kable()
 ```
 
-A nossa tarefa agora é resumir qual tópico é representado, por exemplo, pelo conjunto de palavras 'capitú', 'elle', 'dias', 'mãe', e 'ser' - pode ser que eles aparecem frequentemente em um diálogo que envolve o personagem 'capitú' e a sua mãe, por exemplo. Cada tópico não é óbvio, mas para o computador parece que eles formam tópicos coerentes presentes nos dois livros. 
+A nossa tarefa agora é resumir qual tópico é representado, por exemplo, pelo conjunto de palavras 'capitú', 'elle', 'dias', 'mãe', e 'ser' - pode ser que eles aparecem frequentemente em um diálogo que envolve o personagem 'capitú' e a sua mãe, por exemplo. Cada tópico não é óbvio, mas para o computador parece que eles formam tópicos coerentes presentes nos dois livros.
 
-Em outras aplicações a modelagem de tópicos é uma forma poderosa de identificar temas pareceidos em conjuntos grandes de documentos sem precisar ler todos os documentos. 
+Em outras aplicações a modelagem de tópicos é uma forma poderosa de identificar temas pareceidos em conjuntos grandes de documentos sem precisar ler todos os documentos.
 
-<div class = "green">
-
+::: green
 **Exercício 3: Comparando Documentos**
 
-1. Copie e cole um texto que você mesmo escreveu de pelo menos um parágrafo e salve ele dentro de um tibble em R. 
+1.  Copie e cole um texto que você mesmo escreveu de pelo menos um parágrafo e salve ele dentro de um tibble em R.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
-meu_texto <- tibble(text="A Organização Mundial da Saúde (OMS) disse nesta terça-feira (9) que a 'transmissão por casos assintomáticos está ocorrendo, a questão é saber quanto'. O esclarecimento da entidade internacional ocorre após comentário da chefe do programa de emergências da entidade, Maria van Kerkhove, de que a transmissão da Covid-19 por pacientes sem sintomas da doença parece ser 'rara'.`Kerkhove também voltou a se pronunciar nesta terça e explicou que as pesquisas estão em andamento. Ela disse que recebeu 'muitas mensagens da noite para o dia' e que achou importante esclarecer o mal-entendido. 'A maioria das transmissões que conhecemos ocorre por pessoas com sintomas que transmitem o vírus por meio de gotículas infectadas. Mas há um subconjunto de pessoas que não desenvolvem sintomas', explicou. 'Para realmente entender quantas pessoas não têm [os sintomas], pois ainda não temos essa resposta, existem algumas estimativas. Elas sugerem que entre 6% e 41% da população podem estar com o vírus, mas não apresentar os sintomas'.")
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
+meu_texto <- tibble(text="A Organização Mundial da Saúde (OMS) disse nesta terça-feira (9) que a 'transmissão por casos assintomáticos está ocorrendo, a questão é saber quanto'.")
 ```
 
-2. 'Tokenize' o seu texto em palavras, tirando a pontuação, os números, os stopwords, transformando os caracteres em minúsculo, e as palavras em suas raízes (stems).
+2.  'Tokenize' o seu texto em palavras, tirando a pontuação, os números, os stopwords, transformando os caracteres em minúsculo, e as palavras em suas raízes (stems).
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 meu_texto_palavras <- meu_texto %>% unnest_tokens(palavra, text, strip_numeric=TRUE) %>%
   anti_join(stopwords, by="palavra") %>%
   mutate(stem=stem_words(palavra, language="pt"))
 ```
 
-3. Junte dois textos tokenizados em um tibble com uma coluna que diferencia o documento e uma coluna que conta a frequência de cada palavra: (i) o seu texto da questão 1, e (ii) o livro que você usou no exercício 2.
+3.  Junte dois textos tokenizados em um tibble com uma coluna que diferencia o documento e uma coluna que conta a frequência de cada palavra: (i) o seu texto da questão 1, e (ii) o livro que você usou no exercício 2.
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 Branco_prep <- Branco_palavras %>% 
   group_by(palavra) %>% 
   tally() %>%
@@ -822,24 +812,11 @@ meu_texto_prep <- meu_texto_palavras %>%
 dois_textos <- Branco_prep %>% bind_rows(meu_texto_prep) 
 ```
 
-4. Calcule a medida 'tf_idf' para identificar as 5 palavras mais distintas de cada documento. Em qual sentido o seu documento é diferente do livro?
+4.  Calcule a medida 'tf_idf' para identificar as 5 palavras mais distintas de cada documento. Em qual sentido o seu documento é diferente do livro?
 
-```{r, eval=F, echo=T, tidy=TRUE, code_folding="Mostrar Código"}
+```{r, eval=F, echo=F, tidy=TRUE, code_folding="Mostrar Código"}
 dois_textos %>% bind_tf_idf(palavra, document, n) %>%
   group_by(document) %>%
   top_n(5, tf_idf)
 ```
-
-
-</div>
-
-<br>
-
-<div class = "purple">
-
-**Desafio 5**
-
-O [Desafio 5](Desafios/Desafio_5_v3.html) irá testar a sua capacidade de juntar bancos de dados e gerar gráficos apropriados e claros.
-
-O prazo para entregar o Desafio 5 por email com título “[FLS6397] - D5” à minha conta é **09/07/2021**, antes da aula. Por favor entregue (i) o arquivo .Rmd (ou .Rnw se preferir), e (ii) o arquivo .html ou .PDF.
-</div>
+:::
