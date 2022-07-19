@@ -9,7 +9,7 @@ output:
 
 ## Projeto Final
 
-**O prazo para submissão do projeto final é o dia 31 de julho de 2022 para o email do professor.**
+**O prazo para submissão do projeto final é o dia 7 de agosto de 2022 para o email do professor.**
 
 O projeto final é a sua oportunidade para aplicar tudo que você aprendeu na disciplina para os seus próprios dados e pergunta de pesquisa. Não precisa ser um projeto finalizado, e é sempre melhor escolher um tópico simples - o erro mais comum é ser ambicioso demais e tentar incorporar demais dados ou análises. Mas também recomendamos que você prepara algo que será útil para a sua própria pesquisa, pois a oportunidade de explorar dados é uma ótima maneira de se tornar um especialista em seu tópico.
 
