@@ -1523,7 +1523,9 @@ div.purple { background-color:#9e9ac8; border-radius: 5px; padding: 20px;}
 
 <span class="va">popn_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">&quot;total_populacao_sao_paulo/total_populacao_sao_paulo.xls&quot;</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
 
-<span class="co"># obs: As duas últimas linhas na planilha contém dados de resumo que não são observações: o total do estado e o link do site do IBGE de onde a planilha foi tirada. Idealmente, devemos tirar elas, mas por sorte provavalmente eles estarão tirados no momento do left_join na próxima questão. </span>
+<span class="co"># obs: As duas últimas linhas na planilha contém dados de resumo que não são observações: </span>
+<span class="co">#o total do estado e o link do site do IBGE de onde a planilha foi tirada.</span>
+<span class="co">#Idealmente, devemos tirar elas, mas por sorte provavalmente eles estarão tirados com o left_join na próxima questão. </span>
 </code></pre>
 </div>
 </div>
