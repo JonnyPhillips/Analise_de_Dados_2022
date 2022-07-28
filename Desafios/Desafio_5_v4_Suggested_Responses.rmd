@@ -4,7 +4,7 @@ output: distill::distill_article
 ---
 
 ```{r, echo=F}
-knitr::opts_chunk$set(echo = F, eval=T, highlight=T, warning=F, message=F, include=F)
+knitr::opts_chunk$set(echo = T, eval=T, highlight=T, warning=F, message=F, include=T)
 ```
 
 <style>
@@ -16,8 +16,6 @@ O prazo para entregar Desafio 5 por email com título “[FLS6397] - D5” à mi
 </div>
 
 <br>
-
-[Respostas Sugeridas para Desafio 5 aqui](Desafio_5_v4_Suggested_Responses.html)
 
 ## Instruções
 
@@ -53,9 +51,9 @@ muns_estados <- estados %>% map(read_municipality, year=2018)
 ```{r}
 library("readxl")
 
-popn_sp <- read_excel("total_populacao_sao_paulo/total_populacao_sao_paulo.xls")
+popn_sp <- read_excel("total_populacao_sao_paulo/total_populacao_sao_paulo.xls") %>% slice(-((n()-1):n())) 
 
-# obs: se não limpar as planilhas, as duas últimas linhas contém dados "errados": o total do estado e o link do site do IBGE de onde a planilha foi tirada
+# obs: As duas últimas linhas na planilha contém dados de resumo que não são observações: o total do estado e o link do site do IBGE de onde a planilha foi tirada. Idealmente, devemos tirar elas, mas por sorte provavalmente eles estarão tirados no momento do left_join na próxima questão. 
 ```
 
 4. Queremos mapear dados da população por município. Identifique a chave apropriada, e cruze o banco da população com o banco das fronteiras dos municípios de SP. 
